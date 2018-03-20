@@ -1,0 +1,28 @@
+PODS:
+  - FontBlaster (4.0.3)
+  - IQKeyboardManagerSwift (5.0.8)
+  - NVActivityIndicatorView (4.1.1):
+    - NVActivityIndicatorView/Presenter (= 4.1.1)
+  - NVActivityIndicatorView/Presenter (4.1.1)
+  - SlideMenuControllerSwift (4.0.0)
+  - SQLite.swift (0.11.4):
+    - SQLite.swift/standard (= 0.11.4)
+  - SQLite.swift/standard (0.11.4)
+
+DEPENDENCIES:
+  - FontBlaster
+  - IQKeyboardManagerSwift
+  - NVActivityIndicatorView
+  - SlideMenuControllerSwift
+  - SQLite.swift (~> 0.11.4)
+
+SPEC CHECKSUMS:
+  FontBlaster: f18031f5dde2ce689f5330e7005edfe3c0815957
+  IQKeyboardManagerSwift: 2e7dc7f98c111458c1ea2b373f893e8cf95e2b97
+  NVActivityIndicatorView: 60109b9bf46efc2e71ab81453196ccdfdfeea870
+  SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
+  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
+
+PODFILE CHECKSUM: 76b8c100fbec78d02a3d3c2dca4affaaad9af33e
+
+COCOAPODS: 1.4.0

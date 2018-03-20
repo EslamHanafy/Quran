@@ -1,10 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GE_SS_Text_Light.otf">
+            <string>GESSTextLight-Light</string>
+        </array>
+        <array key="GE_SS_Two_Bold.otf">
+            <string>GESSTwoBold-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -13,13 +27,74 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash bg" translatesAutoresizingMaskIntoConstraints="NO" id="o42-5F-QYW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="kbx-QB-QuL">
+                                <rect key="frame" x="94" y="225" width="187.5" height="217.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="Logo splash" translatesAutoresizingMaskIntoConstraints="NO" id="8pu-ih-aKp">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="187.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="8pu-ih-aKp" secondAttribute="height" multiplier="1:1" id="ia0-3x-Wfo"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="القرآن الكريم" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cWu-jk-zzh">
+                                        <rect key="frame" x="0.0" y="187.5" width="187.5" height="30"/>
+                                        <fontDescription key="fontDescription" name="GESSTwoBold-Bold" family="GE SS Two" pointSize="28"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="GESSTwoBold-Bold" family="GE SS Two" pointSize="56"/>
+                                        </variation>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="cWu-jk-zzh" secondAttribute="trailing" id="3CJ-Nu-B6W"/>
+                                    <constraint firstItem="cWu-jk-zzh" firstAttribute="top" secondItem="8pu-ih-aKp" secondAttribute="bottom" id="4r2-Xx-M0o"/>
+                                    <constraint firstItem="8pu-ih-aKp" firstAttribute="top" secondItem="kbx-QB-QuL" secondAttribute="top" id="KNA-Wq-nO3"/>
+                                    <constraint firstItem="cWu-jk-zzh" firstAttribute="leading" secondItem="kbx-QB-QuL" secondAttribute="leading" id="Qws-Vo-yQE"/>
+                                    <constraint firstAttribute="trailing" secondItem="8pu-ih-aKp" secondAttribute="trailing" id="SkF-Mv-gv3"/>
+                                    <constraint firstItem="8pu-ih-aKp" firstAttribute="leading" secondItem="kbx-QB-QuL" secondAttribute="leading" id="qbl-ne-hkk"/>
+                                    <constraint firstAttribute="bottom" secondItem="cWu-jk-zzh" secondAttribute="bottom" id="tNM-fx-C81"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUq-oV-Uiv">
+                                <rect key="frame" x="136.5" y="604" width="102.5" height="43"/>
+                                <string key="text">للقارئ المعلم
+حيدر الجوادي</string>
+                                <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="40"/>
+                                </variation>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="o42-5F-QYW" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="973-bI-ng8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NUq-oV-Uiv" secondAttribute="bottom" constant="20" id="Awb-Wd-CuU"/>
+                            <constraint firstItem="8pu-ih-aKp" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.5" id="BXp-K3-Qjo"/>
+                            <constraint firstItem="o42-5F-QYW" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Bss-PH-1dm"/>
+                            <constraint firstItem="NUq-oV-Uiv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CHC-Zw-6PO"/>
+                            <constraint firstItem="kbx-QB-QuL" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="JxJ-eD-EPV"/>
+                            <constraint firstAttribute="bottom" secondItem="o42-5F-QYW" secondAttribute="bottom" id="LHX-kM-yim"/>
+                            <constraint firstItem="kbx-QB-QuL" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="l3o-Sw-9Ey"/>
+                            <constraint firstAttribute="trailing" secondItem="o42-5F-QYW" secondAttribute="trailing" id="oOY-3a-Dpk"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="50.625" y="373.75"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Logo splash" width="518" height="471"/>
+        <image name="Splash bg" width="2048" height="2732"/>
+    </resources>
 </document>
