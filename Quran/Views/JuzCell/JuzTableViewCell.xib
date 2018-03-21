@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GE_SS_Text_Light.otf">
+            <string>GESSTextLight-Light</string>
+        </array>
+        <array key="GE_SS_Two_Bold.otf">
+            <string>GESSTwoBold-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="JuzTableViewCell" customModule="Quran" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="361" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="361" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzD-rY-h04" userLabel="containerView">
+                        <rect key="frame" x="16" y="11" width="329" height="38"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الجزء الاول" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBn-46-qEH">
+                                <rect key="frame" x="258.5" y="11" width="70.5" height="16"/>
+                                <fontDescription key="fontDescription" name="GESSTwoBold-Bold" family="GE SS Two" pointSize="15"/>
+                                <color key="textColor" red="0.52543061971664429" green="0.5255245566368103" blue="0.52542465925216675" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="GESSTwoBold-Bold" family="GE SS Two" pointSize="30"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="الفاتحة" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ITj-Mi-9bn">
+                                <rect key="frame" x="8" y="11.5" width="246.5" height="16"/>
+                                <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="15"/>
+                                <color key="textColor" red="0.52543061971664429" green="0.5255245566368103" blue="0.52542465925216675" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="30"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oBn-46-qEH" firstAttribute="centerY" secondItem="bzD-rY-h04" secondAttribute="centerY" id="7ou-zG-qNY"/>
+                            <constraint firstItem="ITj-Mi-9bn" firstAttribute="leading" secondItem="bzD-rY-h04" secondAttribute="leadingMargin" id="C40-dR-X9I"/>
+                            <constraint firstItem="ITj-Mi-9bn" firstAttribute="centerY" secondItem="bzD-rY-h04" secondAttribute="centerY" id="Ppd-O5-87z"/>
+                            <constraint firstAttribute="height" constant="38" id="csb-nd-6Ut">
+                                <variation key="heightClass=regular-widthClass=regular" constant="76"/>
+                            </constraint>
+                            <constraint firstItem="oBn-46-qEH" firstAttribute="leading" secondItem="ITj-Mi-9bn" secondAttribute="trailing" constant="4" id="f1d-BJ-PiU"/>
+                            <constraint firstAttribute="trailing" secondItem="oBn-46-qEH" secondAttribute="trailing" id="zPe-YT-82j"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PAq-iI-nsw" userLabel="lineView">
+                        <rect key="frame" x="0.0" y="58.5" width="361" height="1"/>
+                        <color key="backgroundColor" red="0.78030639886856079" green="0.78044158220291138" blue="0.78029781579971313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="rHf-xz-uDL"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="PAq-iI-nsw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="TKp-Qz-pJH"/>
+                    <constraint firstItem="bzD-rY-h04" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Ub4-rz-6Yk"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="bzD-rY-h04" secondAttribute="bottom" id="XMd-jN-N7p"/>
+                    <constraint firstAttribute="bottom" secondItem="PAq-iI-nsw" secondAttribute="bottom" id="fVJ-Jq-wbj"/>
+                    <constraint firstAttribute="trailing" secondItem="PAq-iI-nsw" secondAttribute="trailing" id="j8c-CV-svH"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="bzD-rY-h04" secondAttribute="trailing" id="knR-gu-CVT"/>
+                    <constraint firstItem="bzD-rY-h04" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="rkT-aA-ipd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="nameLabel" destination="oBn-46-qEH" id="90l-Ud-OGH"/>
+                <outlet property="surahLabel" destination="ITj-Mi-9bn" id="mKC-ez-BMk"/>
+            </connections>
+            <point key="canvasLocation" x="45.5" y="44"/>
+        </tableViewCell>
+    </objects>
+</document>

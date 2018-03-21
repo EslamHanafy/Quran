@@ -13,6 +13,11 @@
 		0C8C1BDD206289E300C05337 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C1BDB206289E300C05337 /* SideMenuTableViewCell.swift */; };
 		0C8C1BDE206289E300C05337 /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C8C1BDC206289E300C05337 /* SideMenuTableViewCell.xib */; };
 		0C8C1BE02062999100C05337 /* CommonMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C1BDF2062999100C05337 /* CommonMethods.swift */; };
+		0C8C1BE22062B72D00C05337 /* JuzViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C1BE12062B72D00C05337 /* JuzViewController.swift */; };
+		0C8C1BE42062B95600C05337 /* Juz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C1BE32062B95600C05337 /* Juz.swift */; };
+		0C8C1BE62062B9B800C05337 /* Ayah.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C1BE52062B9B800C05337 /* Ayah.swift */; };
+		0C8C1BEA2062CB1E00C05337 /* JuzTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C1BE82062CB1E00C05337 /* JuzTableViewCell.swift */; };
+		0C8C1BEB2062CB1E00C05337 /* JuzTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C8C1BE92062CB1E00C05337 /* JuzTableViewCell.xib */; };
 		0CA42F6820611DB300DC1028 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA42F6720611DB300DC1028 /* AppDelegate.swift */; };
 		0CA42F6D20611DB300DC1028 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CA42F6B20611DB300DC1028 /* Main.storyboard */; };
 		0CA42F6F20611DB300DC1028 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CA42F6E20611DB300DC1028 /* Assets.xcassets */; };
@@ -38,6 +43,11 @@
 		0C8C1BDB206289E300C05337 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		0C8C1BDC206289E300C05337 /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
 		0C8C1BDF2062999100C05337 /* CommonMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMethods.swift; sourceTree = "<group>"; };
+		0C8C1BE12062B72D00C05337 /* JuzViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuzViewController.swift; sourceTree = "<group>"; };
+		0C8C1BE32062B95600C05337 /* Juz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juz.swift; sourceTree = "<group>"; };
+		0C8C1BE52062B9B800C05337 /* Ayah.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ayah.swift; sourceTree = "<group>"; };
+		0C8C1BE82062CB1E00C05337 /* JuzTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuzTableViewCell.swift; sourceTree = "<group>"; };
+		0C8C1BE92062CB1E00C05337 /* JuzTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JuzTableViewCell.xib; sourceTree = "<group>"; };
 		0CA42F6420611DB300DC1028 /* Quran.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quran.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA42F6720611DB300DC1028 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CA42F6C20611DB300DC1028 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +91,15 @@
 			path = SideMenuCell;
 			sourceTree = "<group>";
 		};
+		0C8C1BE72062CB0400C05337 /* JuzCell */ = {
+			isa = PBXGroup;
+			children = (
+				0C8C1BE82062CB1E00C05337 /* JuzTableViewCell.swift */,
+				0C8C1BE92062CB1E00C05337 /* JuzTableViewCell.xib */,
+			);
+			path = JuzCell;
+			sourceTree = "<group>";
+		};
 		0CA42F5B20611DB200DC1028 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +138,8 @@
 			children = (
 				0CA42F9320616AC000DC1028 /* Sura.swift */,
 				0C8C1BD82062896400C05337 /* MenuItem.swift */,
+				0C8C1BE32062B95600C05337 /* Juz.swift */,
+				0C8C1BE52062B9B800C05337 /* Ayah.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -126,6 +147,7 @@
 		0CA42F7A20611DD100DC1028 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0C8C1BE72062CB0400C05337 /* JuzCell */,
 				0C8C1BDA206289B800C05337 /* SideMenuCell */,
 				0CA42F8E206167EA00DC1028 /* SurahCell */,
 			);
@@ -138,6 +160,7 @@
 				0CA42F97206174FD00DC1028 /* AllSurahViewController.swift */,
 				0C8C1BD42062875200C05337 /* SideMenuViewController.swift */,
 				0C8C1BD62062884D00C05337 /* HomeContainerViewController.swift */,
+				0C8C1BE12062B72D00C05337 /* JuzViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -271,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CA42F8220612E8000DC1028 /* Diwani Bent.ttf in Resources */,
+				0C8C1BEB2062CB1E00C05337 /* JuzTableViewCell.xib in Resources */,
 				0C8C1BDE206289E300C05337 /* SideMenuTableViewCell.xib in Resources */,
 				0CA42F7220611DB300DC1028 /* LaunchScreen.storyboard in Resources */,
 				0CA42F922061680800DC1028 /* SurahTableViewCell.xib in Resources */,
@@ -354,14 +378,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CA42F9420616AC000DC1028 /* Sura.swift in Sources */,
+				0C8C1BE42062B95600C05337 /* Juz.swift in Sources */,
 				0CA42F912061680800DC1028 /* SurahTableViewCell.swift in Sources */,
 				0C8C1BD72062884D00C05337 /* HomeContainerViewController.swift in Sources */,
 				0CA42F98206174FD00DC1028 /* AllSurahViewController.swift in Sources */,
 				0CA42F6820611DB300DC1028 /* AppDelegate.swift in Sources */,
 				0C8C1BD92062896400C05337 /* MenuItem.swift in Sources */,
+				0C8C1BEA2062CB1E00C05337 /* JuzTableViewCell.swift in Sources */,
 				0C8C1BDD206289E300C05337 /* SideMenuTableViewCell.swift in Sources */,
 				0C8C1BD52062875200C05337 /* SideMenuViewController.swift in Sources */,
 				0CA42F9620616B5700DC1028 /* DBHelper.swift in Sources */,
+				0C8C1BE22062B72D00C05337 /* JuzViewController.swift in Sources */,
+				0C8C1BE62062B9B800C05337 /* Ayah.swift in Sources */,
 				0C8C1BE02062999100C05337 /* CommonMethods.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

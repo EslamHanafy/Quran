@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
 class SideMenuViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
@@ -43,11 +44,19 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            self.closeRight()
+        }else{
+            goToView(withId: self.items[indexPath.row].screenId, fromController: self)
+        }
+    }
+    
     func initTableView() {
         tableView.register(UINib(nibName: "SideMenuTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
         
         items.append(MenuItem(title: "القرآن الكريم", icon: "book", screenId: "Home"))
-        items.append(MenuItem(title: "الفهرس", icon: "list", screenId: ""))
+        items.append(MenuItem(title: "الأجزاء", icon: "list", screenId: "JuzScreen"))
         items.append(MenuItem(title: "التلاوة", icon: "more icon", screenId: ""))
         items.append(MenuItem(title: "عن التطبيق", icon: "info", screenId: ""))
         items.append(MenuItem(title: "مشاركة التطبيق", icon: "Share 2", screenId: ""))

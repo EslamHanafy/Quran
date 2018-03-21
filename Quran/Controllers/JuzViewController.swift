@@ -1,43 +1,42 @@
 //
-//  AllSurahViewController.swift
+//  JuzViewController.swift
 //  Quran
 //
-//  Created by Eslam Hanafy on 3/20/18.
+//  Created by Eslam Hanafy on 3/21/18.
 //  Copyright © 2018 magdsoft. All rights reserved.
 //
 
 import UIKit
-import SlideMenuControllerSwift
 
-class AllSurahViewController: UIViewController {
+class JuzViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchTextField: UITextField!
     
     
-    var surah: [Surah] = []
-    var filtered: [Surah] = []
+    var juz: [Juz] = []
+    var filtered: [Juz] = []
     
     var searchKeyword: String = "" {
         didSet {
-            filtered = surah.filter({ return $0.name.contains(searchKeyword) })
+            filtered = juz.filter({ return $0.name.contains(searchKeyword) || $0.surah.name.contains(searchKeyword) })
             tableView.reloadData()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        surah = DBHelper.shared.getAllSurah()
-        tableView.register(UINib(nibName: "SurahTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
+        
+        juz = DBHelper.shared.getAllJuz()
+        tableView.register(UINib(nibName: "JuzTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
     }
-
+    
     
     
     
     //MARK: - IBActions
-    @IBAction func menuAction() {
-        self.openRight()
+    @IBAction func backAction() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func searchAction() {
@@ -50,18 +49,19 @@ class AllSurahViewController: UIViewController {
 }
 
 //MARK: - table view
-extension AllSurahViewController: UITableViewDelegate, UITableViewDataSource {
+extension JuzViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchKeyword.isEmpty ? surah.count : filtered.count
+        return searchKeyword.isEmpty ? juz.count : filtered.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SurahTableViewCell
-        cell.initWith(sura: searchKeyword.isEmpty ? surah[indexPath.row] : filtered[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! JuzTableViewCell
+        cell.initWith(juz: searchKeyword.isEmpty ? juz[indexPath.row] : filtered[indexPath.row])
         return cell
     }
 }
+
