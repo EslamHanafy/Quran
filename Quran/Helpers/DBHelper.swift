@@ -64,4 +64,24 @@ class DBHelper {
         
         return allJuz
     }
+    
+    func getAllAyah(forSurah surah: Surah) -> [Ayah] {
+        var allAyah: [Ayah] = []
+        
+        let ayahTable = Table("ayah")
+        let surahId = Expression<Int64>("surah_id")
+        let number = Expression<Int64>("number")
+        let text = Expression<String>("text")
+        
+        do {
+            let data = try db.prepare(ayahTable.where(surahId == Int64(surah.id)))
+            for row in data {
+                allAyah.append(Ayah(id: Int(row[number]), content: row[text]))
+            }
+        } catch {
+            print("the error in getting all ayah is: \(error.localizedDescription)")
+        }
+        
+        return allAyah
+    }
 }

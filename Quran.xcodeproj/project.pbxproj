@@ -34,6 +34,8 @@
 		0CA42F9620616B5700DC1028 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA42F9520616B5700DC1028 /* DBHelper.swift */; };
 		0CA42F98206174FD00DC1028 /* AllSurahViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA42F97206174FD00DC1028 /* AllSurahViewController.swift */; };
 		88AAE72BD4D026ECEBBDC942 /* Pods_Quran.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7C7016F5583E133AD5119F /* Pods_Quran.framework */; };
+		AA21D4562064559B00507932 /* Backups.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21D4552064559B00507932 /* Backups.swift */; };
+		AA3FE284206403C700D69740 /* QuranViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FE283206403C700D69740 /* QuranViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		11FB00225C396FB7B2753D01 /* Pods-Quran.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quran.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quran/Pods-Quran.debug.xcconfig"; sourceTree = "<group>"; };
 		22CFFA700893E26FC303D116 /* Pods-Quran.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quran.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quran/Pods-Quran.release.xcconfig"; sourceTree = "<group>"; };
 		5F7C7016F5583E133AD5119F /* Pods_Quran.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quran.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA21D4552064559B00507932 /* Backups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backups.swift; sourceTree = "<group>"; };
+		AA3FE283206403C700D69740 /* QuranViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,8 @@
 				0C8C1BD42062875200C05337 /* SideMenuViewController.swift */,
 				0C8C1BD62062884D00C05337 /* HomeContainerViewController.swift */,
 				0C8C1BE12062B72D00C05337 /* JuzViewController.swift */,
+				AA3FE283206403C700D69740 /* QuranViewController.swift */,
+				AA21D4552064559B00507932 /* Backups.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CA42F9420616AC000DC1028 /* Sura.swift in Sources */,
+				AA21D4562064559B00507932 /* Backups.swift in Sources */,
 				0C8C1BE42062B95600C05337 /* Juz.swift in Sources */,
 				0CA42F912061680800DC1028 /* SurahTableViewCell.swift in Sources */,
 				0C8C1BD72062884D00C05337 /* HomeContainerViewController.swift in Sources */,
@@ -387,6 +394,7 @@
 				0C8C1BEA2062CB1E00C05337 /* JuzTableViewCell.swift in Sources */,
 				0C8C1BDD206289E300C05337 /* SideMenuTableViewCell.swift in Sources */,
 				0C8C1BD52062875200C05337 /* SideMenuViewController.swift in Sources */,
+				AA3FE284206403C700D69740 /* QuranViewController.swift in Sources */,
 				0CA42F9620616B5700DC1028 /* DBHelper.swift in Sources */,
 				0C8C1BE22062B72D00C05337 /* JuzViewController.swift in Sources */,
 				0C8C1BE62062B9B800C05337 /* Ayah.swift in Sources */,
