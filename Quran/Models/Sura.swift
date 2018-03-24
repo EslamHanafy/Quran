@@ -11,4 +11,5 @@ import Foundation
 struct Surah {
     var id: Int
     var name: String
+    var allAyah: [Ayah]
 }

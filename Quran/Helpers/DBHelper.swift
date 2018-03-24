@@ -28,7 +28,7 @@ class DBHelper {
         do {
             let data = try db.prepare(surahTable)
             for surah in data {
-                allSurah.append(Surah(id: Int(surah[id]), name: surah[name]))
+                allSurah.append(Surah(id: Int(surah[id]), name: surah[name], allAyah: []))
             }
         }catch {
             print("the error in getting surah is: \(error.localizedDescription)")
@@ -56,7 +56,7 @@ class DBHelper {
         do {
             let data = try db.prepare(query)
             for row in data {
-                allJuz.append(Juz(id: Int(row[juzTable[id]]), name: row[juzTable[name]], surah: Surah(id: Int(row[surahTable[id]]), name: row[surahTable[name]]), ayah: Ayah(id: Int(row[juzTable[ayah]]), content: "")))
+                allJuz.append(Juz(id: Int(row[juzTable[id]]), name: row[juzTable[name]], surah: Surah(id: Int(row[surahTable[id]]), name: row[surahTable[name]], allAyah: []), ayah: Ayah(id: Int(row[juzTable[ayah]]), content: "")))
             }
         } catch {
             print("the error in getting juz is: \(error.localizedDescription)")
@@ -83,5 +83,101 @@ class DBHelper {
         }
         
         return allAyah
+    }
+    
+    
+    func getAllPages() -> [Page] {
+        var pages: [Page] = []
+        
+        //tables
+        let surahTable = Table("surah")
+        let pagesTable = Table("pages")
+        // columns
+        let surahId = Expression<Int64>("surah_id")
+        let id = Expression<Int64>("id")
+        let ayah = Expression<Int64>("ayah_number")
+        let name = Expression<String>("name")
+        
+      
+        do {
+            let data = try db.prepare(pagesTable.join(surahTable, on: pagesTable[surahId] == surahTable[id]))
+            
+            for (index, row) in data.enumerated() {
+                var allSurah: [Surah] = []
+                print("the current index is: \(index)")
+                if let next = data.first(where: { $0[pagesTable[id]] == (row[pagesTable[id]] + 1) }) {
+                    allSurah = getAllAyahInPage(startingFromSurah: row[pagesTable[surahId]], toSurah: next[pagesTable[surahId]], andStartingFromAyah: row[pagesTable[ayah]], toAyah: next[pagesTable[ayah]])
+                }else {
+                    allSurah = getAllAyahInPage(startingFromSurah: row[pagesTable[surahId]], toSurah: 0, andStartingFromAyah: row[pagesTable[ayah]], toAyah: 0)
+                }
+                
+                pages.append(Page(id: Int(row[pagesTable[id]]), juz: self.getJuz(forSurah: Surah(id: Int(row[surahTable[id]]), name: row[surahTable[name]], allAyah: [])), allSurah: allSurah))
+                
+            }
+            
+        } catch {
+            print("the error in gitting pages is: \(error.localizedDescription)")
+        }
+        
+        
+        return pages
+    }
+    
+    func getAllAyahInPage(startingFromSurah startSurah: Int64, toSurah endSurah: Int64, andStartingFromAyah startAyah: Int64, toAyah endAyah: Int64) -> [Surah] {
+        var allSurah: [Surah] = []
+        
+        // tables
+        let ayahTable = Table("ayah")
+        let surahTable = Table("surah")
+        // columns
+        let surahId = Expression<Int64>("surah_id")
+        let number = Expression<Int64>("number")
+        let text = Expression<String>("text")
+        let name = Expression<String>("name")
+        let id = Expression<Int64>("id")
+        
+        var query: QueryType!
+        
+        if startSurah != endSurah && endSurah != 0 {
+            if endAyah == 0 {
+                query = ayahTable.join(surahTable, on: surahId == surahTable[id]).where( ayahTable[surahId] >= startSurah && ayahTable[surahId] < endSurah && ayahTable[number] == startAyah)
+            }else {
+                query = ayahTable.join(surahTable, on: surahId == surahTable[id]).where( ayahTable[surahId] >= startSurah && ayahTable[surahId] < endSurah && ayahTable[number] >= startAyah && ayahTable[number] < endAyah )
+            }
+        }else {
+            query = ayahTable.join(surahTable, on: surahId == surahTable[id]).where( ayahTable[surahId] == startSurah && ayahTable[number] == startAyah )
+        }
+        
+        
+        do {
+            let data = try db.prepare(query)
+            
+            for row in data {
+                var sura: Surah!
+                
+                if let _sura: Surah = allSurah.popLast() {
+                    if (_sura.allAyah.last?.id ?? 0) > Int(row[ayahTable[number]]) {
+                        allSurah.append(_sura)
+                        sura = Surah(id: Int(row[surahTable[id]]), name: row[surahTable[name]], allAyah: [])
+                    }else {
+                        sura = _sura
+                    }
+                }else {
+                    sura = Surah(id: Int(row[surahTable[id]]), name: row[surahTable[name]], allAyah: [])
+                }
+                
+                sura.allAyah.append(Ayah(id: Int(row[ayahTable[number]]), content: row[ayahTable[text]]))
+                allSurah.append(sura)
+            }
+            
+        } catch  {
+            print("the error in getting all ayah in page is: \(error.localizedDescription)")
+        }
+        
+        return allSurah
+    }
+    
+    func getJuz(forSurah surah: Surah) -> Juz {
+        return Juz(id: 0, name: "", surah: surah, ayah: Ayah(id: 0, content: ""))
     }
 }

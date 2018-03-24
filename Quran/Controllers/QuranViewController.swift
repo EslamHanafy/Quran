@@ -43,7 +43,7 @@ class QuranViewController: UIViewController, UIGestureRecognizerDelegate {
         
         for ayah in allAyah {
             myString.append(NSAttributedString(string: ayah.content , attributes: [
-                NSAttributedStringKey.init(INDEX_ATTRIBUTE) : index,
+                NSAttributedStringKey.init(INDEX_ATTRIBUTE) : ayah.id,
                 NSAttributedStringKey.font: font,
                 NSAttributedStringKey.paragraphStyle: style
                 ]))
@@ -149,6 +149,10 @@ extension QuranViewController {
     }
     
     func changeColorForVers(withNumber number: Int) {
+        let range = (textView.attributedText.string as NSString).range(of: allAyah[allAyah.index(where: { $0.id == number })!].content)
+        myString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.red, range: range)
+        textView.attributedText = myString
+        
         /*let newRange = (versesString as NSString).range(of: verses[number] + " \(number + 1) ")
          myString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.backgroundColor: UIColor.lightGray], range: newRange)
          

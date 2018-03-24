@@ -13,9 +13,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Diwani Bent.ttf">
-            <string>DiwaniBent</string>
-        </array>
         <array key="GE_SS_Text_Light.otf">
             <string>GESSTextLight-Light</string>
         </array>
@@ -496,19 +493,28 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vqf-UJ-0VO" userLabel="containerView">
                                 <rect key="frame" x="0.0" y="73.5" width="375" height="593.5"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="بسم الله الرحمن الرحيم" textAlignment="right" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Af-e5-b76">
-                                        <rect key="frame" x="8" y="0.0" width="359" height="585.5"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="DiwaniBent" family="Diwani Bent" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wAG-4t-YZm">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="593.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nVZ-Wc-Zxm">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="sSv-VY-nFh" id="We1-Hs-gLQ"/>
+                                            <outlet property="delegate" destination="sSv-VY-nFh" id="Fy3-rz-6dg"/>
+                                        </connections>
+                                    </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="6Af-e5-b76" firstAttribute="top" secondItem="Vqf-UJ-0VO" secondAttribute="top" id="0Ei-bR-7BM"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="6Af-e5-b76" secondAttribute="bottom" id="F7H-Ir-8Qq"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="6Af-e5-b76" secondAttribute="trailing" id="Q0K-fP-UlS"/>
-                                    <constraint firstItem="6Af-e5-b76" firstAttribute="leading" secondItem="Vqf-UJ-0VO" secondAttribute="leadingMargin" id="y6o-xK-Jjq"/>
+                                    <constraint firstAttribute="bottom" secondItem="wAG-4t-YZm" secondAttribute="bottom" id="Duh-hD-vJ7"/>
+                                    <constraint firstItem="wAG-4t-YZm" firstAttribute="top" secondItem="Vqf-UJ-0VO" secondAttribute="top" id="EjO-Ms-3Qk"/>
+                                    <constraint firstAttribute="trailing" secondItem="wAG-4t-YZm" secondAttribute="trailing" id="SDi-9W-5nx"/>
+                                    <constraint firstItem="wAG-4t-YZm" firstAttribute="leading" secondItem="Vqf-UJ-0VO" secondAttribute="leading" id="g5C-5T-D6F"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -525,13 +531,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q7a-x2-tFR"/>
                     </view>
-                    <connections>
-                        <outlet property="textView" destination="6Af-e5-b76" id="eC2-ic-l1I"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y64-W4-Ap2" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="929" y="118"/>
+            <point key="canvasLocation" x="928.79999999999995" y="117.39130434782609"/>
         </scene>
     </scenes>
     <resources>

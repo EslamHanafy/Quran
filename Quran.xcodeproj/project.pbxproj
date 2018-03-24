@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C60613B2066926F00B49227 /* QuranPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6061392066926F00B49227 /* QuranPageCollectionViewCell.swift */; };
+		0C60613C2066926F00B49227 /* QuranPageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C60613A2066926F00B49227 /* QuranPageCollectionViewCell.xib */; };
+		0C60613F2066991100B49227 /* UthmanTN1B Ver10.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C60613D2066991100B49227 /* UthmanTN1B Ver10.otf */; };
+		0C6061402066991100B49227 /* UthmanTN1 Ver10.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C60613E2066991100B49227 /* UthmanTN1 Ver10.otf */; };
+		0C60614220669B2C00B49227 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C60614120669B2C00B49227 /* Page.swift */; };
 		0C8C1BD52062875200C05337 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C1BD42062875200C05337 /* SideMenuViewController.swift */; };
 		0C8C1BD72062884D00C05337 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C1BD62062884D00C05337 /* HomeContainerViewController.swift */; };
 		0C8C1BD92062896400C05337 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C1BD82062896400C05337 /* MenuItem.swift */; };
@@ -39,6 +44,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C6061392066926F00B49227 /* QuranPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranPageCollectionViewCell.swift; sourceTree = "<group>"; };
+		0C60613A2066926F00B49227 /* QuranPageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuranPageCollectionViewCell.xib; sourceTree = "<group>"; };
+		0C60613D2066991100B49227 /* UthmanTN1B Ver10.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanTN1B Ver10.otf"; sourceTree = "<group>"; };
+		0C60613E2066991100B49227 /* UthmanTN1 Ver10.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanTN1 Ver10.otf"; sourceTree = "<group>"; };
+		0C60614120669B2C00B49227 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		0C8C1BD42062875200C05337 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		0C8C1BD62062884D00C05337 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
 		0C8C1BD82062896400C05337 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -86,6 +96,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C6061382066924000B49227 /* QuranPageCell */ = {
+			isa = PBXGroup;
+			children = (
+				0C6061392066926F00B49227 /* QuranPageCollectionViewCell.swift */,
+				0C60613A2066926F00B49227 /* QuranPageCollectionViewCell.xib */,
+			);
+			path = QuranPageCell;
+			sourceTree = "<group>";
+		};
 		0C8C1BDA206289B800C05337 /* SideMenuCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +163,7 @@
 				0C8C1BD82062896400C05337 /* MenuItem.swift */,
 				0C8C1BE32062B95600C05337 /* Juz.swift */,
 				0C8C1BE52062B9B800C05337 /* Ayah.swift */,
+				0C60614120669B2C00B49227 /* Page.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -151,6 +171,7 @@
 		0CA42F7A20611DD100DC1028 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0C6061382066924000B49227 /* QuranPageCell */,
 				0C8C1BE72062CB0400C05337 /* JuzCell */,
 				0C8C1BDA206289B800C05337 /* SideMenuCell */,
 				0CA42F8E206167EA00DC1028 /* SurahCell */,
@@ -197,6 +218,8 @@
 				0CA42F7F20612E7F00DC1028 /* Diwani Bent.ttf */,
 				0CA42F8A2061616100DC1028 /* GE_SS_Two_Bold.otf */,
 				0CA42F882061615300DC1028 /* GE_SS_Text_Light.otf */,
+				0C60613E2066991100B49227 /* UthmanTN1 Ver10.otf */,
+				0C60613D2066991100B49227 /* UthmanTN1B Ver10.otf */,
 				0CA42F8120612E8000DC1028 /* Diwani Letter.ttf */,
 				0CA42F8020612E7F00DC1028 /* thuluth-decorated.ttf */,
 			);
@@ -302,10 +325,13 @@
 				0CA42F8220612E8000DC1028 /* Diwani Bent.ttf in Resources */,
 				0C8C1BEB2062CB1E00C05337 /* JuzTableViewCell.xib in Resources */,
 				0C8C1BDE206289E300C05337 /* SideMenuTableViewCell.xib in Resources */,
+				0C60613F2066991100B49227 /* UthmanTN1B Ver10.otf in Resources */,
+				0C6061402066991100B49227 /* UthmanTN1 Ver10.otf in Resources */,
 				0CA42F7220611DB300DC1028 /* LaunchScreen.storyboard in Resources */,
 				0CA42F922061680800DC1028 /* SurahTableViewCell.xib in Resources */,
 				0CA42F8D206164F000DC1028 /* Quran.db in Resources */,
 				0CA42F6F20611DB300DC1028 /* Assets.xcassets in Resources */,
+				0C60613C2066926F00B49227 /* QuranPageCollectionViewCell.xib in Resources */,
 				0CA42F8320612E8000DC1028 /* thuluth-decorated.ttf in Resources */,
 				0CA42F6D20611DB300DC1028 /* Main.storyboard in Resources */,
 				0CA42F8B2061616100DC1028 /* GE_SS_Two_Bold.otf in Resources */,
@@ -385,6 +411,7 @@
 			files = (
 				0CA42F9420616AC000DC1028 /* Sura.swift in Sources */,
 				AA21D4562064559B00507932 /* Backups.swift in Sources */,
+				0C60613B2066926F00B49227 /* QuranPageCollectionViewCell.swift in Sources */,
 				0C8C1BE42062B95600C05337 /* Juz.swift in Sources */,
 				0CA42F912061680800DC1028 /* SurahTableViewCell.swift in Sources */,
 				0C8C1BD72062884D00C05337 /* HomeContainerViewController.swift in Sources */,
@@ -396,6 +423,7 @@
 				0C8C1BD52062875200C05337 /* SideMenuViewController.swift in Sources */,
 				AA3FE284206403C700D69740 /* QuranViewController.swift in Sources */,
 				0CA42F9620616B5700DC1028 /* DBHelper.swift in Sources */,
+				0C60614220669B2C00B49227 /* Page.swift in Sources */,
 				0C8C1BE22062B72D00C05337 /* JuzViewController.swift in Sources */,
 				0C8C1BE62062B9B800C05337 /* Ayah.swift in Sources */,
 				0C8C1BE02062999100C05337 /* CommonMethods.swift in Sources */,
