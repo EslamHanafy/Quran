@@ -33,10 +33,10 @@ class AllSurahViewController: UIViewController {
 
         surah = DBHelper.shared.getAllSurah()
         tableView.register(UINib(nibName: "SurahTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
-//        allPages = DBHelper.shared.getAllPages()
-//        print("all pages count is: \(allPages.count)")
-        testSurah = DBHelper.shared.getAllAyahInPage(startingFromSurah: 2, toSurah: 2, andStartingFromAyah: 1, toAyah: 6)
-        print("teset surah count is: \(testSurah.count)")
+        allPages = DBHelper.shared.getAllPages()
+        print("all pages count is: \(allPages.count)")
+//        testSurah = DBHelper.shared.getAllAyahInPage(startingFromSurah: 100, toSurah: 103, andStartingFromAyah: 10, toAyah: 1)
+//        print("teset surah count is: \(testSurah.count)")
         
     }
 

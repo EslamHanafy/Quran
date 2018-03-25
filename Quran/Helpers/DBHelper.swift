@@ -104,13 +104,14 @@ class DBHelper {
             
             for (index, row) in data.enumerated() {
                 var allSurah: [Surah] = []
-                print("the current index is: \(index)")
+                //FIXME: - split this code to another function
+                /*
                 if let next = data.first(where: { $0[pagesTable[id]] == (row[pagesTable[id]] + 1) }) {
                     allSurah = getAllAyahInPage(startingFromSurah: row[pagesTable[surahId]], toSurah: next[pagesTable[surahId]], andStartingFromAyah: row[pagesTable[ayah]], toAyah: next[pagesTable[ayah]])
                 }else {
                     allSurah = getAllAyahInPage(startingFromSurah: row[pagesTable[surahId]], toSurah: 0, andStartingFromAyah: row[pagesTable[ayah]], toAyah: 0)
                 }
-                
+                */
                 pages.append(Page(id: Int(row[pagesTable[id]]), juz: self.getJuz(forSurah: Surah(id: Int(row[surahTable[id]]), name: row[surahTable[name]], allAyah: [])), allSurah: allSurah))
                 
             }
@@ -139,22 +140,21 @@ class DBHelper {
         var query: QueryType!
         
         if startSurah != endSurah && endSurah != 0 {
-            if endAyah == 0 {
-                query = ayahTable.join(surahTable, on: surahId == surahTable[id]).where( ayahTable[surahId] >= startSurah && ayahTable[surahId] < endSurah && ayahTable[number] == startAyah)
-            }else {
-                query = ayahTable.join(surahTable, on: surahId == surahTable[id]).where( ayahTable[surahId] >= startSurah && ayahTable[surahId] < endSurah && ayahTable[number] >= startAyah && ayahTable[number] < endAyah )
-            }
+            query = ayahTable.join(surahTable, on: surahId == surahTable[id]).where( ayahTable[surahId] >= startSurah && ayahTable[surahId] < endSurah )
         }else {
-            query = ayahTable.join(surahTable, on: surahId == surahTable[id]).where( ayahTable[surahId] == startSurah && ayahTable[number] == startAyah )
+            if endSurah == 0 {
+                query = ayahTable.join(surahTable, on: surahId == surahTable[id]).where( ayahTable[surahId] >= startSurah )
+            }else {
+                query = ayahTable.join(surahTable, on: surahId == surahTable[id]).where( ayahTable[surahId] == startSurah )
+            }
         }
-        
         
         do {
             let data = try db.prepare(query)
             
             for row in data {
                 var sura: Surah!
-                
+                // get the last sura or add new one if needed
                 if let _sura: Surah = allSurah.popLast() {
                     if (_sura.allAyah.last?.id ?? 0) > Int(row[ayahTable[number]]) {
                         allSurah.append(_sura)
@@ -165,8 +165,21 @@ class DBHelper {
                 }else {
                     sura = Surah(id: Int(row[surahTable[id]]), name: row[surahTable[name]], allAyah: [])
                 }
-                
-                sura.allAyah.append(Ayah(id: Int(row[ayahTable[number]]), content: row[ayahTable[text]]))
+                //add current ayah to surah id needed
+                if Int64(sura.id) == endSurah {
+                    if row[ayahTable[number]] < endAyah && row[ayahTable[number]] >= startAyah {
+                        sura.allAyah.append(Ayah(id: Int(row[ayahTable[number]]), content: row[ayahTable[text]]))
+                    }
+                }else {
+                    if sura.id == startSurah {
+                        if row[ayahTable[number]] >= startAyah {
+                            sura.allAyah.append(Ayah(id: Int(row[ayahTable[number]]), content: row[ayahTable[text]]))
+                        }
+                    }else {
+                        sura.allAyah.append(Ayah(id: Int(row[ayahTable[number]]), content: row[ayahTable[text]]))
+                    }
+                }
+                //add current sura to all surah array
                 allSurah.append(sura)
             }
             
