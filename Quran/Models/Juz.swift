@@ -7,10 +7,30 @@
 //
 
 import Foundation
+import SQLite
 
-struct Juz {
-    var id: Int
+class Juz {
+    var id: Int64
     var name: String
     var surah: Surah
     var ayah: Ayah
+    
+    init(id: Int64, name: String, surah: Surah, ayah: Ayah) {
+        self.ayah = ayah
+        self.id = id
+        self.surah = surah
+        self.name = name
+    }
+    
+    init(fromRow row: Row) {
+        let juzTable = Table("juz")
+        let id = Expression<Int64>("id")
+        let ayah = Expression<Int64>("ayah_number")
+        let name = Expression<String>("name")
+        
+        self.id = row[juzTable[id]]
+        self.name = row[juzTable[name]]
+        self.surah = Surah(fromRow: row)
+        self.ayah = Ayah(id: row[juzTable[ayah]])
+    }
 }
