@@ -21,7 +21,7 @@ class QuranViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        allAyah = DBHelper.shared.getAllAyah(forSurah: surah)
+//        allAyah = DBHelper.shared.getAllAyah(forSurah: surah)
         
         let style: NSMutableParagraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         style.alignment = .right

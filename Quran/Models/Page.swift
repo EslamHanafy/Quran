@@ -33,7 +33,11 @@ class Page {
         
         self.id = row[pagesTable[id]]
         self.startingAyah = row[pagesTable[ayah]]
-        self.juz = DBHelper.shared.getJuz(forSurah: sura)
         self.allSurah = [sura]
+        self.juz = Juz(fromRow: row)
+    }
+    
+    func updateData()  {
+        allSurah = DBHelper.shared.getAllAyahInRange(startingFromSurah: allSurah[0].id, toSurah: (nextPage?.allSurah[0].id ?? 0), andStartingFromAyah: startingAyah, toAyah: (nextPage?.startingAyah ?? 0), forPage: id)
     }
 }

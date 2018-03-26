@@ -15,6 +15,13 @@ class Juz {
     var surah: Surah
     var ayah: Ayah
     
+    init() {
+        self.id = 0
+        self.name = ""
+        self.surah = Surah(id: 0, name: "", page: 0)
+        self.ayah = Ayah(id: 0)
+    }
+    
     init(id: Int64, name: String, surah: Surah, ayah: Ayah) {
         self.ayah = ayah
         self.id = id

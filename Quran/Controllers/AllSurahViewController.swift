@@ -25,22 +25,12 @@ class AllSurahViewController: UIViewController {
         }
     }
     
-    var allPages: [Page] = []
-    var testSurah: [Surah] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         surah = DBHelper.shared.getAllSurah()
         tableView.register(UINib(nibName: "SurahTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
-        backgroundQueue {
-            self.allPages = DBHelper.shared.getAllPages()
-            print("all pages count is: \(self.allPages.count)")
-        }
-        
-//        testSurah = DBHelper.shared.getAllAyahInRange(startingFromSurah: 100, toSurah: 103, andStartingFromAyah: 10, toAyah: 1)
-//        print("teset surah count is: \(testSurah.count)")
-        
     }
 
     
