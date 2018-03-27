@@ -88,7 +88,7 @@ class DBHelper {
     
     func getAllPages() -> [Page] {
         var pages: [Page] = []
-        
+        print("start gitting all pages")
         //tables
         let surahTable = Table("surah")
         let pagesTable = Table("pages")
@@ -119,7 +119,7 @@ class DBHelper {
                 page.nextPage = pages[index + 1]
             }
         }
-        
+        print("finish gitting all pages")
         return pages
     }
     

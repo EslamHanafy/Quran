@@ -25,19 +25,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXF-jS-vGg">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXF-jS-vGg" userLabel="containerView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الجزء" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhb-eu-G1k">
-                                <rect key="frame" x="348" y="0.0" width="27" height="29"/>
+                                <rect key="frame" x="340" y="0.0" width="27" height="29"/>
                                 <fontDescription key="fontDescription" name="KFGQPCUthmanTahaNaskh-Bold" family="KFGQPC Uthman Taha Naskh" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.40392156862745099" green="0.52941176470588236" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="السورة" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoX-r9-fHt">
-                                <rect key="frame" x="0.0" y="0.0" width="35.5" height="29"/>
+                                <rect key="frame" x="8" y="0.0" width="35.5" height="29"/>
                                 <fontDescription key="fontDescription" name="KFGQPCUthmanTahaNaskh-Bold" family="KFGQPC Uthman Taha Naskh" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.40392156862745099" green="0.52941176470588236" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="١" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNE-rZ-Lmo">
@@ -46,27 +46,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSb-Id-69V">
-                                <rect key="frame" x="8" y="33" width="359" height="534"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="بسم الله الرحمن الرحيم" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSb-Id-69V" customClass="QuranTextView" customModule="Quran" customModuleProvider="target">
+                                <rect key="frame" x="8" y="29" width="359" height="542"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="KFGQPCUthmanTahaNaskh-Bold" family="KFGQPC Uthman Taha Naskh" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="GNE-rZ-Lmo" firstAttribute="centerX" secondItem="wXF-jS-vGg" secondAttribute="centerX" id="3Hf-eX-1zV"/>
-                            <constraint firstAttribute="trailing" secondItem="mhb-eu-G1k" secondAttribute="trailing" id="DgP-wi-re6"/>
+                            <constraint firstAttribute="width" constant="375" id="3Zs-ly-5nw"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="600" id="7IJ-Ht-cIy"/>
+                            <constraint firstAttribute="trailing" secondItem="mhb-eu-G1k" secondAttribute="trailing" constant="8" id="DgP-wi-re6"/>
                             <constraint firstAttribute="bottom" secondItem="GNE-rZ-Lmo" secondAttribute="bottom" id="J55-oE-2fL"/>
                             <constraint firstItem="mhb-eu-G1k" firstAttribute="top" secondItem="wXF-jS-vGg" secondAttribute="top" id="OXv-30-DIy"/>
-                            <constraint firstItem="dSb-Id-69V" firstAttribute="top" secondItem="mhb-eu-G1k" secondAttribute="bottom" constant="4" id="XUf-9p-fou"/>
+                            <constraint firstItem="dSb-Id-69V" firstAttribute="top" secondItem="mhb-eu-G1k" secondAttribute="bottom" id="XUf-9p-fou"/>
                             <constraint firstItem="dSb-Id-69V" firstAttribute="leading" secondItem="wXF-jS-vGg" secondAttribute="leadingMargin" id="gM8-Vs-Alo"/>
-                            <constraint firstItem="GNE-rZ-Lmo" firstAttribute="top" secondItem="dSb-Id-69V" secondAttribute="bottom" constant="4" id="hlR-qG-B1N"/>
+                            <constraint firstItem="GNE-rZ-Lmo" firstAttribute="top" secondItem="dSb-Id-69V" secondAttribute="bottom" id="hlR-qG-B1N"/>
                             <constraint firstItem="dSb-Id-69V" firstAttribute="trailing" secondItem="wXF-jS-vGg" secondAttribute="trailingMargin" id="lua-rG-hSx"/>
                             <constraint firstItem="RoX-r9-fHt" firstAttribute="top" secondItem="wXF-jS-vGg" secondAttribute="top" id="nh2-vJ-Tdt"/>
-                            <constraint firstItem="RoX-r9-fHt" firstAttribute="leading" secondItem="wXF-jS-vGg" secondAttribute="leading" id="ykP-yL-zun"/>
+                            <constraint firstItem="RoX-r9-fHt" firstAttribute="leading" secondItem="wXF-jS-vGg" secondAttribute="leading" constant="8" id="ykP-yL-zun"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3Zs-ly-5nw"/>
+                                <exclude reference="7IJ-Ht-cIy"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
             </view>
@@ -79,10 +86,12 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="375" height="600"/>
             <connections>
+                <outlet property="heightConstraint" destination="7IJ-Ht-cIy" id="xwi-M2-JnQ"/>
                 <outlet property="juzLabel" destination="mhb-eu-G1k" id="Jgs-JP-Cbo"/>
                 <outlet property="pageLabel" destination="GNE-rZ-Lmo" id="esW-sw-vu1"/>
-                <outlet property="quranTextView" destination="dSb-Id-69V" id="5re-ve-29y"/>
+                <outlet property="quranTextView" destination="dSb-Id-69V" id="esj-rr-FTe"/>
                 <outlet property="surahLabel" destination="RoX-r9-fHt" id="cIB-2v-LHi"/>
+                <outlet property="widthConstraint" destination="3Zs-ly-5nw" id="vN0-Kv-ccA"/>
             </connections>
             <point key="canvasLocation" x="187.5" y="-223"/>
         </collectionViewCell>

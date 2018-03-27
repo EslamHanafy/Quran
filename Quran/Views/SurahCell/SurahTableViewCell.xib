@@ -42,8 +42,8 @@
                                             <constraint firstAttribute="width" secondItem="QxW-E0-9rv" secondAttribute="height" multiplier="1:1" id="ywe-jw-3Lz"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GR4-a1-tob">
-                                        <rect key="frame" x="23" y="12" width="5" height="17.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GR4-a1-tob">
+                                        <rect key="frame" x="14.5" y="12" width="21" height="17.5"/>
                                         <fontDescription key="fontDescription" name="GESSTwoBold-Bold" family="GE SS Two" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -55,6 +55,7 @@
                                 <color key="backgroundColor" red="0.40947034955024719" green="0.6498141884803772" blue="0.34713888168334961" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="QxW-E0-9rv" firstAttribute="centerY" secondItem="5cF-sm-Hv7" secondAttribute="centerY" id="5wI-Ct-kGU"/>
+                                    <constraint firstItem="GR4-a1-tob" firstAttribute="width" secondItem="QxW-E0-9rv" secondAttribute="width" multiplier="0.6" id="MjU-wj-lvN"/>
                                     <constraint firstItem="GR4-a1-tob" firstAttribute="centerY" secondItem="5cF-sm-Hv7" secondAttribute="centerY" id="RTL-7A-A2u"/>
                                     <constraint firstItem="QxW-E0-9rv" firstAttribute="centerX" secondItem="5cF-sm-Hv7" secondAttribute="centerX" id="SvI-YF-Vj4"/>
                                     <constraint firstItem="GR4-a1-tob" firstAttribute="centerX" secondItem="5cF-sm-Hv7" secondAttribute="centerX" id="YdY-oY-dQ0"/>

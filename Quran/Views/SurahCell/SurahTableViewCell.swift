@@ -19,6 +19,6 @@ class SurahTableViewCell: UITableViewCell {
     /// - Parameter sura: Sura object that contain the sura data
     func initWith(sura: Surah) {
         titleLabel.text = sura.name
-        numberLabel.text = String(sura.id)
+        numberLabel.text = String(sura.page)
     }
 }

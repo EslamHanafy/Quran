@@ -16,6 +16,8 @@ class Page {
     var allSurah: [Surah]
     var nextPage: Page? = nil
     
+    fileprivate var shouldUpdateAllSurah: Bool = true
+    
     init (id: Int64, startingAyah: Int64, juz: Juz, nextPage: Page? = nil, allSurah: [Surah] = []) {
         self.id = id
         self.allSurah = allSurah
@@ -39,5 +41,9 @@ class Page {
     
     func updateData()  {
         allSurah = DBHelper.shared.getAllAyahInRange(startingFromSurah: allSurah[0].id, toSurah: (nextPage?.allSurah[0].id ?? 0), andStartingFromAyah: startingAyah, toAyah: (nextPage?.startingAyah ?? 0), forPage: id)
+    }
+    
+    func getAllSurah() -> [Surah] {
+        return DBHelper.shared.getAllAyahInRange(startingFromSurah: allSurah[0].id, toSurah: (nextPage?.allSurah[0].id ?? 0), andStartingFromAyah: startingAyah, toAyah: (nextPage?.startingAyah ?? 0), forPage: id)
     }
 }

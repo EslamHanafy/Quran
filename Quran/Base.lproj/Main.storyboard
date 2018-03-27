@@ -430,7 +430,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jB2-7N-dNo">
                                                 <rect key="frame" x="0.0" y="0.0" width="53.5" height="53.5"/>
                                                 <connections>
-                                                    <action selector="back" destination="sSv-VY-nFh" eventType="touchUpInside" id="e9F-1o-uOW"/>
+                                                    <action selector="backAction" destination="sSv-VY-nFh" eventType="touchUpInside" id="9zT-kr-E6M"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Back" translatesAutoresizingMaskIntoConstraints="NO" id="0dI-Ll-6PM">
@@ -493,7 +493,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vqf-UJ-0VO" userLabel="containerView">
                                 <rect key="frame" x="0.0" y="73.5" width="375" height="593.5"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wAG-4t-YZm">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wAG-4t-YZm">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="593.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nVZ-Wc-Zxm">
@@ -531,6 +531,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q7a-x2-tFR"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionLayout" destination="nVZ-Wc-Zxm" id="CXF-NL-gEb"/>
+                        <outlet property="collectionView" destination="wAG-4t-YZm" id="t1u-4K-8sX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y64-W4-Ap2" sceneMemberID="firstResponder"/>
             </objects>

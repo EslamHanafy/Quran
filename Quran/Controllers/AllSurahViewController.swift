@@ -67,10 +67,10 @@ extension AllSurahViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let quran = self.storyboard?.instantiateViewController(withIdentifier: "QuranScreen") as! QuranViewController
-        quran.surah = searchKeyword.isEmpty ? surah[indexPath.row] : filtered[indexPath.row]
+        let selectedSurah = searchKeyword.isEmpty ? surah[indexPath.row] : filtered[indexPath.row]
+        
         mainQueue {
-            self.present(quran, animated: true, completion: nil)
+            QuranViewController.showQuran(startingFromPage: selectedSurah.page, fromController: self)
         }
     }
 }

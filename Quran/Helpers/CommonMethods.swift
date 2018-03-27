@@ -11,7 +11,7 @@ import UIKit
 
 public var screenWidth:CGFloat { get { return UIScreen.main.bounds.size.width } }
 public var screenHeight:CGFloat { get { return UIScreen.main.bounds.size.height } }
-
+public var isIpadScreen: Bool { get { return UIScreen.main.traitCollection.horizontalSizeClass == .regular } }
 
 
 
