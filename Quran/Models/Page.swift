@@ -41,9 +41,14 @@ class Page {
     
     func updateData()  {
         allSurah = DBHelper.shared.getAllAyahInRange(startingFromSurah: allSurah[0].id, toSurah: (nextPage?.allSurah[0].id ?? 0), andStartingFromAyah: startingAyah, toAyah: (nextPage?.startingAyah ?? 0), forPage: id)
+        shouldUpdateAllSurah = false
     }
     
     func getAllSurah() -> [Surah] {
-        return DBHelper.shared.getAllAyahInRange(startingFromSurah: allSurah[0].id, toSurah: (nextPage?.allSurah[0].id ?? 0), andStartingFromAyah: startingAyah, toAyah: (nextPage?.startingAyah ?? 0), forPage: id)
+        if shouldUpdateAllSurah {
+            updateData()
+        }
+        
+        return allSurah
     }
 }

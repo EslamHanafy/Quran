@@ -63,5 +63,13 @@ extension JuzViewController: UITableViewDelegate, UITableViewDataSource {
         cell.initWith(juz: searchKeyword.isEmpty ? juz[indexPath.row] : filtered[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedJuz = searchKeyword.isEmpty ? juz[indexPath.row] : filtered[indexPath.row]
+        
+        mainQueue {
+            QuranViewController.showQuran(startingFromPage: selectedJuz.ayah.page, fromController: self)
+        }
+    }
 }
 

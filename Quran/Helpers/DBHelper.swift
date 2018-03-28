@@ -55,7 +55,9 @@ class DBHelper {
         do {
             let data = try db.prepare(query)
             for row in data {
-                allJuz.append(Juz(fromRow: row))
+                let juz = Juz(fromRow: row)
+                juz.ayah = getAyah(forJuz: juz)
+                allJuz.append(juz)
             }
         } catch {
             print("the error in getting juz is: \(error)")
@@ -63,29 +65,11 @@ class DBHelper {
         
         return allJuz
     }
-    /*
-    func getAllAyah(forSurah surah: Surah) -> [Ayah] {
-        var allAyah: [Ayah] = []
-        
-        let ayahTable = Table("ayah")
-        let surahId = Expression<Int64>("surah_id")
-        let number = Expression<Int64>("number")
-        let text = Expression<String>("text")
-        
-        do {
-            let data = try db.prepare(ayahTable.where(surahId == Int64(surah.id)))
-            
-            for row in data {
-                allAyah.append(Ayah(id: row[number], content: row[text]))
-            }
-        } catch {
-            print("the error in getting all ayah is: \(error)")
-        }
-        
-        return allAyah
-    }
-    */
     
+    
+    /// get all quran pages without their ayah
+    ///
+    /// - Returns: all quran pages
     func getAllPages() -> [Page] {
         var pages: [Page] = []
         print("start gitting all pages")
@@ -123,6 +107,17 @@ class DBHelper {
         return pages
     }
     
+    
+    
+    /// get all ayah insed their surah for the given page boundary
+    ///
+    /// - Parameters:
+    ///   - startSurah: number of first surah in the page
+    ///   - endSurah: number of last surah in the page
+    ///   - startAyah: number of first ayah for first surah in the page
+    ///   - endAyah: number of last ayah for last surah in the page
+    ///   - page: the page number
+    /// - Returns: Surah array that contains all ayah for the given page
     func getAllAyahInRange(startingFromSurah startSurah: Int64, toSurah endSurah: Int64, andStartingFromAyah startAyah: Int64, toAyah endAyah: Int64, forPage page: Int64) -> [Surah] {
         var allSurah: [Surah] = []
         
@@ -137,7 +132,8 @@ class DBHelper {
         var query: QueryType!
         
         if startSurah != endSurah && endSurah != 0 {
-            query = ayahTable.join(surahTable, on: surahId == surahTable[id]).where( ayahTable[surahId] >= startSurah && ayahTable[surahId] < endSurah )
+            //in some cases it should be < and other cases <=
+            query = ayahTable.join(surahTable, on: surahId == surahTable[id]).where( ayahTable[surahId] >= startSurah && ayahTable[surahId] <= endSurah )
         }else {
             if endSurah == 0 {
                 query = ayahTable.join(surahTable, on: surahId == surahTable[id]).where( ayahTable[surahId] >= startSurah )
@@ -168,8 +164,14 @@ class DBHelper {
                 
                 //add current ayah to surah id needed
                 if sura.id == endSurah {
-                    if row[ayahTable[number]] < endAyah && row[ayahTable[number]] >= startAyah {
-                        sura.allAyah.append(Ayah(fromRow: row))
+                    if startSurah == endSurah {
+                        if row[ayahTable[number]] < endAyah && row[ayahTable[number]] >= startAyah {
+                            sura.allAyah.append(Ayah(fromRow: row))
+                        }
+                    }else {
+                        if row[ayahTable[number]] < endAyah {
+                            sura.allAyah.append(Ayah(fromRow: row))
+                        }
                     }
                 }else {
                     if sura.id == startSurah {
@@ -189,143 +191,29 @@ class DBHelper {
         return allSurah
     }
 
+    
+    /// get ayah data for juz
+    ///
+    /// - Parameter juz: Juz object that containt the juz data
+    /// - Returns: Ayah object
+    func getAyah(forJuz juz: Juz) -> Ayah {
+        var ayah = juz.ayah
+        
+        let ayahTable = Table("ayah")
+        let number = Expression<Int64>("number")
+        let surahId = Expression<Int64>("surah_id")
+        let text = Expression<String>("text")
+        let pageNumber = Expression<Int64>("page")
+        
+        do {
+            if let row = try db.pluck(ayahTable.filter(surahId == juz.surah.id && number == juz.ayah.id)) {
+                ayah = Ayah(id: row[number], content: row[text], page: row[pageNumber])
+            }
+        } catch  {
+            print("the error in getting ayah for juz is: \(error)")
+        }
+        
+        return ayah
+    }
+    
 }
-
-/*
- func updateJuzInPages() {
- let pageTable = Table("pages")
- let juz = Expression<Int64>("juz_id")
- let id = Expression<Int64>("id")
- 
- var allJuz: [Int64: [Int64]] = [Int64: [Int64]]()
- 
- allJuz[1] = Array(1...21)
- allJuz[2] = Array(22...41)
- allJuz[3] = Array(42...61)
- allJuz[4] = Array(62...81)
- allJuz[5] = Array(82...101)
- allJuz[6] = Array(102...120)
- allJuz[7] = Array(121...141)
- allJuz[8] = Array(142...161)
- allJuz[9] = Array(162...181)
- allJuz[10] = Array(182...200)
- allJuz[11] = Array(201...221)
- allJuz[12] = Array(222...241)
- allJuz[13] = Array(242...261)
- allJuz[14] = Array(262...281)
- allJuz[15] = Array(282...301)
- allJuz[16] = Array(302...321)
- allJuz[17] = Array(322...341)
- allJuz[18] = Array(342...361)
- allJuz[19] = Array(362...381)
- allJuz[20] = Array(382...401)
- allJuz[21] = Array(402...421)
- allJuz[22] = Array(422...441)
- allJuz[23] = Array(442...461)
- allJuz[24] = Array(462...481)
- allJuz[25] = Array(482...501)
- allJuz[26] = Array(502...521)
- allJuz[27] = Array(522...541)
- allJuz[28] = Array(542...561)
- allJuz[29] = Array(562...581)
- allJuz[30] = Array(582...604)
- 
- do {
- for (number, range) in allJuz {
- try db.run(pageTable.filter(range.contains(id)).update(juz <- number))
- }
- } catch {
- print(error)
- }
- 
- }
- */
-
-/*
- func updateSurahPage(surah: Surah, page: Int64) {
- let surahTable = Table("surah")
- let id = Expression<Int64>("id")
- let pageNumber = Expression<Int64?>("page")
- do {
- if try db.run(surahTable.filter(id == surah.id && (pageNumber == nil || pageNumber == 0)).update(pageNumber <- page)) > 0 {
- print("surah with id: \(surah.id) updated successfully with page: \(page)")
- }
- } catch {
- print("the error in update surah page number is: \(error.localizedDescription)")
- }
- 
- }
- */
-
-/*func updatePage(forAyah ayah: Int64, withPage page: Int64) {
- let ayahTable = Table("ayah")
- let id = Expression<Int64>("id")
- let pageNumber = Expression<Int64?>("page")
- 
- do {
- if try db.run(ayahTable.filter(id == ayah).update(pageNumber <- page)) > 0 {
- print("ayah with id: \(ayah) updated successfully with page: \(page)")
- }
- } catch {
- print("the error in update surah page number is: \(error.localizedDescription)")
- }
- }*/
-
-/*
- func getJuz(forPage page: Page) -> Juz {
- let juzTable = Table("juz")
- let surah = Expression<Int64>("surah_id")
- let ayah = Expression<Int64>("ayah_number")
- let name = Expression<String>("name")
- let id = Expression<Int64>("id")
- 
- let query = juzTable.filter( surah >= page.allSurah.first!.id && ayah >= page.startingAyah)
- 
- do {
- let data = try db.prepare(query)
- 
- for row in data {
- //                print("juz row is: \(row[id])")
- if row[surah] == page.allSurah.first!.id {
- if row[ayah] == page.startingAyah {
- return Juz(id: row[id], name: row[name], surah: page.allSurah.first!, ayah: page.allSurah.first!.allAyah.first!)
- }else{
- if let next = page.nextPage {
- if row[ayah] < next.startingAyah {
- return Juz(id: row[id], name: row[name], surah: page.allSurah.first!, ayah: page.allSurah.first!.allAyah.first!)
- }
- }
- return getData(forJuz: row[id] - 1)
- }
- }
- 
- if row[surah] > page.allSurah.first!.id {
- return getData(forJuz: row[id] - 1)
- }
- }
- 
- } catch {
- print("the error in getting juz for page is: \(error)")
- }
- 
- return Juz(id: 0, name: "", surah: Surah(id: 0, name: "", page: 0), ayah: Ayah(id: 0, content: ""))
- }
- */
-
-/*
- func getData(forJuz juz: Int64) -> Juz {
- let juzTable = Table("juz")
- let surahTable = Table("surah")
- let id = Expression<Int64>("id")
- let surah = Expression<Int64>("surah_id")
- 
- do {
- if let data = try db.pluck(juzTable.join(surahTable, on: juzTable[surah] == surahTable[id]).filter( juzTable[id] == juz)) {
- return Juz(fromRow: data)
- }
- } catch {
- print("the error in getting data for juz with id: \(juz) is: \(error)")
- }
- 
- return Juz(id: 0, name: "", surah: Surah(id: 0, name: "", page: 0), ayah: Ayah(id: 0, content: ""))
- }*/

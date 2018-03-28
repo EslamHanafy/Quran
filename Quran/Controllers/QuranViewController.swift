@@ -29,16 +29,17 @@ class QuranViewController: UIViewController {
         super.viewDidLoad()
 
         pages = DBHelper.shared.getAllPages()
-        initCollectionView()
+        collectionView.register(UINib(nibName: "QuranPageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
         if currentPageNumber > 0 {
             collectionView.scrollToItem(at: IndexPath(item: currentPageNumber - 1, section: 0), at: UICollectionViewScrollPosition.left, animated: false)
         }
     }
+    
     
     
     //MARK: - IBAction
@@ -66,19 +67,5 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: screenWidth - (collectionViewLayout as! UICollectionViewFlowLayout).minimumInteritemSpacing, height: screenHeight * 0.8898)
-    }
-    
-    func initCollectionView() {
-        collectionView.register(UINib(nibName: "QuranPageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        
-//        collectionLayout.estimatedItemSize = CGSize(width: screenWidth - 10, height: 1)
-//        collectionLayout.minimumInteritemSpacing = 5
-//        collectionLayout.minimumLineSpacing = 0
-        
-//        collectionView.semanticContentAttribute = .forceRightToLeft
-//        collectionView.reloadData()
-        
-//        collectionView.scrollToItem(at: IndexPath(item: 603, section: 0), at: .right, animated: false)
-        
     }
 }
