@@ -31,7 +31,6 @@ fileprivate struct AyahIndex {
 
 class QuranTextView: UITextView {
 
-    
     fileprivate var allSurah: [Surah] = []
     
     fileprivate let surahStart: String = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
@@ -131,11 +130,26 @@ extension QuranTextView {
     }
     
     
-    fileprivate func chageAyahColor(atIndex index: AyahIndex) {
+    fileprivate func selectAyah(atIndex index: AyahIndex) {
+        changeAyahColor(atIndex: index)
+        
+        //show ayah here eslam
+        if let rect = self.superview?.convert(frameOftext(inRange: getRangeForAyah(atIndex: index)), to: nil) {
+            QuranViewController.ayahOptions?.show(fromPoint: CGPoint(x: rect.midX, y: rect.minY + 8))
+        }
+    }
+    
+    fileprivate func changeAyahColor(atIndex index: AyahIndex) {
         //remove old color
         attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: NSMakeRange(0, self.textStorage.length))
         self.attributedText = attributedString
         
+        attributedString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.brown], range: getRangeForAyah(atIndex: index))
+        
+        self.attributedText = attributedString
+    }
+    
+    fileprivate func getRangeForAyah(atIndex index: AyahIndex) -> NSRange {
         var newRange: NSRange!
         
         if allSurah[index.surah].id != 1 && allSurah[index.surah].allAyah[index.ayah].id == 1 {
@@ -145,9 +159,29 @@ extension QuranTextView {
             newRange = (attributedString.string as NSString).range(of: invisibleSign + allSurah[index.surah].allAyah[index.ayah].content + invisibleSign + " \(getValidatedNumber(fromInt: Int(allSurah[index.surah].allAyah[index.ayah].id))) ")
         }
         
-        attributedString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.brown], range: newRange)
+        return newRange
+    }
+    
+    fileprivate func frameOftext(inRange range: NSRange) -> CGRect {
+        let beginning = self.beginningOfDocument
+        let start = self.position(from: beginning, offset: range.location)
+        let end = self.position(from: start!, offset: range.length)
+        let textRange = self.textRange(from: start!, to: end!)
         
-        self.attributedText = attributedString
+        var selectedRect: CGRect!
+        for selectionRects in self.selectionRects(for: textRange!) {
+            let rect = (selectionRects as! UITextSelectionRect).rect
+            if selectedRect == nil {
+                selectedRect = rect
+            }else{
+                if rect.width > selectedRect.width {
+                    selectedRect = rect
+                }
+            }
+        }
+        
+//        let rect = self.firstRect(for: textRange!)
+        return self.convert(selectedRect, from: self.textInputView)
     }
 }
 
@@ -181,7 +215,7 @@ extension QuranTextView: UIGestureRecognizerDelegate {
             let attributeValue = self.attributedText.attribute(NSAttributedStringKey.init(INDEX_ATTRIBUTE), at: characterIndex, effectiveRange: nil) as? String
             if let value = attributeValue {
                 print("You tapped on ayah number: \(value)")
-                chageAyahColor(atIndex: AyahIndex(string: value))
+                selectAyah(atIndex: AyahIndex(string: value))
             }
         }
     }

@@ -40,6 +40,8 @@
 		0CA42F98206174FD00DC1028 /* AllSurahViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA42F97206174FD00DC1028 /* AllSurahViewController.swift */; };
 		0CD3B021206A9BE5004CBE60 /* QuranTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD3B020206A9BE5004CBE60 /* QuranTextView.swift */; };
 		0CEFEDC0206FB66F00F106A0 /* UthmanicHafs1 Ver09 2.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0CEFEDBF206FB66F00F106A0 /* UthmanicHafs1 Ver09 2.otf */; };
+		0CEFEDC3206FCC8B00F106A0 /* AyahOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEFEDC2206FCC8B00F106A0 /* AyahOptionsView.swift */; };
+		0CEFEDC5206FCC9700F106A0 /* AyahOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CEFEDC4206FCC9700F106A0 /* AyahOptionsView.xib */; };
 		88AAE72BD4D026ECEBBDC942 /* Pods_Quran.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7C7016F5583E133AD5119F /* Pods_Quran.framework */; };
 		AA21D4562064559B00507932 /* Backups.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21D4552064559B00507932 /* Backups.swift */; };
 		AA3FE284206403C700D69740 /* QuranViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FE283206403C700D69740 /* QuranViewController.swift */; };
@@ -81,6 +83,8 @@
 		0CA42F97206174FD00DC1028 /* AllSurahViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSurahViewController.swift; sourceTree = "<group>"; };
 		0CD3B020206A9BE5004CBE60 /* QuranTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranTextView.swift; sourceTree = "<group>"; };
 		0CEFEDBF206FB66F00F106A0 /* UthmanicHafs1 Ver09 2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanicHafs1 Ver09 2.otf"; sourceTree = "<group>"; };
+		0CEFEDC2206FCC8B00F106A0 /* AyahOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyahOptionsView.swift; sourceTree = "<group>"; };
+		0CEFEDC4206FCC9700F106A0 /* AyahOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AyahOptionsView.xib; sourceTree = "<group>"; };
 		11FB00225C396FB7B2753D01 /* Pods-Quran.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quran.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quran/Pods-Quran.debug.xcconfig"; sourceTree = "<group>"; };
 		22CFFA700893E26FC303D116 /* Pods-Quran.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quran.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quran/Pods-Quran.release.xcconfig"; sourceTree = "<group>"; };
 		5F7C7016F5583E133AD5119F /* Pods_Quran.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quran.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +179,7 @@
 		0CA42F7A20611DD100DC1028 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0CEFEDC1206FCC6400F106A0 /* AyahOptionsView */,
 				0CD3B01F206A9BBE004CBE60 /* QuranTextView */,
 				0C6061382066924000B49227 /* QuranPageCell */,
 				0C8C1BE72062CB0400C05337 /* JuzCell */,
@@ -257,6 +262,15 @@
 			path = QuranTextView;
 			sourceTree = "<group>";
 		};
+		0CEFEDC1206FCC6400F106A0 /* AyahOptionsView */ = {
+			isa = PBXGroup;
+			children = (
+				0CEFEDC2206FCC8B00F106A0 /* AyahOptionsView.swift */,
+				0CEFEDC4206FCC9700F106A0 /* AyahOptionsView.xib */,
+			);
+			path = AyahOptionsView;
+			sourceTree = "<group>";
+		};
 		C31FA6828DC77D1DA13D1D8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CEFEDC5206FCC9700F106A0 /* AyahOptionsView.xib in Resources */,
 				0CA42F8220612E8000DC1028 /* Diwani Bent.ttf in Resources */,
 				0C8C1BEB2062CB1E00C05337 /* JuzTableViewCell.xib in Resources */,
 				0C8C1BDE206289E300C05337 /* SideMenuTableViewCell.xib in Resources */,
@@ -430,6 +445,7 @@
 				0C8C1BE42062B95600C05337 /* Juz.swift in Sources */,
 				0CA42F912061680800DC1028 /* SurahTableViewCell.swift in Sources */,
 				0C8C1BD72062884D00C05337 /* HomeContainerViewController.swift in Sources */,
+				0CEFEDC3206FCC8B00F106A0 /* AyahOptionsView.swift in Sources */,
 				0CA42F98206174FD00DC1028 /* AllSurahViewController.swift in Sources */,
 				0CA42F6820611DB300DC1028 /* AppDelegate.swift in Sources */,
 				0C8C1BD92062896400C05337 /* MenuItem.swift in Sources */,

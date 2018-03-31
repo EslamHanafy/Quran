@@ -16,6 +16,8 @@ class QuranViewController: UIViewController {
     
     var currentPageNumber: Int = 0
     
+    public static weak var ayahOptions: AyahOptionsView? = nil
+    
     
     public static func showQuran(startingFromPage page: Int64, fromController controller: UIViewController) {
         let quran = controller.storyboard!.instantiateViewController(withIdentifier: "QuranScreen") as! QuranViewController
@@ -30,7 +32,9 @@ class QuranViewController: UIViewController {
 
         pages = DBHelper.shared.getAllPages()
         collectionView.register(UINib(nibName: "QuranPageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        QuranViewController.ayahOptions = AyahOptionsView.getInstance(forController: self)
     }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
