@@ -6,13 +6,15 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="UthmanTN1B Ver10.otf">
             <string>KFGQPCUthmanTahaNaskh-Bold</string>
+        </array>
+        <array key="UthmanicHafs1 Ver09 2.otf">
+            <string>KFGQPCUthmanicScriptHAFS</string>
         </array>
     </customFonts>
     <objects>
@@ -50,9 +52,9 @@
                                 </variation>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="بسم الله الرحمن الرحيم" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSb-Id-69V" customClass="QuranTextView" customModule="Quran" customModuleProvider="target">
-                                <rect key="frame" x="8" y="29" width="359" height="542"/>
+                                <rect key="frame" x="3" y="29" width="369" height="542"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="KFGQPCUthmanTahaNaskh-Bold" family="KFGQPC Uthman Taha Naskh" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="KFGQPCUthmanicScriptHAFS" family="KFGQPC Uthmanic Script HAFS" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -65,9 +67,9 @@
                             <constraint firstAttribute="bottom" secondItem="GNE-rZ-Lmo" secondAttribute="bottom" id="J55-oE-2fL"/>
                             <constraint firstItem="mhb-eu-G1k" firstAttribute="top" secondItem="wXF-jS-vGg" secondAttribute="top" id="OXv-30-DIy"/>
                             <constraint firstItem="dSb-Id-69V" firstAttribute="top" secondItem="mhb-eu-G1k" secondAttribute="bottom" id="XUf-9p-fou"/>
-                            <constraint firstItem="dSb-Id-69V" firstAttribute="leading" secondItem="wXF-jS-vGg" secondAttribute="leadingMargin" id="gM8-Vs-Alo"/>
+                            <constraint firstItem="dSb-Id-69V" firstAttribute="leading" secondItem="wXF-jS-vGg" secondAttribute="leading" constant="3" id="gM8-Vs-Alo"/>
                             <constraint firstItem="GNE-rZ-Lmo" firstAttribute="top" secondItem="dSb-Id-69V" secondAttribute="bottom" id="hlR-qG-B1N"/>
-                            <constraint firstItem="dSb-Id-69V" firstAttribute="trailing" secondItem="wXF-jS-vGg" secondAttribute="trailingMargin" id="lua-rG-hSx"/>
+                            <constraint firstAttribute="trailing" secondItem="dSb-Id-69V" secondAttribute="trailing" constant="3" id="lua-rG-hSx"/>
                             <constraint firstItem="RoX-r9-fHt" firstAttribute="top" secondItem="wXF-jS-vGg" secondAttribute="top" id="nh2-vJ-Tdt"/>
                             <constraint firstItem="RoX-r9-fHt" firstAttribute="leading" secondItem="wXF-jS-vGg" secondAttribute="leading" constant="8" id="ykP-yL-zun"/>
                         </constraints>

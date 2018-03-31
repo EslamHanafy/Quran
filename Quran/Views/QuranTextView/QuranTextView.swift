@@ -10,7 +10,7 @@ import UIKit
 
 
 fileprivate enum TextType {
-    case header, subheader, normal
+    case header, subheader, normal, number
 }
 
 fileprivate struct AyahIndex {
@@ -43,7 +43,8 @@ class QuranTextView: UITextView {
     fileprivate let INDEX_ATTRIBUTE: String = "AyahIndex"
     fileprivate let SELECTED_ATTRIBUTE: String = "SelectedAyah"
     fileprivate let mainFont: UIFont = UIFont(name: "KFGQPCUthmanTahaNaskh-Bold", size: isIpadScreen ? 42 : 21)!
-    fileprivate let subFont: UIFont = UIFont(name: "KFGQPCUthmanTahaNaskh", size: isIpadScreen ? 36 : 18)!
+    fileprivate let subFont: UIFont = UIFont(name: "KFGQPCUthmanicScriptHAFS", size: isIpadScreen ? 36 : 18)!
+    fileprivate let numFont: UIFont = UIFont(name: "KFGQPCUthmanicScriptHAFS", size: isIpadScreen ? 44 : 22)!
     
     
     func initWith(surah: [Surah]) {
@@ -78,10 +79,10 @@ extension QuranTextView {
     
     fileprivate func getStyle(forType type: TextType) -> NSMutableParagraphStyle {
         let style: NSMutableParagraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
-        style.alignment = type == .normal ? NSTextAlignment.justified : .center
+        style.alignment = type == .normal || type == .number ? NSTextAlignment.justified : .center
         style.lineBreakMode = .byWordWrapping
         style.firstLineHeadIndent = 1
-        style.lineSpacing = type == .normal ? 3 : type == .header ? 5 : 4
+        style.lineSpacing = type == .normal || type == .number ? 3 : type == .header ? 5 : 4
         style.baseWritingDirection = .rightToLeft
         return style
     }
@@ -113,8 +114,9 @@ extension QuranTextView {
                 // it's not the first ayah
                 attributedString.append(NSAttributedString(string: invisibleSign + ayah.content + invisibleSign, attributes: getAttributes(forType: .normal, atIndex: AyahIndex(ayah: index, surah: surahIndex))))
             }
+            
             //adding the ayah number
-            attributedString.append(NSAttributedString(string: " (\(ayah.id)) ", attributes: getAttributes(forType: .normal, atIndex: AyahIndex(ayah: index, surah: surahIndex))))
+            attributedString.append(NSAttributedString(string: " \(getValidatedNumber(fromInt: Int(ayah.id))) ", attributes: getAttributes(forType: .number, atIndex: AyahIndex(ayah: index, surah: surahIndex))))
         }
         
         self.attributedText = attributedString
@@ -125,7 +127,7 @@ extension QuranTextView {
             return [NSAttributedStringKey.font: mainFont, NSAttributedStringKey.paragraphStyle: getStyle(forType: type)]
         }
         
-        return [NSAttributedStringKey.font: subFont, NSAttributedStringKey.paragraphStyle: getStyle(forType: type), NSAttributedStringKey.init(INDEX_ATTRIBUTE): "\(index.surah),\(index.ayah)"]
+        return [NSAttributedStringKey.font: type == .number ? numFont : subFont, NSAttributedStringKey.paragraphStyle: getStyle(forType: type), NSAttributedStringKey.init(INDEX_ATTRIBUTE): "\(index.surah),\(index.ayah)"]
     }
     
     
@@ -138,9 +140,9 @@ extension QuranTextView {
         
         if allSurah[index.surah].id != 1 && allSurah[index.surah].allAyah[index.ayah].id == 1 {
             //get range for the first ayah that we split it before adding it
-            newRange = (attributedString.string as NSString).range(of: invisibleSign + String(allSurah[index.surah].allAyah[index.ayah].content.dropFirst(surahStart.count + 1)) + invisibleSign + " (\(allSurah[index.surah].allAyah[index.ayah].id)) ")
+            newRange = (attributedString.string as NSString).range(of: invisibleSign + String(allSurah[index.surah].allAyah[index.ayah].content.dropFirst(surahStart.count + 1)) + invisibleSign + " \(getValidatedNumber(fromInt: Int(allSurah[index.surah].allAyah[index.ayah].id))) ")
         }else {
-            newRange = (attributedString.string as NSString).range(of: invisibleSign + allSurah[index.surah].allAyah[index.ayah].content + invisibleSign + " (\(allSurah[index.surah].allAyah[index.ayah].id)) ")
+            newRange = (attributedString.string as NSString).range(of: invisibleSign + allSurah[index.surah].allAyah[index.ayah].content + invisibleSign + " \(getValidatedNumber(fromInt: Int(allSurah[index.surah].allAyah[index.ayah].id))) ")
         }
         
         attributedString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.brown], range: newRange)

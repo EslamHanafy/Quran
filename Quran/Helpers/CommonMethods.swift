@@ -15,6 +15,16 @@ public var isIpadScreen: Bool { get { return UIScreen.main.traitCollection.horiz
 
 
 
+func getValidatedNumber(fromInt number: Int) -> String {
+    let number = NSNumber(value: number)
+    let format = NumberFormatter()
+    format.locale = Locale(identifier: "ar")
+    let faNumber = format.string(from: number)
+    
+    return faNumber!
+}
+
+
 //MARK: - active controller
 // Returns the most recently presented UIViewController (visible)
 public func getCurrentViewController() -> UIViewController? {
