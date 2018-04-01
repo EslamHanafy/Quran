@@ -18,14 +18,24 @@ class QuranPageCollectionViewCell: UICollectionViewCell {
     @IBOutlet var heightConstraint: NSLayoutConstraint!
     
     
+    var page: Page!
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
         quranTextView.preapareForReuse()
     }
     
+    
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        
+        
+    }
  
     func initWith(page: Page) {
+        self.page = page
+        
         surahLabel.text = page.allSurah.first?.name ?? ""
         juzLabel.text = page.juz.name
         pageLabel.text = String(page.id)

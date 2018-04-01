@@ -61,11 +61,6 @@ class QuranTextView: UITextView {
         titleImages.forEach({ $0.removeFromSuperview() })
         titleImages.removeAll()
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-    }
 }
 
 //MARK: - Helpers
@@ -142,9 +137,10 @@ extension QuranTextView {
         changeAyahColor(atIndex: index)
         
         //show ayah here eslam
-//        if let rect = self.superview?.convert(frameOftext(inRange: getRangeForAyah(atIndex: index)), to: nil) {
-//            QuranViewController.ayahOptions?.show(optionsForAyah: allSurah[index.surah].allAyah[index.ayah], atLocation: CGPoint(x: rect.midX, y: rect.minY + 8))
-//        }
+        let rect = self.convert(frameOftext(inRange: getRangeForAyah(atIndex: index), usingFirstFrame: true), to: nil)
+        QuranViewController.ayahOptions?.show(optionsForAyah: allSurah[index.surah].allAyah[index.ayah], atLocation: CGPoint(x: rect.midX, y: rect.minY - 10))
+        self.attributedText = attributedString
+        
     }
     
     fileprivate func changeAyahColor(atIndex index: AyahIndex) {
@@ -217,6 +213,19 @@ extension QuranTextView {
         self.addSubview(image)
         self.sendSubview(toBack: image)
         titleImages.append(image)
+    }
+    
+    func updateTitleImages() {
+        titleImages.forEach({ $0.removeFromSuperview() })
+        titleImages.removeAll()
+        
+        for surah in allSurah {
+            if surah.allAyah.first?.id == 1 {
+                addImage(forSurah: surah)
+            }
+        }
+        
+        self.attributedText = attributedString
     }
 }
 

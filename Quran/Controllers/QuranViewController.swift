@@ -32,7 +32,7 @@ class QuranViewController: UIViewController {
 
         pages = DBHelper.shared.getAllPages()
         initCollectionView()
-//        QuranViewController.ayahOptions = AyahOptionsView.getInstance(forController: self)
+        QuranViewController.ayahOptions = AyahOptionsView.getInstance(forController: self)
     }
     
     
@@ -67,6 +67,10 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! QuranPageCollectionViewCell
         cell.initWith(page: pages[indexPath.item])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        (cell as! QuranPageCollectionViewCell).quranTextView.updateTitleImages()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
