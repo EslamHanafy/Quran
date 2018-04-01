@@ -204,16 +204,36 @@ class DBHelper {
         let surahId = Expression<Int64>("surah_id")
         let text = Expression<String>("text")
         let pageNumber = Expression<Int64>("page")
+        let id = Expression<Int64>("id")
         
         do {
             if let row = try db.pluck(ayahTable.filter(surahId == juz.surah.id && number == juz.ayah.id)) {
-                ayah = Ayah(id: row[number], content: row[text], page: row[pageNumber])
+                ayah = Ayah(id: row[number],dbId: row[id], content: row[text], page: row[pageNumber])
             }
         } catch  {
             print("the error in getting ayah for juz is: \(error)")
         }
         
         return ayah
+    }
+    
+    
+    /// insert new bookmark in database using the ayah dbId
+    ///
+    /// - Parameter ayah: Ayah object that contain the ayah details
+    func addBookMark(forAyah ayah: Ayah) {
+        guard ayah.dbId != 0 else {
+            return print("theer is no dbId found for this ayah")
+        }
+        
+        let bookTable = Table("bookmarks")
+        let ayahId = Expression<Int64>("ayah_id")
+        
+        do {
+            try db.run(bookTable.insert(ayahId <- ayah.dbId))
+        } catch {
+            print("the error in inserting new bookmark is: \(error)")
+        }
     }
     
 }

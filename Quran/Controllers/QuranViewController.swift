@@ -31,8 +31,8 @@ class QuranViewController: UIViewController {
         super.viewDidLoad()
 
         pages = DBHelper.shared.getAllPages()
-        collectionView.register(UINib(nibName: "QuranPageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        QuranViewController.ayahOptions = AyahOptionsView.getInstance(forController: self)
+        initCollectionView()
+//        QuranViewController.ayahOptions = AyahOptionsView.getInstance(forController: self)
     }
     
     
@@ -70,6 +70,16 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: screenWidth - (collectionViewLayout as! UICollectionViewFlowLayout).minimumInteritemSpacing, height: screenHeight * 0.8898)
+        return CGSize(width: screenWidth, height: screenHeight * 0.8898)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func initCollectionView() {
+        collectionLayout.minimumInteritemSpacing = 0
+        collectionLayout.minimumLineSpacing = 0
+        collectionView.register(UINib(nibName: "QuranPageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
     }
 }

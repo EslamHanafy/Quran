@@ -32,12 +32,13 @@ fileprivate struct AyahIndex {
 class QuranTextView: UITextView {
 
     fileprivate var allSurah: [Surah] = []
+    fileprivate var titleImages: [UIImageView] = []
     
     fileprivate let surahStart: String = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
     fileprivate let invisibleSign: String = "\u{200B}"
     
     fileprivate var attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "")
-    fileprivate var gesture: UITapGestureRecognizer? = nil
+    fileprivate var gesture: UITapGestureRecognizer? = UITapGestureRecognizer()
     
     fileprivate let INDEX_ATTRIBUTE: String = "AyahIndex"
     fileprivate let SELECTED_ATTRIBUTE: String = "SelectedAyah"
@@ -57,6 +58,13 @@ class QuranTextView: UITextView {
         attributedString = NSMutableAttributedString(string: "")
         self.attributedText = attributedString
         self.removeGestureRecognizer(gesture!)
+        titleImages.forEach({ $0.removeFromSuperview() })
+        titleImages.removeAll()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
     }
 }
 
@@ -134,9 +142,9 @@ extension QuranTextView {
         changeAyahColor(atIndex: index)
         
         //show ayah here eslam
-        if let rect = self.superview?.convert(frameOftext(inRange: getRangeForAyah(atIndex: index)), to: nil) {
-            QuranViewController.ayahOptions?.show(fromPoint: CGPoint(x: rect.midX, y: rect.minY + 8))
-        }
+//        if let rect = self.superview?.convert(frameOftext(inRange: getRangeForAyah(atIndex: index)), to: nil) {
+//            QuranViewController.ayahOptions?.show(optionsForAyah: allSurah[index.surah].allAyah[index.ayah], atLocation: CGPoint(x: rect.midX, y: rect.minY + 8))
+//        }
     }
     
     fileprivate func changeAyahColor(atIndex index: AyahIndex) {
@@ -162,26 +170,53 @@ extension QuranTextView {
         return newRange
     }
     
-    fileprivate func frameOftext(inRange range: NSRange) -> CGRect {
+    fileprivate func frameOftext(inRange range: NSRange, usingFirstFrame useFirst: Bool = false) -> CGRect {
         let beginning = self.beginningOfDocument
         let start = self.position(from: beginning, offset: range.location)
         let end = self.position(from: start!, offset: range.length)
         let textRange = self.textRange(from: start!, to: end!)
         
         var selectedRect: CGRect!
-        for selectionRects in self.selectionRects(for: textRange!) {
-            let rect = (selectionRects as! UITextSelectionRect).rect
-            if selectedRect == nil {
-                selectedRect = rect
-            }else{
-                if rect.width > selectedRect.width {
+        
+        if useFirst {
+            for selectionRects in self.selectionRects(for: textRange!) {
+                let rect = (selectionRects as! UITextSelectionRect).rect
+                if selectedRect == nil {
                     selectedRect = rect
+                }else{
+                    if rect.width > selectedRect.width {
+                        selectedRect = rect
+                    }
                 }
             }
+        }else {
+            selectedRect = self.firstRect(for: textRange!)
         }
-        
-//        let rect = self.firstRect(for: textRange!)
+
         return self.convert(selectedRect, from: self.textInputView)
+    }
+    
+    
+    fileprivate func addImage(forSurah surah: Surah) {
+        self.setNeedsDisplay()
+        
+        let range = (attributedString.string as NSString).range(of: "سورة " + surah.name)
+        let textFrame = frameOftext(inRange: range, usingFirstFrame: true)
+        let padding: CGFloat = 55
+        var imageFrame = textFrame
+        imageFrame.origin.x -= padding
+        imageFrame.origin.y -= padding + 2
+        imageFrame.size.width += padding * 2
+        imageFrame.size.height += padding * 2
+        
+        let image = UIImageView(frame: imageFrame)
+        image.image = UIImage(named: "title")
+        image.contentMode = .scaleAspectFit
+        image.clipsToBounds = true
+        
+        self.addSubview(image)
+        self.sendSubview(toBack: image)
+        titleImages.append(image)
     }
 }
 

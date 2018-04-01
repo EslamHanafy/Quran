@@ -82,6 +82,30 @@ public func backgroundQueue(_ closure: @escaping ()->()){
     }
 }
 
+//MARK: - Alerts
+// display alert
+public func displayAlert(_ messeg:String,forController controller:UIViewController){
+    let alert = UIAlertController(title: "", message: messeg, preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "حسنا", style: UIAlertActionStyle.default, handler: nil))
+    DispatchQueue.main.async(execute: {
+        controller.present(alert, animated: true, completion: nil)
+    })
+}
+
+//display alert with timer to hide
+public func displayAlertWithTimer(_ messeg:String,forController controller:UIViewController,timeInSeconds time:Double){
+    let alert = UIAlertController(title: "", message: messeg, preferredStyle: UIAlertControllerStyle.alert)
+    DispatchQueue.main.async(execute: {
+        controller.present(alert, animated: true, completion: nil)
+    })
+    
+    delay(time, closure: {
+        mainQueue {
+            alert.dismiss(animated: true, completion: nil)
+        }
+    })
+}
+
 extension UIView {
     
     public enum PeakSide: Int {

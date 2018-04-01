@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,6 +31,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXF-jS-vGg" userLabel="containerView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="J7S-8a-7c0">
+                                <rect key="frame" x="2" y="29" width="371" height="571"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الجزء" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhb-eu-G1k">
                                 <rect key="frame" x="340" y="0.0" width="27" height="29"/>
                                 <fontDescription key="fontDescription" name="KFGQPCUthmanTahaNaskh-Bold" family="KFGQPC Uthman Taha Naskh" pointSize="17"/>
@@ -52,24 +56,28 @@
                                 </variation>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="بسم الله الرحمن الرحيم" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSb-Id-69V" customClass="QuranTextView" customModule="Quran" customModuleProvider="target">
-                                <rect key="frame" x="3" y="29" width="369" height="542"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="34" y="84" width="307.5" height="462"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="KFGQPCUthmanicScriptHAFS" family="KFGQPC Uthmanic Script HAFS" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="dSb-Id-69V" firstAttribute="centerY" secondItem="wXF-jS-vGg" secondAttribute="centerY" multiplier="1.05" id="0i1-hs-YH4"/>
                             <constraint firstItem="GNE-rZ-Lmo" firstAttribute="centerX" secondItem="wXF-jS-vGg" secondAttribute="centerX" id="3Hf-eX-1zV"/>
+                            <constraint firstAttribute="trailing" secondItem="J7S-8a-7c0" secondAttribute="trailing" constant="2" id="3Ic-FJ-D7s"/>
                             <constraint firstAttribute="width" constant="375" id="3Zs-ly-5nw"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="600" id="7IJ-Ht-cIy"/>
                             <constraint firstAttribute="trailing" secondItem="mhb-eu-G1k" secondAttribute="trailing" constant="8" id="DgP-wi-re6"/>
+                            <constraint firstItem="dSb-Id-69V" firstAttribute="width" secondItem="wXF-jS-vGg" secondAttribute="width" multiplier="0.82" id="H5V-wO-qCh"/>
+                            <constraint firstItem="dSb-Id-69V" firstAttribute="height" secondItem="wXF-jS-vGg" secondAttribute="height" multiplier="0.77" id="IJ6-YU-GlD"/>
                             <constraint firstAttribute="bottom" secondItem="GNE-rZ-Lmo" secondAttribute="bottom" id="J55-oE-2fL"/>
+                            <constraint firstItem="dSb-Id-69V" firstAttribute="centerX" secondItem="wXF-jS-vGg" secondAttribute="centerX" id="Nu8-9J-7TM"/>
                             <constraint firstItem="mhb-eu-G1k" firstAttribute="top" secondItem="wXF-jS-vGg" secondAttribute="top" id="OXv-30-DIy"/>
-                            <constraint firstItem="dSb-Id-69V" firstAttribute="top" secondItem="mhb-eu-G1k" secondAttribute="bottom" id="XUf-9p-fou"/>
-                            <constraint firstItem="dSb-Id-69V" firstAttribute="leading" secondItem="wXF-jS-vGg" secondAttribute="leading" constant="3" id="gM8-Vs-Alo"/>
-                            <constraint firstItem="GNE-rZ-Lmo" firstAttribute="top" secondItem="dSb-Id-69V" secondAttribute="bottom" id="hlR-qG-B1N"/>
-                            <constraint firstAttribute="trailing" secondItem="dSb-Id-69V" secondAttribute="trailing" constant="3" id="lua-rG-hSx"/>
+                            <constraint firstItem="J7S-8a-7c0" firstAttribute="top" secondItem="mhb-eu-G1k" secondAttribute="bottom" id="QDX-2n-nOz"/>
+                            <constraint firstAttribute="bottom" secondItem="J7S-8a-7c0" secondAttribute="bottom" id="kPD-gt-rJ7"/>
+                            <constraint firstItem="J7S-8a-7c0" firstAttribute="leading" secondItem="wXF-jS-vGg" secondAttribute="leading" constant="2" id="mJD-9Z-ybY"/>
                             <constraint firstItem="RoX-r9-fHt" firstAttribute="top" secondItem="wXF-jS-vGg" secondAttribute="top" id="nh2-vJ-Tdt"/>
                             <constraint firstItem="RoX-r9-fHt" firstAttribute="leading" secondItem="wXF-jS-vGg" secondAttribute="leading" constant="8" id="ykP-yL-zun"/>
                         </constraints>
@@ -101,4 +109,7 @@
             <point key="canvasLocation" x="187.5" y="-223"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="bg" width="1064" height="1907"/>
+    </resources>
 </document>

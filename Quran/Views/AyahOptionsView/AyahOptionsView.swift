@@ -14,6 +14,7 @@ class AyahOptionsView: UIView {
     
     
     fileprivate var parent: UIViewController!
+    fileprivate var ayah: Ayah!
     
     /// the show/hide animation duration
     fileprivate let animationDuration: TimeInterval = 0.8
@@ -40,6 +41,9 @@ class AyahOptionsView: UIView {
     }
     
     @IBAction func markAction() {
+        DBHelper.shared.addBookMark(forAyah: ayah)
+        hide()
+        displayAlertWithTimer("تم اضافة الفاصل بنجاح", forController: self.parent, timeInSeconds: 3.0)
     }
     
 }
@@ -78,7 +82,9 @@ extension AyahOptionsView {
     
     
     /// show the popup view with given CartItem
-    func show(fromPoint point: CGPoint) {
+    func show(optionsForAyah ayah: Ayah, atLocation point: CGPoint) {
+        self.ayah = ayah
+        
         var point = point
         if point.x - (containerView.bounds.width / 2) < 0  {
             point.x = (containerView.bounds.width / 2) + 4
