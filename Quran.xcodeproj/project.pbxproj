@@ -45,6 +45,10 @@
 		88AAE72BD4D026ECEBBDC942 /* Pods_Quran.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7C7016F5583E133AD5119F /* Pods_Quran.framework */; };
 		AA21D4562064559B00507932 /* Backups.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21D4552064559B00507932 /* Backups.swift */; };
 		AA3FE284206403C700D69740 /* QuranViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FE283206403C700D69740 /* QuranViewController.swift */; };
+		AACA765E2072731C003AE1B7 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACA765D2072731C003AE1B7 /* BookmarksViewController.swift */; };
+		AACA766220727997003AE1B7 /* BookMarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACA766020727997003AE1B7 /* BookMarkTableViewCell.swift */; };
+		AACA766320727997003AE1B7 /* BookMarkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AACA766120727997003AE1B7 /* BookMarkTableViewCell.xib */; };
+		AACA766520728065003AE1B7 /* BookMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACA766420728065003AE1B7 /* BookMark.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +94,10 @@
 		5F7C7016F5583E133AD5119F /* Pods_Quran.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quran.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA21D4552064559B00507932 /* Backups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backups.swift; sourceTree = "<group>"; };
 		AA3FE283206403C700D69740 /* QuranViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranViewController.swift; sourceTree = "<group>"; };
+		AACA765D2072731C003AE1B7 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
+		AACA766020727997003AE1B7 /* BookMarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkTableViewCell.swift; sourceTree = "<group>"; };
+		AACA766120727997003AE1B7 /* BookMarkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookMarkTableViewCell.xib; sourceTree = "<group>"; };
+		AACA766420728065003AE1B7 /* BookMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMark.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +180,7 @@
 				0C8C1BE32062B95600C05337 /* Juz.swift */,
 				0C8C1BE52062B9B800C05337 /* Ayah.swift */,
 				0C60614120669B2C00B49227 /* Page.swift */,
+				AACA766420728065003AE1B7 /* BookMark.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,6 +188,7 @@
 		0CA42F7A20611DD100DC1028 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AACA765F207273DE003AE1B7 /* BookMarkCell */,
 				0CEFEDC1206FCC6400F106A0 /* AyahOptionsView */,
 				0CD3B01F206A9BBE004CBE60 /* QuranTextView */,
 				0C6061382066924000B49227 /* QuranPageCell */,
@@ -198,6 +208,7 @@
 				0C8C1BE12062B72D00C05337 /* JuzViewController.swift */,
 				AA3FE283206403C700D69740 /* QuranViewController.swift */,
 				AA21D4552064559B00507932 /* Backups.swift */,
+				AACA765D2072731C003AE1B7 /* BookmarksViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -269,6 +280,15 @@
 				0CEFEDC4206FCC9700F106A0 /* AyahOptionsView.xib */,
 			);
 			path = AyahOptionsView;
+			sourceTree = "<group>";
+		};
+		AACA765F207273DE003AE1B7 /* BookMarkCell */ = {
+			isa = PBXGroup;
+			children = (
+				AACA766020727997003AE1B7 /* BookMarkTableViewCell.swift */,
+				AACA766120727997003AE1B7 /* BookMarkTableViewCell.xib */,
+			);
+			path = BookMarkCell;
 			sourceTree = "<group>";
 		};
 		C31FA6828DC77D1DA13D1D8D /* Frameworks */ = {
@@ -351,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CEFEDC5206FCC9700F106A0 /* AyahOptionsView.xib in Resources */,
+				AACA766320727997003AE1B7 /* BookMarkTableViewCell.xib in Resources */,
 				0CA42F8220612E8000DC1028 /* Diwani Bent.ttf in Resources */,
 				0C8C1BEB2062CB1E00C05337 /* JuzTableViewCell.xib in Resources */,
 				0C8C1BDE206289E300C05337 /* SideMenuTableViewCell.xib in Resources */,
@@ -439,8 +460,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AACA766520728065003AE1B7 /* BookMark.swift in Sources */,
+				AACA765E2072731C003AE1B7 /* BookmarksViewController.swift in Sources */,
 				0CA42F9420616AC000DC1028 /* Sura.swift in Sources */,
 				AA21D4562064559B00507932 /* Backups.swift in Sources */,
+				AACA766220727997003AE1B7 /* BookMarkTableViewCell.swift in Sources */,
 				0C60613B2066926F00B49227 /* QuranPageCollectionViewCell.swift in Sources */,
 				0C8C1BE42062B95600C05337 /* Juz.swift in Sources */,
 				0CA42F912061680800DC1028 /* SurahTableViewCell.swift in Sources */,

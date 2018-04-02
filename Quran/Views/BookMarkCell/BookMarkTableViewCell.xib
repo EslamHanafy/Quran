@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GE_SS_Text_Light.otf">
+            <string>GESSTextLight-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="59" id="KGk-i7-Jjw" customClass="BookMarkTableViewCell" customModule="Quran" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="58.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OkA-Vn-Crx" userLabel="lineView">
+                        <rect key="frame" x="0.0" y="11" width="375" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="3wV-6V-Dsh"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EkQ-jh-3ga" userLabel="containerView">
+                        <rect key="frame" x="16" y="11" width="343" height="37"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark1" translatesAutoresizingMaskIntoConstraints="NO" id="ga5-4A-7NR">
+                                <rect key="frame" x="326" y="9.5" width="17" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ga5-4A-7NR" secondAttribute="height" multiplier="1:1" id="UAu-Ze-q3b"/>
+                                    <constraint firstAttribute="height" constant="17" id="l1q-l0-ypB"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="اسم السورة" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3eH-GK-fID">
+                                <rect key="frame" x="250.5" y="11" width="67.5" height="16"/>
+                                <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="30"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="صفحة رقم ١٤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGO-7r-NXj">
+                                <rect key="frame" x="8" y="11" width="73" height="16"/>
+                                <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="30"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ga5-4A-7NR" firstAttribute="leading" secondItem="3eH-GK-fID" secondAttribute="trailing" constant="8" id="0MU-1M-4kl"/>
+                            <constraint firstAttribute="height" constant="37" id="2Wx-tb-ZyS">
+                                <variation key="heightClass=regular-widthClass=regular" constant="74"/>
+                            </constraint>
+                            <constraint firstItem="yGO-7r-NXj" firstAttribute="centerY" secondItem="EkQ-jh-3ga" secondAttribute="centerY" id="41L-JI-MTh"/>
+                            <constraint firstAttribute="trailing" secondItem="ga5-4A-7NR" secondAttribute="trailing" id="Ce7-Db-ggr"/>
+                            <constraint firstItem="ga5-4A-7NR" firstAttribute="centerY" secondItem="EkQ-jh-3ga" secondAttribute="centerY" id="O9k-u9-rZu"/>
+                            <constraint firstItem="yGO-7r-NXj" firstAttribute="leading" secondItem="EkQ-jh-3ga" secondAttribute="leadingMargin" id="Uoo-yd-JES"/>
+                            <constraint firstItem="3eH-GK-fID" firstAttribute="centerY" secondItem="EkQ-jh-3ga" secondAttribute="centerY" id="hp6-zh-59g"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4k-bH-NfU" userLabel="lineView">
+                        <rect key="frame" x="0.0" y="47" width="375" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Paj-Sb-L7u"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="OkA-Vn-Crx" secondAttribute="trailing" id="3qn-Y6-uFJ"/>
+                    <constraint firstItem="EkQ-jh-3ga" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="4oR-u8-e9t"/>
+                    <constraint firstAttribute="trailing" secondItem="U4k-bH-NfU" secondAttribute="trailing" id="4ui-JV-vkz"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="EkQ-jh-3ga" secondAttribute="bottom" id="6gS-T6-DhR"/>
+                    <constraint firstItem="U4k-bH-NfU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ew8-tQ-UzZ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="EkQ-jh-3ga" secondAttribute="trailing" id="LxS-x8-w2R"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="U4k-bH-NfU" secondAttribute="bottom" id="N8f-c5-Usf"/>
+                    <constraint firstItem="EkQ-jh-3ga" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="QJ8-9Z-KFg"/>
+                    <constraint firstItem="OkA-Vn-Crx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="VX5-sa-cJ3"/>
+                    <constraint firstItem="OkA-Vn-Crx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="j4h-kv-HjX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="nameLabel" destination="3eH-GK-fID" id="9pd-wL-w4k"/>
+                <outlet property="pageLabel" destination="yGO-7r-NXj" id="wIN-eW-YtP"/>
+            </connections>
+            <point key="canvasLocation" x="52.5" y="44.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="bookmark1" width="366" height="432"/>
+    </resources>
+</document>

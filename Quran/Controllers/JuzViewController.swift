@@ -27,8 +27,14 @@ class JuzViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        juz = DBHelper.shared.getAllJuz()
         tableView.register(UINib(nibName: "JuzTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
+        
+        backgroundQueue {
+            self.juz = DBHelper.shared.getAllJuz()
+            mainQueue {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     

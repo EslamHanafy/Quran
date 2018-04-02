@@ -60,7 +60,7 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         items.append(MenuItem(title: "التلاوة", icon: "more icon", screenId: ""))
         items.append(MenuItem(title: "عن التطبيق", icon: "info", screenId: ""))
         items.append(MenuItem(title: "مشاركة التطبيق", icon: "Share 2", screenId: ""))
-        items.append(MenuItem(title: "علامات الفواصل", icon: "Bookmark", screenId: ""))
+        items.append(MenuItem(title: "علامات الفواصل", icon: "Bookmark", screenId: "BookMarksScreem"))
         
         tableView.reloadData()
     }

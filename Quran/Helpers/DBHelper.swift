@@ -231,9 +231,92 @@ class DBHelper {
         
         do {
             try db.run(bookTable.insert(ayahId <- ayah.dbId))
+            updateBookMarkForAyah(withId: ayah.dbId, isMarked: true)
         } catch {
             print("the error in inserting new bookmark is: \(error)")
         }
     }
+ 
     
+    /// get all stored bookmarks
+    ///
+    /// - Returns: array of BookMarks
+    func getBookMarks() -> [BookMark] {
+        var bookMarks: [BookMark] = []
+        
+        let marksTable = Table("bookmarks")
+        let ayahTable = Table("ayah")
+        let id = Expression<Int64>("id")
+        let ayahId = Expression<Int64>("ayah_id")
+        
+        
+        do {
+            let data = try db.prepare(marksTable.join(ayahTable, on: ayahId == ayahTable[id]))
+            for row in data {
+                bookMarks.append(BookMark(fromRow: row))
+            }
+        } catch {
+            print("error in get all bookmarks is: \(error)")
+        }
+        
+        return bookMarks
+    }
+    
+    
+    /// get details for the surah with the same id
+    ///
+    /// - Parameter surahId: the surah id
+    /// - Returns: Surah object that contain the surah data
+    func getSurah(withId surahId: Int64) -> Surah {
+        var surah: Surah = Surah(id: 0, name: "", page: 0)
+        
+        let surahTable = Table("surah")
+        let name = Expression<String>("name")
+        let id = Expression<Int64>("id")
+        let page = Expression<Int64>("page")
+        
+        do {
+            if let row = try db.pluck(surahTable.filter(id == surahId)) {
+                surah = Surah(id: surahId, name: row[name], page: row[page])
+            }
+        } catch {
+            print("error in get surah with id: \(surahId) is: \(error)")
+        }
+        
+        return surah
+    }
+    
+    
+    /// delete the bookmark with the given id
+    ///
+    /// - Parameter markId: bookmark id
+    func delete(bookMark mark: BookMark) {
+        let marksTable = Table("bookmarks")
+        let id = Expression<Int64>("id")
+        
+        do {
+            try db.run(marksTable.filter(id == mark.id).delete())
+            updateBookMarkForAyah(withId: mark.ayah.dbId, isMarked: false)
+        } catch {
+            print("error in delete bookmark with id: \(mark.id) is: \(error)")
+        }
+    }
+    
+    
+    /// update isBookMarked value for the given ayah
+    ///
+    /// - Parameters:
+    ///   - ayahId: the ayah database id
+    ///   - marked: true for is marked and false for not
+    func updateBookMarkForAyah(withId ayahId: Int64, isMarked marked: Bool) {
+        let ayahTable = Table("ayah")
+        let id = Expression<Int64>("id")
+        let isMarked = Expression<Int64?>("is_bookmarked")
+        
+        do {
+            try db.run(ayahTable.filter(id == ayahId).update(isMarked <- Int64(marked.hashValue)))
+        } catch {
+            print("error in updateing isBookMarked for ayah with id: \(ayahId) is: \(error)")
+        }
+    }
 }
