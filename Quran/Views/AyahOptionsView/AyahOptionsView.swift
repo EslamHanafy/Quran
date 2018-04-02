@@ -11,7 +11,7 @@ import UIKit
 class AyahOptionsView: UIView {
 
     @IBOutlet var containerView: UIView!
-    
+    @IBOutlet var bookmarkLabel: UILabel!
     
     fileprivate var parent: UIViewController!
     fileprivate var ayah: Ayah!
@@ -19,6 +19,8 @@ class AyahOptionsView: UIView {
     /// the show/hide animation duration
     fileprivate let animationDuration: TimeInterval = 0.8
     
+    fileprivate var onMarkAyah: ((_ ayah: Ayah)->())? = nil
+    fileprivate var onPlayAyah: ((_ ayah: Ayah)->())? = nil
     
     public static func getInstance(forController controller: UIViewController) -> AyahOptionsView {
         let view = Bundle.main.loadNibNamed("AyahOptionsView", owner: controller, options: nil)?.first as! AyahOptionsView
@@ -41,9 +43,13 @@ class AyahOptionsView: UIView {
     }
     
     @IBAction func markAction() {
-        DBHelper.shared.addBookMark(forAyah: ayah)
+        if ayah.isBookmarked {
+            unBookmarkCurrentAyah()
+        }else {
+            bookmarkCurrentAyah()
+        }
+        
         hide()
-        displayAlertWithTimer("تم اضافة الفاصل بنجاح", forController: self.parent, timeInSeconds: 3.0)
     }
     
 }
@@ -82,9 +88,22 @@ extension AyahOptionsView {
     
     
     /// show the popup view with given CartItem
-    func show(optionsForAyah ayah: Ayah, atLocation point: CGPoint) {
-        self.ayah = ayah
+    func show(optionsForAyah ayah: Ayah, atLocation point: CGPoint, onMarkAyah: ((_ ayah: Ayah)->())? = nil, onPlayAyah: ((_ ayah: Ayah)->())? = nil) {
         
+        self.ayah = ayah
+        self.onMarkAyah = onMarkAyah
+        self.onPlayAyah = onPlayAyah
+        
+        prepareActions()
+        showAnimation(fromPoint: getValidPoint(fromPoint: point))
+    }
+    
+    
+    /// get valid point from the given point and ensure it will be inside the screen
+    ///
+    /// - Parameter point: the point that you want to validate
+    /// - Returns: a valid CGPoint
+    private func getValidPoint(fromPoint point: CGPoint) -> CGPoint {
         var point = point
         if point.x - (containerView.bounds.width / 2) < 0  {
             point.x = (containerView.bounds.width / 2) + 4
@@ -94,7 +113,30 @@ extension AyahOptionsView {
             point.x = screenWidth - (containerView.bounds.width / 2) - 4
         }
         
-        showAnimation(fromPoint: point)
+        return point
+    }
+    
+    /// change bookmarkLabel based on current ayah
+    private func prepareActions() {
+        bookmarkLabel.text = ayah.isBookmarked ? "حذف الفاصل" : "اضافة فاسل"
+    }
+    
+    
+    /// mark current ayah as bookmarked
+    fileprivate func bookmarkCurrentAyah() {
+        DBHelper.shared.addBookMark(forAyah: ayah)
+        ayah.isBookmarked = true
+        onMarkAyah?(ayah)
+        displayAlertWithTimer("تم اضافة الفاصل بنجاح", forController: self.parent, timeInSeconds: 3.0)
+    }
+    
+    
+    /// mark current ayah as not bookmarked
+    fileprivate func unBookmarkCurrentAyah() {
+        DBHelper.shared.delete(bookmarkForAyah: ayah)
+        ayah.isBookmarked = false
+        onMarkAyah?(ayah)
+        displayAlertWithTimer("تم حذف الفاصل بنجاح", forController: self.parent, timeInSeconds: 3.0)
     }
 }
 

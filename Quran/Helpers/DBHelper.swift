@@ -303,6 +303,21 @@ class DBHelper {
     }
     
     
+    /// delete the bookmark for the given ayah
+    ///
+    /// - Parameter ayah: Ayah object that contain the ayah data
+    func delete(bookmarkForAyah ayah: Ayah) {
+        let marksTable = Table("bookmarks")
+        let ayahId = Expression<Int64>("ayah_id")
+        
+        do {
+            try db.run(marksTable.filter(ayahId == ayah.dbId).delete())
+            updateBookMarkForAyah(withId: ayah.dbId, isMarked: false)
+        } catch {
+            print("error in delete bookmark for ayah with id: \(ayah.id) is: \(error)")
+        }
+    }
+    
     /// update isBookMarked value for the given ayah
     ///
     /// - Parameters:

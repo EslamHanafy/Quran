@@ -129,29 +129,15 @@ extension QuranTextView {
             return [NSAttributedStringKey.font: mainFont, NSAttributedStringKey.paragraphStyle: getStyle(forType: type)]
         }
         
-        return [NSAttributedStringKey.font: type == .number ? numFont : subFont, NSAttributedStringKey.paragraphStyle: getStyle(forType: type), NSAttributedStringKey.init(INDEX_ATTRIBUTE): "\(index.surah),\(index.ayah)"]
+        var attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.font: type == .number ? numFont : subFont, NSAttributedStringKey.paragraphStyle: getStyle(forType: type), NSAttributedStringKey.init(INDEX_ATTRIBUTE): "\(index.surah),\(index.ayah)"]
+        
+        if allSurah[index.surah].allAyah[index.ayah].isBookmarked {
+            attributes[NSAttributedStringKey.foregroundColor] = UIColor.red
+        }
+        
+        return attributes
     }
     
-    
-    fileprivate func selectAyah(atIndex index: AyahIndex) {
-        changeAyahColor(atIndex: index)
-        
-        //show ayah here eslam
-        let rect = self.convert(frameOftext(inRange: getRangeForAyah(atIndex: index), usingFirstFrame: true), to: nil)
-        QuranViewController.ayahOptions?.show(optionsForAyah: allSurah[index.surah].allAyah[index.ayah], atLocation: CGPoint(x: rect.midX, y: rect.minY - 10))
-        self.attributedText = attributedString
-        
-    }
-    
-    fileprivate func changeAyahColor(atIndex index: AyahIndex) {
-        //remove old color
-        attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: NSMakeRange(0, self.textStorage.length))
-        self.attributedText = attributedString
-        
-        attributedString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.brown], range: getRangeForAyah(atIndex: index))
-        
-        self.attributedText = attributedString
-    }
     
     fileprivate func getRangeForAyah(atIndex index: AyahIndex) -> NSRange {
         var newRange: NSRange!
@@ -262,5 +248,61 @@ extension QuranTextView: UIGestureRecognizerDelegate {
                 selectAyah(atIndex: AyahIndex(string: value))
             }
         }
+    }
+}
+
+//MARK: - Selection
+extension QuranTextView {
+    fileprivate func selectAyah(atIndex index: AyahIndex) {
+        changeAyahColor(atIndex: index)
+        
+        //show ayah here eslam
+        let rect = self.convert(frameOftext(inRange: getRangeForAyah(atIndex: index), usingFirstFrame: true), to: nil)
+        QuranViewController.ayahOptions?.show(optionsForAyah: allSurah[index.surah].allAyah[index.ayah], atLocation: CGPoint(x: rect.midX, y: rect.minY - 10), onMarkAyah: self.handelMarkActionForAyah(_:))
+        self.attributedText = attributedString
+        
+    }
+    
+    fileprivate func changeAyahColor(atIndex index: AyahIndex) {
+        if allSurah[index.surah].allAyah[index.ayah].isBookmarked {
+            return
+        }
+        
+        //remove old selection
+        self.attributedText.enumerateAttribute(NSAttributedStringKey.init(SELECTED_ATTRIBUTE), in: NSMakeRange(0, self.textStorage.length), options: []) { (attr, range, _) in
+            
+            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
+            self.attributedString.removeAttribute(NSAttributedStringKey.init(SELECTED_ATTRIBUTE), range: range)
+            self.attributedText = attributedString
+        }
+        
+        attributedString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.brown, NSAttributedStringKey.init(SELECTED_ATTRIBUTE): SELECTED_ATTRIBUTE], range: getRangeForAyah(atIndex: index))
+        
+        self.attributedText = attributedString
+    }
+    
+    fileprivate func handelMarkActionForAyah(_ ayah: Ayah) {
+        let range = getRangeForAyah(atIndex: getIndex(forAyah: ayah))
+        
+        if ayah.isBookmarked {
+            self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.red, range: range)
+        }else {
+            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
+        }
+        
+        self.attributedText = attributedString
+    }
+    
+    
+    fileprivate func getIndex(forAyah ayah: Ayah) -> AyahIndex {
+        for (surahIndex, surah) in allSurah.enumerated() {
+            for (ayahIndex, _ayah) in surah.allAyah.enumerated() {
+                if _ayah === ayah {
+                    return AyahIndex(ayah: ayahIndex, surah: surahIndex)
+                }
+            }
+        }
+        
+        return AyahIndex(ayah: 0, surah: 0)
     }
 }
