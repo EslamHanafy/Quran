@@ -118,7 +118,7 @@ extension AyahOptionsView {
     
     /// change bookmarkLabel based on current ayah
     private func prepareActions() {
-        bookmarkLabel.text = ayah.isBookmarked ? "حذف الفاصل" : "اضافة فاسل"
+        bookmarkLabel.text = ayah.isBookmarked ? "حذف الفاصل" : "اضافة فاصل"
     }
     
     

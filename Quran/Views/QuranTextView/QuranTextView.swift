@@ -8,53 +8,28 @@
 
 import UIKit
 
-
-fileprivate enum TextType {
-    case header, subheader, normal, number
-}
-
-fileprivate struct AyahIndex {
-    var ayah: Int
-    var surah: Int
-    
-    init (string: String) {
-        let arr = string.split(separator: ",")
-        self.ayah = Int(arr[1])!
-        self.surah = Int(arr[0])!
-    }
-    
-    init(ayah: Int, surah: Int) {
-        self.ayah = ayah
-        self.surah = surah
-    }
-}
-
 class QuranTextView: UITextView {
 
-    fileprivate var allSurah: [Surah] = []
+    fileprivate var page: Page!
     fileprivate var titleImages: [UIImageView] = []
     
-    fileprivate let surahStart: String = "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ"
-    fileprivate let invisibleSign: String = "\u{200B}"
     
     fileprivate var attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "")
     fileprivate var gesture: UITapGestureRecognizer? = UITapGestureRecognizer()
     
-    fileprivate let INDEX_ATTRIBUTE: String = "AyahIndex"
-    fileprivate let SELECTED_ATTRIBUTE: String = "SelectedAyah"
-    fileprivate let mainFont: UIFont = UIFont(name: "KFGQPCUthmanTahaNaskh-Bold", size: isIpadScreen ? 42 : 21)!
-    fileprivate let subFont: UIFont = UIFont(name: "KFGQPCUthmanicScriptHAFS", size: isIpadScreen ? 36 : 18)!
-    fileprivate let numFont: UIFont = UIFont(name: "KFGQPCUthmanicScriptHAFS", size: isIpadScreen ? 44 : 22)!
     
-    
-    func initWith(surah: [Surah]) {
-        self.allSurah = surah
+    /// init the QuranTextView with the given page
+    ///
+    /// - Parameter page: Page object that contain the page data
+    func initWith(page: Page) {
+        self.page = page
         
         initTextView()
     }
     
+    
+    /// reset QuranTextView values
     func preapareForReuse() {
-        allSurah.removeAll()
         attributedString = NSMutableAttributedString(string: "")
         self.attributedText = attributedString
         self.removeGestureRecognizer(gesture!)
@@ -66,152 +41,58 @@ class QuranTextView: UITextView {
 //MARK: - Helpers
 extension QuranTextView {
     
+    /// init the text view
     fileprivate func initTextView() {
         self.isEditable = false
         self.isSelectable = false
         
-        for (index, sura) in allSurah.enumerated() {
-            add(surah: sura, atIndex: index)
+        DispatchQueue.global(qos: .utility).async {
+            //get the attributed string from quran manager
+            self.attributedString = QuranManager.manager.getAttributedText(forPage: self.page)
+            
+            mainQueue {
+                self.attributedText = self.attributedString
+                self.updateTitleImages()
+            }
         }
         
+        // add the UITapGestureRecognizer
         gesture = UITapGestureRecognizer(target: self, action: #selector(self.textViewTapHandler(_:)))
         gesture!.delegate = self
         self.addGestureRecognizer(gesture!)
     }
     
-    fileprivate func getStyle(forType type: TextType) -> NSMutableParagraphStyle {
-        let style: NSMutableParagraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
-        style.alignment = type == .normal || type == .number ? NSTextAlignment.justified : .center
-        style.lineBreakMode = .byWordWrapping
-        style.firstLineHeadIndent = 1
-        style.lineSpacing = type == .normal || type == .number ? 3 : type == .header ? 5 : 4
-        style.baseWritingDirection = .rightToLeft
-        return style
-    }
-    
-    fileprivate func add(surah: Surah, atIndex surahIndex: Int) {
-        for (index, ayah) in surah.allAyah.enumerated() {
-            //check for the first ayah
-            if ayah.id == 1 {
-                if surahIndex != 0 {
-                    attributedString.append(NSAttributedString(string: "\n"))
-                }
-                //add the surah name
-                attributedString.append(NSAttributedString(string: "سورة " + surah.name, attributes: getAttributes(forType: .header, atIndex: AyahIndex(ayah: 0, surah: surahIndex))))
-                
-                attributedString.append(NSAttributedString(string: "\n"))
-                
-                //check if it's for first surah in quran
-                if surah.id == 1 {
-                    attributedString.append(NSAttributedString(string: invisibleSign + ayah.content + invisibleSign, attributes: getAttributes(forType: .normal, atIndex: AyahIndex(ayah: index, surah: surahIndex))))
-                }else {
-                    //it's not the first surah, so we need to split the surah start from it
-                    attributedString.append(NSAttributedString(string: invisibleSign + surahStart + invisibleSign, attributes: getAttributes(forType: .subheader, atIndex: AyahIndex(ayah: index, surah: surahIndex))))
-                    
-                    attributedString.append(NSAttributedString(string: "\n"))
-                    
-                    attributedString.append(NSAttributedString(string: invisibleSign + String(ayah.content.dropFirst(surahStart.count + 1)) + invisibleSign, attributes: getAttributes(forType: .normal, atIndex: AyahIndex(ayah: index, surah: surahIndex))))
-                }
-            }else {
-                // it's not the first ayah
-                attributedString.append(NSAttributedString(string: invisibleSign + ayah.content + invisibleSign, attributes: getAttributes(forType: .normal, atIndex: AyahIndex(ayah: index, surah: surahIndex))))
-            }
-            
-            //adding the ayah number
-            attributedString.append(NSAttributedString(string: " \(getValidatedNumber(fromInt: Int(ayah.id))) ", attributes: getAttributes(forType: .number, atIndex: AyahIndex(ayah: index, surah: surahIndex))))
-        }
-        
-        self.attributedText = attributedString
-    }
-    
-    fileprivate func getAttributes(forType type: TextType, atIndex index: AyahIndex) -> [NSAttributedStringKey: Any] {
-        if type == .header {
-            return [NSAttributedStringKey.font: mainFont, NSAttributedStringKey.paragraphStyle: getStyle(forType: type)]
-        }
-        
-        var attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.font: type == .number ? numFont : subFont, NSAttributedStringKey.paragraphStyle: getStyle(forType: type), NSAttributedStringKey.init(INDEX_ATTRIBUTE): "\(index.surah),\(index.ayah)"]
-        
-        if allSurah[index.surah].allAyah[index.ayah].isBookmarked {
-            attributes[NSAttributedStringKey.foregroundColor] = UIColor.red
-        }
-        
-        return attributes
-    }
     
     
-    fileprivate func getRangeForAyah(atIndex index: AyahIndex) -> NSRange {
-        var newRange: NSRange!
-        
-        if allSurah[index.surah].id != 1 && allSurah[index.surah].allAyah[index.ayah].id == 1 {
-            //get range for the first ayah that we split it before adding it
-            newRange = (attributedString.string as NSString).range(of: invisibleSign + String(allSurah[index.surah].allAyah[index.ayah].content.dropFirst(surahStart.count + 1)) + invisibleSign + " \(getValidatedNumber(fromInt: Int(allSurah[index.surah].allAyah[index.ayah].id))) ")
-        }else {
-            newRange = (attributedString.string as NSString).range(of: invisibleSign + allSurah[index.surah].allAyah[index.ayah].content + invisibleSign + " \(getValidatedNumber(fromInt: Int(allSurah[index.surah].allAyah[index.ayah].id))) ")
-        }
-        
-        return newRange
-    }
-    
-    fileprivate func frameOftext(inRange range: NSRange, usingFirstFrame useFirst: Bool = false) -> CGRect {
-        let beginning = self.beginningOfDocument
-        let start = self.position(from: beginning, offset: range.location)
-        let end = self.position(from: start!, offset: range.length)
-        let textRange = self.textRange(from: start!, to: end!)
-        
-        var selectedRect: CGRect!
-        
-        if useFirst {
-            for selectionRects in self.selectionRects(for: textRange!) {
-                let rect = (selectionRects as! UITextSelectionRect).rect
-                if selectedRect == nil {
-                    selectedRect = rect
-                }else{
-                    if rect.width > selectedRect.width {
-                        selectedRect = rect
-                    }
-                }
-            }
-        }else {
-            selectedRect = self.firstRect(for: textRange!)
-        }
-
-        return self.convert(selectedRect, from: self.textInputView)
-    }
-    
-    
-    fileprivate func addImage(forSurah surah: Surah) {
-        self.setNeedsDisplay()
-        
-        let range = (attributedString.string as NSString).range(of: "سورة " + surah.name)
-        let textFrame = frameOftext(inRange: range, usingFirstFrame: true)
-        let padding: CGFloat = 55
-        var imageFrame = textFrame
-        imageFrame.origin.x -= padding
-        imageFrame.origin.y -= padding + 2
-        imageFrame.size.width += padding * 2
-        imageFrame.size.height += padding * 2
-        
-        let image = UIImageView(frame: imageFrame)
-        image.image = UIImage(named: "title")
-        image.contentMode = .scaleAspectFit
-        image.clipsToBounds = true
-        
-        self.addSubview(image)
-        self.sendSubview(toBack: image)
-        titleImages.append(image)
-    }
-    
+    /// update all surah title background images
     func updateTitleImages() {
         titleImages.forEach({ $0.removeFromSuperview() })
         titleImages.removeAll()
         
-        for surah in allSurah {
+        for surah in page.getAllSurah() {
             if surah.allAyah.first?.id == 1 {
-                addImage(forSurah: surah)
+                titleImages.append(QuranManager.manager.addTitleImage(forSurah: surah, atTextView: self))
             }
         }
         
         self.attributedText = attributedString
+    }
+    
+    
+    /// get Ayah index for the given ayah
+    ///
+    /// - Parameter ayah: the ayah that you want to get it's index
+    /// - Returns: AyahIndex object that represent the given ayah
+    fileprivate func getIndex(forAyah ayah: Ayah) -> AyahIndex {
+        for (surahIndex, surah) in page.getAllSurah().enumerated() {
+            for (ayahIndex, _ayah) in surah.allAyah.enumerated() {
+                if _ayah === ayah {
+                    return AyahIndex(ayah: ayahIndex, surah: surahIndex, page: Int(page.id - 1))
+                }
+            }
+        }
+        
+        return AyahIndex(ayah: 0, surah: 0, page: 0)
     }
 }
 
@@ -242,7 +123,7 @@ extension QuranTextView: UIGestureRecognizerDelegate {
             print("character at index: \(substring)")
             */
             // check if the tap location has a certain attribute
-            let attributeValue = self.attributedText.attribute(NSAttributedStringKey.init(INDEX_ATTRIBUTE), at: characterIndex, effectiveRange: nil) as? String
+            let attributeValue = self.attributedText.attribute(QuranManager.manager.INDEX_ATTRIBUTE, at: characterIndex, effectiveRange: nil) as? String
             if let value = attributeValue {
                 print("You tapped on ayah number: \(value)")
                 selectAyah(atIndex: AyahIndex(string: value))
@@ -253,36 +134,53 @@ extension QuranTextView: UIGestureRecognizerDelegate {
 
 //MARK: - Selection
 extension QuranTextView {
+    
+    /// select ayah at the given index
+    ///
+    /// - Parameter index: the ayah index
     fileprivate func selectAyah(atIndex index: AyahIndex) {
         changeAyahColor(atIndex: index)
+        let rect = self.convert(QuranManager.manager.frameOftext(inTextView: self, atRange: QuranManager.manager.getRangeForAyah(atIndex: index, fromTextView: self)), to: nil)
         
-        //show ayah here eslam
-        let rect = self.convert(frameOftext(inRange: getRangeForAyah(atIndex: index), usingFirstFrame: true), to: nil)
-        QuranViewController.ayahOptions?.show(optionsForAyah: allSurah[index.surah].allAyah[index.ayah], atLocation: CGPoint(x: rect.midX, y: rect.minY - 10), onMarkAyah: self.handelMarkActionForAyah(_:))
+        QuranViewController.ayahOptions?.show(optionsForAyah: page.getAllSurah()[index.surah].allAyah[index.ayah], atLocation: CGPoint(x: rect.midX, y: rect.minY - 10), onMarkAyah: self.handelMarkActionForAyah(_:))
+        
         self.attributedText = attributedString
-        
     }
     
+    
+    /// change forground color for the ayah at the given index
+    ///
+    /// - Parameter index: ayah index
     fileprivate func changeAyahColor(atIndex index: AyahIndex) {
-        if allSurah[index.surah].allAyah[index.ayah].isBookmarked {
+        if page.getAllSurah()[index.surah].allAyah[index.ayah].isBookmarked {
             return
         }
         
         //remove old selection
-        self.attributedText.enumerateAttribute(NSAttributedStringKey.init(SELECTED_ATTRIBUTE), in: NSMakeRange(0, self.textStorage.length), options: []) { (attr, range, _) in
-            
-            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
-            self.attributedString.removeAttribute(NSAttributedStringKey.init(SELECTED_ATTRIBUTE), range: range)
-            self.attributedText = attributedString
-        }
+        removeLastSelection()
         
-        attributedString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.brown, NSAttributedStringKey.init(SELECTED_ATTRIBUTE): SELECTED_ATTRIBUTE], range: getRangeForAyah(atIndex: index))
+        attributedString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.brown, QuranManager.manager.SELECTED_ATTRIBUTE: "SelectedAyah"], range: QuranManager.manager.getRangeForAyah(atIndex: index, fromTextView: self))
         
         self.attributedText = attributedString
     }
     
+    
+    /// remove the last selection effect
+    fileprivate func removeLastSelection() {
+        self.attributedText.enumerateAttribute(QuranManager.manager.SELECTED_ATTRIBUTE, in: NSMakeRange(0, self.textStorage.length), options: []) { (attr, range, _) in
+            
+            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
+            self.attributedString.removeAttribute(QuranManager.manager.SELECTED_ATTRIBUTE, range: range)
+            self.attributedText = attributedString
+        }
+    }
+    
+    
+    /// handle the bookmark action
+    ///
+    /// - Parameter ayah: the ayah that should be updated
     fileprivate func handelMarkActionForAyah(_ ayah: Ayah) {
-        let range = getRangeForAyah(atIndex: getIndex(forAyah: ayah))
+        let range =  QuranManager.manager.getRangeForAyah(atIndex: getIndex(forAyah: ayah), fromTextView: self)
         
         if ayah.isBookmarked {
             self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.red, range: range)
@@ -291,18 +189,5 @@ extension QuranTextView {
         }
         
         self.attributedText = attributedString
-    }
-    
-    
-    fileprivate func getIndex(forAyah ayah: Ayah) -> AyahIndex {
-        for (surahIndex, surah) in allSurah.enumerated() {
-            for (ayahIndex, _ayah) in surah.allAyah.enumerated() {
-                if _ayah === ayah {
-                    return AyahIndex(ayah: ayahIndex, surah: surahIndex)
-                }
-            }
-        }
-        
-        return AyahIndex(ayah: 0, surah: 0)
     }
 }

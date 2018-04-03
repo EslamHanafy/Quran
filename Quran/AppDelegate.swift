@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //enable keyboard manager
         IQKeyboardManager.sharedManager().enable = true
         
+        //start the quran manager
+        QuranManager.manager.begin()
+        
         return true
     }
 

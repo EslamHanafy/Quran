@@ -12,8 +12,6 @@ class QuranViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var collectionLayout: UICollectionViewFlowLayout!
     
-    var pages: [Page] = []
-    
     var currentPageNumber: Int = 0
     
     public static weak var ayahOptions: AyahOptionsView? = nil
@@ -30,7 +28,6 @@ class QuranViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        pages = DBHelper.shared.getAllPages()
         initCollectionView()
         QuranViewController.ayahOptions = AyahOptionsView.getInstance(forController: self)
     }
@@ -60,17 +57,17 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pages.count
+        return QuranManager.manager.pages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! QuranPageCollectionViewCell
-        cell.initWith(page: pages[indexPath.item])
+        cell.initWith(page: QuranManager.manager.pages[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        (cell as! QuranPageCollectionViewCell).quranTextView.updateTitleImages()
+//        (cell as! QuranPageCollectionViewCell).quranTextView.updateTitleImages()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

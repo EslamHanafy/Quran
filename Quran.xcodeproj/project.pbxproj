@@ -12,6 +12,11 @@
 		0C60613F2066991100B49227 /* UthmanTN1B Ver10.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C60613D2066991100B49227 /* UthmanTN1B Ver10.otf */; };
 		0C6061402066991100B49227 /* UthmanTN1 Ver10.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C60613E2066991100B49227 /* UthmanTN1 Ver10.otf */; };
 		0C60614220669B2C00B49227 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C60614120669B2C00B49227 /* Page.swift */; };
+		0C81BB2E20738C96007C270D /* QuranManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81BB2D20738C96007C270D /* QuranManager.swift */; };
+		0C81BB3020739A99007C270D /* QuranManager+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81BB2F20739A99007C270D /* QuranManager+AttributedString.swift */; };
+		0C81BB332073A171007C270D /* AyahIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81BB322073A171007C270D /* AyahIndex.swift */; };
+		0C81BB352073A1F5007C270D /* QuranTextType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81BB342073A1F5007C270D /* QuranTextType.swift */; };
+		0C81BB372073B12B007C270D /* QuranManager+UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81BB362073B12B007C270D /* QuranManager+UITextView.swift */; };
 		0C8C1BD52062875200C05337 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C1BD42062875200C05337 /* SideMenuViewController.swift */; };
 		0C8C1BD72062884D00C05337 /* HomeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C1BD62062884D00C05337 /* HomeContainerViewController.swift */; };
 		0C8C1BD92062896400C05337 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C1BD82062896400C05337 /* MenuItem.swift */; };
@@ -57,6 +62,11 @@
 		0C60613D2066991100B49227 /* UthmanTN1B Ver10.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanTN1B Ver10.otf"; sourceTree = "<group>"; };
 		0C60613E2066991100B49227 /* UthmanTN1 Ver10.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanTN1 Ver10.otf"; sourceTree = "<group>"; };
 		0C60614120669B2C00B49227 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		0C81BB2D20738C96007C270D /* QuranManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranManager.swift; sourceTree = "<group>"; };
+		0C81BB2F20739A99007C270D /* QuranManager+AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuranManager+AttributedString.swift"; sourceTree = "<group>"; };
+		0C81BB322073A171007C270D /* AyahIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyahIndex.swift; sourceTree = "<group>"; };
+		0C81BB342073A1F5007C270D /* QuranTextType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranTextType.swift; sourceTree = "<group>"; };
+		0C81BB362073B12B007C270D /* QuranManager+UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuranManager+UITextView.swift"; sourceTree = "<group>"; };
 		0C8C1BD42062875200C05337 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		0C8C1BD62062884D00C05337 /* HomeContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerViewController.swift; sourceTree = "<group>"; };
 		0C8C1BD82062896400C05337 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -119,6 +129,18 @@
 				0C60613A2066926F00B49227 /* QuranPageCollectionViewCell.xib */,
 			);
 			path = QuranPageCell;
+			sourceTree = "<group>";
+		};
+		0C81BB3120739B0F007C270D /* QuranManager */ = {
+			isa = PBXGroup;
+			children = (
+				0C81BB2D20738C96007C270D /* QuranManager.swift */,
+				0C81BB2F20739A99007C270D /* QuranManager+AttributedString.swift */,
+				0C81BB322073A171007C270D /* AyahIndex.swift */,
+				0C81BB342073A1F5007C270D /* QuranTextType.swift */,
+				0C81BB362073B12B007C270D /* QuranManager+UITextView.swift */,
+			);
+			path = QuranManager;
 			sourceTree = "<group>";
 		};
 		0C8C1BDA206289B800C05337 /* SideMenuCell */ = {
@@ -218,6 +240,7 @@
 			children = (
 				0CA42F9520616B5700DC1028 /* DBHelper.swift */,
 				0C8C1BDF2062999100C05337 /* CommonMethods.swift */,
+				0C81BB3120739B0F007C270D /* QuranManager */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -475,14 +498,19 @@
 				0C8C1BD92062896400C05337 /* MenuItem.swift in Sources */,
 				0C8C1BEA2062CB1E00C05337 /* JuzTableViewCell.swift in Sources */,
 				0C8C1BDD206289E300C05337 /* SideMenuTableViewCell.swift in Sources */,
+				0C81BB332073A171007C270D /* AyahIndex.swift in Sources */,
 				0C8C1BD52062875200C05337 /* SideMenuViewController.swift in Sources */,
 				AA3FE284206403C700D69740 /* QuranViewController.swift in Sources */,
+				0C81BB3020739A99007C270D /* QuranManager+AttributedString.swift in Sources */,
+				0C81BB372073B12B007C270D /* QuranManager+UITextView.swift in Sources */,
 				0CA42F9620616B5700DC1028 /* DBHelper.swift in Sources */,
+				0C81BB352073A1F5007C270D /* QuranTextType.swift in Sources */,
 				0C60614220669B2C00B49227 /* Page.swift in Sources */,
 				0C8C1BE22062B72D00C05337 /* JuzViewController.swift in Sources */,
 				0C8C1BE62062B9B800C05337 /* Ayah.swift in Sources */,
 				0CD3B021206A9BE5004CBE60 /* QuranTextView.swift in Sources */,
 				0C8C1BE02062999100C05337 /* CommonMethods.swift in Sources */,
+				0C81BB2E20738C96007C270D /* QuranManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

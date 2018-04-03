@@ -14,29 +14,22 @@ class JuzViewController: UIViewController {
     @IBOutlet var searchTextField: UITextField!
     
     
-    var juz: [Juz] = []
     var filtered: [Juz] = []
     
     var searchKeyword: String = "" {
         didSet {
-            filtered = juz.filter({ return $0.name.contains(searchKeyword) || $0.surah.name.contains(searchKeyword) })
+            filtered = QuranManager.manager.allJuz.filter({ return $0.name.contains(searchKeyword) || $0.surah.name.contains(searchKeyword) })
             tableView.reloadData()
         }
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: "JuzTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
-        
-        backgroundQueue {
-            self.juz = DBHelper.shared.getAllJuz()
-            mainQueue {
-                self.tableView.reloadData()
-            }
-        }
     }
-    
     
     
     
@@ -61,17 +54,17 @@ extension JuzViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchKeyword.isEmpty ? juz.count : filtered.count
+        return searchKeyword.isEmpty ? QuranManager.manager.allJuz.count : filtered.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! JuzTableViewCell
-        cell.initWith(juz: searchKeyword.isEmpty ? juz[indexPath.row] : filtered[indexPath.row])
+        cell.initWith(juz: searchKeyword.isEmpty ? QuranManager.manager.allJuz[indexPath.row] : filtered[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedJuz = searchKeyword.isEmpty ? juz[indexPath.row] : filtered[indexPath.row]
+        let selectedJuz = searchKeyword.isEmpty ? QuranManager.manager.allJuz[indexPath.row] : filtered[indexPath.row]
         
         mainQueue {
             QuranViewController.showQuran(startingFromPage: selectedJuz.ayah.page, fromController: self)

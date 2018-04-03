@@ -48,7 +48,9 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.row == 0 {
             self.closeRight()
         }else{
-            goToView(withId: self.items[indexPath.row].screenId, fromController: self)
+            mainQueue {
+                goToView(withId: self.items[indexPath.row].screenId, fromController: self)
+            }
         }
     }
     

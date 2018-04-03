@@ -26,20 +26,17 @@ class QuranPageCollectionViewCell: UICollectionViewCell {
         quranTextView.preapareForReuse()
     }
     
-    
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        
-        
-    }
  
+    /// init cell for the first time
+    ///
+    /// - Parameter page: Page object that contain the page data
     func initWith(page: Page) {
         self.page = page
         
         surahLabel.text = page.allSurah.first?.name ?? ""
         juzLabel.text = page.juz.name
         pageLabel.text = String(page.id)
-        quranTextView.initWith(surah: page.getAllSurah())
+        quranTextView.initWith(page: page)
     }
     
 }
