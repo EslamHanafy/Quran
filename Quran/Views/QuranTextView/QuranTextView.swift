@@ -16,7 +16,7 @@ class QuranTextView: UITextView {
     
     fileprivate var attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "")
     fileprivate var gesture: UITapGestureRecognizer? = UITapGestureRecognizer()
-    
+    fileprivate var lastRange: NSRange? = nil
     
     /// init the QuranTextView with the given page
     ///
@@ -35,6 +35,7 @@ class QuranTextView: UITextView {
         self.removeGestureRecognizer(gesture!)
         titleImages.forEach({ $0.removeFromSuperview() })
         titleImages.removeAll()
+        lastRange = nil
     }
 }
 
@@ -46,9 +47,10 @@ extension QuranTextView {
         self.isEditable = false
         self.isSelectable = false
         
+        
         DispatchQueue.global(qos: .utility).async {
             //get the attributed string from quran manager
-            self.attributedString = QuranManager.manager.getAttributedText(forPage: self.page)
+            self.attributedString = QuranManager.manager.getAttributedText(forPage: self.page, atTextView: self)
             
             mainQueue {
                 self.attributedText = self.attributedString
@@ -113,15 +115,6 @@ extension QuranTextView: UIGestureRecognizerDelegate {
         
         // if index is valid then do something.
         if characterIndex < self.textStorage.length {
-            
-            // print the character index
-            print("character index: \(characterIndex)")
-            /*
-            // print the character at the index
-            let myRange = NSRange(location: characterIndex, length: 1)
-            let substring = (self.attributedText.string as NSString).substring(with: myRange)
-            print("character at index: \(substring)")
-            */
             // check if the tap location has a certain attribute
             let attributeValue = self.attributedText.attribute(QuranManager.manager.INDEX_ATTRIBUTE, at: characterIndex, effectiveRange: nil) as? String
             if let value = attributeValue {
@@ -139,12 +132,14 @@ extension QuranTextView {
     ///
     /// - Parameter index: the ayah index
     fileprivate func selectAyah(atIndex index: AyahIndex) {
-        changeAyahColor(atIndex: index)
+        QuranViewController.ayahOptions?.onHideOptionsView = self.handleHideActionForAyah(_:)
+        QuranViewController.ayahOptions?.onMarkAyah = self.handleMarkActionForAyah(_:)
+        
         let rect = self.convert(QuranManager.manager.frameOftext(inTextView: self, atRange: QuranManager.manager.getRangeForAyah(atIndex: index, fromTextView: self)), to: nil)
         
-        QuranViewController.ayahOptions?.show(optionsForAyah: page.getAllSurah()[index.surah].allAyah[index.ayah], atLocation: CGPoint(x: rect.midX, y: rect.minY - 10), onMarkAyah: self.handelMarkActionForAyah(_:))
+        QuranViewController.ayahOptions?.show(optionsForAyah: page.getAllSurah()[index.surah].allAyah[index.ayah], atLocation: CGPoint(x: rect.midX, y: rect.minY - 10))
         
-        self.attributedText = attributedString
+        changeAyahColor(atIndex: index)
     }
     
     
@@ -156,10 +151,9 @@ extension QuranTextView {
             return
         }
         
-        //remove old selection
-        removeLastSelection()
-        
-        attributedString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.brown, QuranManager.manager.SELECTED_ATTRIBUTE: "SelectedAyah"], range: QuranManager.manager.getRangeForAyah(atIndex: index, fromTextView: self))
+        let range = QuranManager.manager.getRangeForAyah(atIndex: index, fromTextView: self)
+        attributedString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.brown], range: range)
+        lastRange = range
         
         self.attributedText = attributedString
     }
@@ -167,19 +161,20 @@ extension QuranTextView {
     
     /// remove the last selection effect
     fileprivate func removeLastSelection() {
-        self.attributedText.enumerateAttribute(QuranManager.manager.SELECTED_ATTRIBUTE, in: NSMakeRange(0, self.textStorage.length), options: []) { (attr, range, _) in
-            
+        if let range = lastRange {
             self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
-            self.attributedString.removeAttribute(QuranManager.manager.SELECTED_ATTRIBUTE, range: range)
             self.attributedText = attributedString
         }
     }
-    
+}
+
+//MARK: - AyahOptions handler
+extension QuranTextView {
     
     /// handle the bookmark action
     ///
     /// - Parameter ayah: the ayah that should be updated
-    fileprivate func handelMarkActionForAyah(_ ayah: Ayah) {
+    fileprivate func handleMarkActionForAyah(_ ayah: Ayah) {
         let range =  QuranManager.manager.getRangeForAyah(atIndex: getIndex(forAyah: ayah), fromTextView: self)
         
         if ayah.isBookmarked {
@@ -189,5 +184,17 @@ extension QuranTextView {
         }
         
         self.attributedText = attributedString
+    }
+    
+    /// handle the ayah options hide action
+    ///
+    /// - Parameter ayah: the selected ayah
+    fileprivate func handleHideActionForAyah(_ ayah: Ayah) {
+        if ayah.isBookmarked {
+            return
+        }
+        
+        //remove old selection
+        removeLastSelection()
     }
 }

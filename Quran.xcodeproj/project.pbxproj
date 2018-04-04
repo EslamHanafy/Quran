@@ -44,6 +44,7 @@
 		0CA42F9620616B5700DC1028 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA42F9520616B5700DC1028 /* DBHelper.swift */; };
 		0CA42F98206174FD00DC1028 /* AllSurahViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA42F97206174FD00DC1028 /* AllSurahViewController.swift */; };
 		0CD3B021206A9BE5004CBE60 /* QuranTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD3B020206A9BE5004CBE60 /* QuranTextView.swift */; };
+		0CE657DC20751D780086B080 /* QuranManager+UIFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE657DB20751D780086B080 /* QuranManager+UIFonts.swift */; };
 		0CEFEDC0206FB66F00F106A0 /* UthmanicHafs1 Ver09 2.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0CEFEDBF206FB66F00F106A0 /* UthmanicHafs1 Ver09 2.otf */; };
 		0CEFEDC3206FCC8B00F106A0 /* AyahOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEFEDC2206FCC8B00F106A0 /* AyahOptionsView.swift */; };
 		0CEFEDC5206FCC9700F106A0 /* AyahOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CEFEDC4206FCC9700F106A0 /* AyahOptionsView.xib */; };
@@ -96,6 +97,7 @@
 		0CA42F9520616B5700DC1028 /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
 		0CA42F97206174FD00DC1028 /* AllSurahViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSurahViewController.swift; sourceTree = "<group>"; };
 		0CD3B020206A9BE5004CBE60 /* QuranTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranTextView.swift; sourceTree = "<group>"; };
+		0CE657DB20751D780086B080 /* QuranManager+UIFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuranManager+UIFonts.swift"; sourceTree = "<group>"; };
 		0CEFEDBF206FB66F00F106A0 /* UthmanicHafs1 Ver09 2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanicHafs1 Ver09 2.otf"; sourceTree = "<group>"; };
 		0CEFEDC2206FCC8B00F106A0 /* AyahOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyahOptionsView.swift; sourceTree = "<group>"; };
 		0CEFEDC4206FCC9700F106A0 /* AyahOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AyahOptionsView.xib; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				0C81BB322073A171007C270D /* AyahIndex.swift */,
 				0C81BB342073A1F5007C270D /* QuranTextType.swift */,
 				0C81BB362073B12B007C270D /* QuranManager+UITextView.swift */,
+				0CE657DB20751D780086B080 /* QuranManager+UIFonts.swift */,
 			);
 			path = QuranManager;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CE657DC20751D780086B080 /* QuranManager+UIFonts.swift in Sources */,
 				AACA766520728065003AE1B7 /* BookMark.swift in Sources */,
 				AACA765E2072731C003AE1B7 /* BookmarksViewController.swift in Sources */,
 				0CA42F9420616AC000DC1028 /* Sura.swift in Sources */,

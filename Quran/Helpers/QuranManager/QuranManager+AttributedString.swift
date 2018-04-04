@@ -23,9 +23,6 @@ extension QuranManager {
     /// ayah index attribute
     var INDEX_ATTRIBUTE: NSAttributedStringKey { get { return NSAttributedStringKey.init("AyahIndex") } }
     
-    /// the selected ayah attribute
-    var SELECTED_ATTRIBUTE: NSAttributedStringKey { get { return NSAttributedStringKey.init("SelectedAyah") } }
-    
     /// the surah name font
     fileprivate var titleFont: UIFont { get { return UIFont(name: "KFGQPCUthmanTahaNaskh-Bold", size: isIpadScreen ? 42 : 21)! } }
     
@@ -40,7 +37,7 @@ extension QuranManager {
     ///
     /// - Parameter page: Page object that contain the page data
     /// - Returns: NSMutableAttributedString that represent this page
-    func getAttributedText(forPage page: Page) -> NSMutableAttributedString {
+    func getAttributedText(forPage page: Page, atTextView textView: UITextView) -> NSMutableAttributedString {
         var attributedString = NSMutableAttributedString(string: "")
         
         for (index, surah) in page.getAllSurah().enumerated() {

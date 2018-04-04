@@ -19,8 +19,9 @@ class AyahOptionsView: UIView {
     /// the show/hide animation duration
     fileprivate let animationDuration: TimeInterval = 0.8
     
-    fileprivate var onMarkAyah: ((_ ayah: Ayah)->())? = nil
-    fileprivate var onPlayAyah: ((_ ayah: Ayah)->())? = nil
+    var onMarkAyah: ((_ ayah: Ayah)->())? = nil
+    var onPlayAyah: ((_ ayah: Ayah)->())? = nil
+    var onHideOptionsView: ((_ ayah: Ayah)->())? = nil
     
     public static func getInstance(forController controller: UIViewController) -> AyahOptionsView {
         let view = Bundle.main.loadNibNamed("AyahOptionsView", owner: controller, options: nil)?.first as! AyahOptionsView
@@ -88,11 +89,8 @@ extension AyahOptionsView {
     
     
     /// show the popup view with given CartItem
-    func show(optionsForAyah ayah: Ayah, atLocation point: CGPoint, onMarkAyah: ((_ ayah: Ayah)->())? = nil, onPlayAyah: ((_ ayah: Ayah)->())? = nil) {
-        
+    func show(optionsForAyah ayah: Ayah, atLocation point: CGPoint) {
         self.ayah = ayah
-        self.onMarkAyah = onMarkAyah
-        self.onPlayAyah = onPlayAyah
         
         prepareActions()
         showAnimation(fromPoint: getValidPoint(fromPoint: point))
@@ -160,11 +158,12 @@ extension AyahOptionsView {
     
     /// hide the popup view with animation
     fileprivate func hideAnimation(){
-        UIView.animate(withDuration: animationDuration * 0.5, animations: {
+        UIView.animate(withDuration: animationDuration * 0.4, animations: {
             self.alpha = 0
         }) { (_) in
             self.isHidden = true
             self.alpha = 1.0
+            self.onHideOptionsView?(self.ayah)
         }
     }
 }

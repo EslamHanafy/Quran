@@ -61,13 +61,11 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! QuranPageCollectionViewCell
-        cell.initWith(page: QuranManager.manager.pages[indexPath.item])
-        return cell
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        (cell as! QuranPageCollectionViewCell).quranTextView.updateTitleImages()
+        (cell as! QuranPageCollectionViewCell).initWith(page: QuranManager.manager.pages[indexPath.item])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

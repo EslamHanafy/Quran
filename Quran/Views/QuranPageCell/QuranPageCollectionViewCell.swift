@@ -14,8 +14,6 @@ class QuranPageCollectionViewCell: UICollectionViewCell {
     @IBOutlet var juzLabel: UILabel!
     @IBOutlet var quranTextView: QuranTextView!
     @IBOutlet var pageLabel: UILabel!
-    @IBOutlet var widthConstraint: NSLayoutConstraint!
-    @IBOutlet var heightConstraint: NSLayoutConstraint!
     
     
     var page: Page!
