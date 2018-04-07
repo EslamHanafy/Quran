@@ -40,4 +40,31 @@ class QuranManager {
         }
     }
     
+    
+    /// display the download options for the given Ayah
+    ///
+    /// - Parameter ayah: Ayah object that contain the ayah data
+    func showDownloadOptions(forAyah ayah: Ayah) {
+        let alert = UIAlertController(title: "تحميل ملفات الصوت", message: "اختر الملفات الصوتية التى تريد تنزيلها", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "كل السور", style: .destructive, handler: { (_) in
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "كل ايات هذه السورة", style: .default, handler: { (_) in
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "كل ايات هذه الصفحة", style: .default, handler: { (_) in
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "هذه الاية فقط", style: .default, handler: { (_) in
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "الغاء", style: .cancel, handler: nil))
+        
+        getCurrentViewController()?.present(alert, animated: true, completion: nil)
+    }
 }

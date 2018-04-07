@@ -41,6 +41,11 @@ class AyahOptionsView: UIView {
     }
     
     @IBAction func playAction() {
+        if ayah.audioFiles?.normal == nil {
+            QuranManager.manager.showDownloadOptions(forAyah: ayah)
+        }else {
+            //TODO: - play the ayah
+        }
     }
     
     @IBAction func markAction() {
@@ -166,4 +171,9 @@ extension AyahOptionsView {
             self.onHideOptionsView?(self.ayah)
         }
     }
+}
+
+//MARK: - Play Options
+extension AyahOptionsView {
+    
 }

@@ -334,4 +334,17 @@ class DBHelper {
             print("error in updateing isBookMarked for ayah with id: \(ayahId) is: \(error)")
         }
     }
+    
+    
+    func update(audioPath path: String,forAyah ayah: Ayah) {
+        let ayahTable = Table("ayah")
+        let id = Expression<Int64>("id")
+        let audio = Expression<String?>("audio_path")
+        
+        do {
+            try db.run(ayahTable.filter(id == ayah.dbId).update(audio <- path))
+        } catch {
+            print("error in updateing audio path for ayah with id: \(ayah.dbId) is: \(error)")
+        }
+    }
 }
