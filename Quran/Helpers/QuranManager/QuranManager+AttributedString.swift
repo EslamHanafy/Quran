@@ -37,7 +37,7 @@ extension QuranManager {
     ///
     /// - Parameter page: Page object that contain the page data
     /// - Returns: NSMutableAttributedString that represent this page
-    func getAttributedText(forPage page: Page, atTextView textView: UITextView) -> NSMutableAttributedString {
+    func getAttributedText(forPage page: Page) -> NSMutableAttributedString {
         var attributedString = NSMutableAttributedString(string: "")
         
         for (index, surah) in page.getAllSurah().enumerated() {

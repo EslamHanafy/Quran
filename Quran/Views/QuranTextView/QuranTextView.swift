@@ -50,7 +50,7 @@ extension QuranTextView {
         
         DispatchQueue.global(qos: .utility).async {
             //get the attributed string from quran manager
-            self.attributedString = QuranManager.manager.getAttributedText(forPage: self.page, atTextView: self)
+            self.attributedString = QuranManager.manager.getAttributedText(forPage: self.page)
             
             mainQueue {
                 self.attributedText = self.attributedString
