@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '631F2DA6BF14070283AD7D5284F1D6CA'
-               BlueprintName = 'SlideMenuControllerSwift'
+               BlueprintIdentifier = '8C4B871AB58F85127F4F8E59D29B6551'
+               BlueprintName = 'MZDownloadManager'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SlideMenuControllerSwift.framework'>
+               BuildableName = 'MZDownloadManager.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
