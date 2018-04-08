@@ -9,7 +9,7 @@
 import Foundation
 import SQLite
 
-class Page {
+open class Page: NSObject, Codable {
     var id: Int64
     var startingAyah: Int64
     var juz: Juz

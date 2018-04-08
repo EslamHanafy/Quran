@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AyahAudios {
+open class AyahAudios: NSObject, Codable {
     var normal: String?
     var memorize: String?
     var learn: String?
@@ -32,6 +32,23 @@ class AyahAudios {
             return memorize
         default:
             return normal
+        }
+    }
+    
+    
+    /// update the audio path for the given mode
+    ///
+    /// - Parameters:
+    ///   - path: new audio path
+    ///   - mode: the path audio mode
+    func update(audioPath path: String, forMode mode: AudioMode)  {
+        switch mode {
+        case .learn:
+            self.learn = path
+        case .memorize:
+            self.memorize = path
+        default:
+            self.normal = path
         }
     }
 }

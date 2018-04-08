@@ -9,7 +9,7 @@
 import Foundation
 import SQLite
 
-class BookMark {
+open class BookMark: NSObject, Codable {
     var id: Int64
     var ayah: Ayah
     var surah: Surah

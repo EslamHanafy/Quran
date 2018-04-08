@@ -1,7 +1,6 @@
 PODS:
   - FontBlaster (4.0.3)
   - IQKeyboardManagerSwift (5.0.8)
-  - MZDownloadManager (3.4)
   - NVActivityIndicatorView (4.1.1):
     - NVActivityIndicatorView/Presenter (= 4.1.1)
   - NVActivityIndicatorView/Presenter (4.1.1)
@@ -13,7 +12,6 @@ PODS:
 DEPENDENCIES:
   - FontBlaster
   - IQKeyboardManagerSwift
-  - MZDownloadManager
   - NVActivityIndicatorView
   - SlideMenuControllerSwift
   - SQLite.swift (~> 0.11.4)
@@ -21,11 +19,10 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   FontBlaster: f18031f5dde2ce689f5330e7005edfe3c0815957
   IQKeyboardManagerSwift: 2e7dc7f98c111458c1ea2b373f893e8cf95e2b97
-  MZDownloadManager: 8e9f186b2e804ffaeaf782c0cd3e22f27625cb7b
   NVActivityIndicatorView: 60109b9bf46efc2e71ab81453196ccdfdfeea870
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
 
-PODFILE CHECKSUM: c7a5fde3efb1c021a0bdd5a2dcfc0d5af07cf855
+PODFILE CHECKSUM: 76b8c100fbec78d02a3d3c2dca4affaaad9af33e
 
 COCOAPODS: 1.4.0

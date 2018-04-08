@@ -200,15 +200,15 @@ class DBHelper {
         var ayah = juz.ayah
         
         let ayahTable = Table("ayah")
+        let surahTable = Table("surah")
         let number = Expression<Int64>("number")
         let surahId = Expression<Int64>("surah_id")
-        let text = Expression<String>("text")
-        let pageNumber = Expression<Int64>("page")
         let id = Expression<Int64>("id")
         
+        
         do {
-            if let row = try db.pluck(ayahTable.filter(surahId == juz.surah.id && number == juz.ayah.id)) {
-                ayah = Ayah(id: row[number],dbId: row[id], content: row[text], page: row[pageNumber])
+            if let row = try db.pluck(ayahTable.join(surahTable, on: surahId == surahTable[id]).filter(surahId == juz.surah.id && number == juz.ayah.id)) {
+                ayah = Ayah(fromRow: row)
             }
         } catch  {
             print("the error in getting ayah for juz is: \(error)")
@@ -336,10 +336,17 @@ class DBHelper {
     }
     
     
-    func update(audioPath path: String,forAyah ayah: Ayah) {
+    
+    /// update the stored audio path for the given ayah and audio mode
+    ///
+    /// - Parameters:
+    ///   - path: the new path
+    ///   - ayah: the updated ayah
+    ///   - mode: the audio mode
+    func update(audioPath path: String, forAyah ayah: Ayah, andMode mode: AudioMode) {
         let ayahTable = Table("ayah")
         let id = Expression<Int64>("id")
-        let audio = Expression<String?>("audio_path")
+        let audio = Expression<String?>("audio_path_" + mode.rawValue)
         
         do {
             try db.run(ayahTable.filter(id == ayah.dbId).update(audio <- path))

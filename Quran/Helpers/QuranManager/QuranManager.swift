@@ -56,11 +56,13 @@ class QuranManager {
         }))
         
         alert.addAction(UIAlertAction(title: "كل ايات هذه الصفحة", style: .default, handler: { (_) in
-            
+            if let index = self.pages.index(where: { $0.id == ayah.page }) {
+                DownloadManager.shared.download(page: self.pages[index])
+            }
         }))
         
         alert.addAction(UIAlertAction(title: "هذه الاية فقط", style: .default, handler: { (_) in
-            
+            DownloadManager.shared.download(ayah: ayah, forMode: .normal)
         }))
         
         alert.addAction(UIAlertAction(title: "الغاء", style: .cancel, handler: nil))

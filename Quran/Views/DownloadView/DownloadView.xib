@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GE_SS_Text_Light.otf">
+            <string>GESSTextLight-Light</string>
+        </array>
+        <array key="GE_SS_Two_Bold.otf">
+            <string>GESSTwoBold-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DownloadView" customModule="Quran" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ciS-o9-UJ1" userLabel="containerView">
+                    <rect key="frame" x="37" y="237" width="300" height="193"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="اسم السورة" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxV-Ti-Vof">
+                            <rect key="frame" x="8" y="12" width="284" height="16"/>
+                            <fontDescription key="fontDescription" name="GESSTwoBold-Bold" family="GE SS Two" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="GESSTwoBold-Bold" family="GE SS Two" pointSize="30"/>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="رقم الاية" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkH-X5-wrC">
+                            <rect key="frame" x="8" y="36" width="284" height="16"/>
+                            <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="GESSTwoBold-Bold" family="GE SS Two" pointSize="30"/>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="حجم الملف" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXf-vY-JUC">
+                            <rect key="frame" x="8" y="60" width="284" height="16"/>
+                            <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="GESSTwoBold-Bold" family="GE SS Two" pointSize="30"/>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="سرعة التحميل" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhU-pn-VbL">
+                            <rect key="frame" x="8" y="84" width="284" height="16"/>
+                            <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="GESSTwoBold-Bold" family="GE SS Two" pointSize="30"/>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الوقت المتبقى" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RU3-GG-pmG">
+                            <rect key="frame" x="8" y="108" width="284" height="16"/>
+                            <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="GESSTwoBold-Bold" family="GE SS Two" pointSize="30"/>
+                            </variation>
+                        </label>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="XJO-QL-sw9">
+                            <rect key="frame" x="8" y="136" width="284" height="2"/>
+                        </progressView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUM-Jh-geh">
+                            <rect key="frame" x="16" y="146" width="50" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="0mK-kf-jyz">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                                </constraint>
+                                <constraint firstAttribute="height" constant="31" id="HYk-Kv-vhW">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="62"/>
+                                </constraint>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="17"/>
+                            <state key="normal" title="إلغاء">
+                                <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="34"/>
+                            </variation>
+                            <connections>
+                                <action selector="cancelAction" destination="iN0-l3-epB" eventType="touchUpInside" id="6gr-He-pZ1"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pMS-Ur-d1n">
+                            <rect key="frame" x="66" y="146" width="50" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="7Xf-mS-ecG">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="62"/>
+                                </constraint>
+                                <constraint firstAttribute="width" constant="50" id="pTN-in-uGt">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                                </constraint>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="17"/>
+                            <state key="normal" title="إيقاف"/>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="34"/>
+                            </variation>
+                            <connections>
+                                <action selector="pauseAction" destination="iN0-l3-epB" eventType="touchUpInside" id="A09-zd-b7D"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="IxV-Ti-Vof" firstAttribute="top" secondItem="ciS-o9-UJ1" secondAttribute="topMargin" constant="4" id="3gs-Vs-Xhz"/>
+                        <constraint firstItem="mXf-vY-JUC" firstAttribute="top" secondItem="vkH-X5-wrC" secondAttribute="bottom" constant="8" id="4h0-by-z5j"/>
+                        <constraint firstItem="LhU-pn-VbL" firstAttribute="leading" secondItem="ciS-o9-UJ1" secondAttribute="leadingMargin" id="5dl-x3-iGi"/>
+                        <constraint firstItem="IxV-Ti-Vof" firstAttribute="leading" secondItem="ciS-o9-UJ1" secondAttribute="leadingMargin" id="8ic-r9-59w"/>
+                        <constraint firstItem="QUM-Jh-geh" firstAttribute="leading" secondItem="ciS-o9-UJ1" secondAttribute="leadingMargin" constant="8" id="AMg-Xx-p5N"/>
+                        <constraint firstItem="XJO-QL-sw9" firstAttribute="top" secondItem="RU3-GG-pmG" secondAttribute="bottom" constant="12" id="FDP-F6-719"/>
+                        <constraint firstItem="vkH-X5-wrC" firstAttribute="top" secondItem="IxV-Ti-Vof" secondAttribute="bottom" constant="8" id="FTG-Wt-x2E"/>
+                        <constraint firstItem="XJO-QL-sw9" firstAttribute="trailing" secondItem="ciS-o9-UJ1" secondAttribute="trailingMargin" id="Jo7-7l-yaD"/>
+                        <constraint firstItem="LhU-pn-VbL" firstAttribute="trailing" secondItem="ciS-o9-UJ1" secondAttribute="trailingMargin" id="Lvh-9F-fqu"/>
+                        <constraint firstAttribute="bottomMargin" secondItem="QUM-Jh-geh" secondAttribute="bottom" constant="8" id="Q0F-wW-6Yk"/>
+                        <constraint firstItem="pMS-Ur-d1n" firstAttribute="leading" secondItem="QUM-Jh-geh" secondAttribute="trailing" id="Qhh-0h-heb"/>
+                        <constraint firstItem="RU3-GG-pmG" firstAttribute="trailing" secondItem="ciS-o9-UJ1" secondAttribute="trailingMargin" id="YhX-82-FI3"/>
+                        <constraint firstItem="mXf-vY-JUC" firstAttribute="trailing" secondItem="ciS-o9-UJ1" secondAttribute="trailingMargin" id="apj-Ou-hUa"/>
+                        <constraint firstItem="XJO-QL-sw9" firstAttribute="leading" secondItem="ciS-o9-UJ1" secondAttribute="leadingMargin" id="dto-SQ-10i"/>
+                        <constraint firstItem="RU3-GG-pmG" firstAttribute="top" secondItem="LhU-pn-VbL" secondAttribute="bottom" constant="8" id="gPA-uJ-bwX"/>
+                        <constraint firstItem="RU3-GG-pmG" firstAttribute="leading" secondItem="ciS-o9-UJ1" secondAttribute="leadingMargin" id="iEa-14-g5k"/>
+                        <constraint firstItem="vkH-X5-wrC" firstAttribute="trailing" secondItem="ciS-o9-UJ1" secondAttribute="trailingMargin" id="jbT-X6-wfJ"/>
+                        <constraint firstItem="LhU-pn-VbL" firstAttribute="top" secondItem="mXf-vY-JUC" secondAttribute="bottom" constant="8" id="l1N-l0-chk"/>
+                        <constraint firstItem="mXf-vY-JUC" firstAttribute="leading" secondItem="ciS-o9-UJ1" secondAttribute="leadingMargin" id="tq6-7l-kmb"/>
+                        <constraint firstItem="QUM-Jh-geh" firstAttribute="top" secondItem="XJO-QL-sw9" secondAttribute="bottom" constant="8" id="uin-5C-6qc"/>
+                        <constraint firstAttribute="bottomMargin" secondItem="pMS-Ur-d1n" secondAttribute="bottom" constant="8" id="ujA-jn-Noy"/>
+                        <constraint firstItem="vkH-X5-wrC" firstAttribute="leading" secondItem="ciS-o9-UJ1" secondAttribute="leadingMargin" id="wr1-zs-j3h"/>
+                        <constraint firstItem="IxV-Ti-Vof" firstAttribute="trailing" secondItem="ciS-o9-UJ1" secondAttribute="trailingMargin" id="yvK-lI-yff"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="_layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.70023657570422537" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ciS-o9-UJ1" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="UWy-KY-fNO"/>
+                <constraint firstItem="ciS-o9-UJ1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fWg-WK-KID"/>
+                <constraint firstItem="ciS-o9-UJ1" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.8" id="oZe-Rh-xeq"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="ayahLabel" destination="vkH-X5-wrC" id="zFv-AU-YWU"/>
+                <outlet property="containerView" destination="ciS-o9-UJ1" id="f05-g5-uCG"/>
+                <outlet property="pauseButton" destination="pMS-Ur-d1n" id="7Va-0N-ND3"/>
+                <outlet property="progressView" destination="XJO-QL-sw9" id="Lzn-tE-yPe"/>
+                <outlet property="sizeLabel" destination="mXf-vY-JUC" id="aMn-iH-Pv5"/>
+                <outlet property="speedLabel" destination="LhU-pn-VbL" id="Dcq-Lp-i2Y"/>
+                <outlet property="surahLabel" destination="IxV-Ti-Vof" id="rjw-gU-pni"/>
+                <outlet property="timeLabel" destination="RU3-GG-pmG" id="Y7E-zv-tGf"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+</document>

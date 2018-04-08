@@ -98,16 +98,24 @@ open class MZUtility: NSObject {
         }
     }
     
-    @objc open class func getFreeDiskspace() -> NSNumber? {
+    @objc open class func getFreeDiskspace() -> NSNumber {
         let documentDirectoryPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let systemAttributes: AnyObject?
         do {
             systemAttributes = try FileManager.default.attributesOfFileSystem(forPath: documentDirectoryPath.last!) as AnyObject?
             let freeSize = systemAttributes?[FileAttributeKey.systemFreeSize] as? NSNumber
-            return freeSize
+            return freeSize ?? NSNumber(value: 0)
         } catch let error as NSError {
             print("Error Obtaining System Memory Info: Domain = \(error.domain), Code = \(error.code)")
-            return nil;
+            return NSNumber(value: 0)
+        }
+    }
+}
+
+extension NSNumber {
+    var migaBytes: Double {
+        get {
+            return self.doubleValue /  1000000.0
         }
     }
 }

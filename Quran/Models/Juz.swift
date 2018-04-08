@@ -9,13 +9,13 @@
 import Foundation
 import SQLite
 
-class Juz {
+open class Juz: NSObject, Codable {
     var id: Int64
     var name: String
     var surah: Surah
     var ayah: Ayah
     
-    init() {
+    override init() {
         self.id = 0
         self.name = ""
         self.surah = Surah(id: 0, name: "", page: 0)
