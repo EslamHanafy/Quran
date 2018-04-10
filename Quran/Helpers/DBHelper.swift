@@ -354,4 +354,53 @@ class DBHelper {
             print("error in updateing audio path for ayah with id: \(ayah.dbId) is: \(error)")
         }
     }
+    
+    
+    /// get all ayah in the given surah
+    ///
+    /// - Parameter surah: Surah object that contain the surah data
+    /// - Returns: array of Ayah in this surah
+    func getAllAyah(forSurah surah: Surah) -> [Ayah] {
+        var allAyah: [Ayah] = []
+        
+        let ayahTable = Table("ayah")
+        let surahTable = Table("surah")
+        let surahId = Expression<Int64>("surah_id")
+        let id = Expression<Int64>("id")
+        
+        do {
+            let data = try db.prepare(ayahTable.join(surahTable, on: surahId == surahTable[id]).filter(ayahTable[surahId] == surah.id))
+            for row in data {
+                allAyah.append(Ayah(fromRow: row))
+            }
+        } catch  {
+            print("the error in getting all ayah for surah \(surah.name) is: \(error)")
+        }
+        
+        return allAyah
+    }
+    
+    
+    /// get whole ayah in the quran
+    ///
+    /// - Returns: array of Ayah
+    func getAllAyah() -> [Ayah] {
+        var allAyah: [Ayah] = []
+        
+        let ayahTable = Table("ayah")
+        let surahTable = Table("surah")
+        let surahId = Expression<Int64>("surah_id")
+        let id = Expression<Int64>("id")
+        
+        do {
+            let data = try db.prepare(ayahTable.join(surahTable, on: surahId == surahTable[id]))
+            for row in data {
+                allAyah.append(Ayah(fromRow: row))
+            }
+        } catch  {
+            print("the error in getting all ayah in the quran is: \(error)")
+        }
+        
+        return allAyah
+    }
 }

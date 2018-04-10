@@ -41,7 +41,8 @@ class DownloadManager: NSObject {
     /// the download popup view
     fileprivate let downloadView: DownloadView = DownloadView.getInstance(forController: getCurrentViewController() ?? UIViewController())
     
-    
+    /// the estimated file size for each ayah in MB
+    fileprivate let estimatedFileSize: Double = 350.0 / 1024.0
     
     override init() {
         super.init()
@@ -57,7 +58,7 @@ class DownloadManager: NSObject {
     /// - Parameters:
     ///   - page: the page that you want to download it's files
     ///   - mode: the audio mode for downloaded files
-    func download(page: Page, forMode mode: AudioMode = .normal) {
+    func download(page: Page, forMode mode: AudioMode) {
         self.currentMode = mode
         
         for surah in page.getAllSurah() {
@@ -68,14 +69,7 @@ class DownloadManager: NSObject {
             }
         }
         
-        if MZUtility.getFreeDiskspace().migaBytes < Double(downloadQueue.count * 3) {
-            displayAlert("عذرا لا توجد مساحة كافية متوفرة, يجب ان يتوفر \(downloadQueue.count * 3) ميجا على الاقل", forController: currentViewController)
-            cancellOldTasksIfNeeded()
-        }else {
-            if let ayah = downloadQueue.first {
-                download(ayah: ayah)
-            }
-        }
+        startDownloadingIfNeeded()
     }
     
     
@@ -88,8 +82,8 @@ class DownloadManager: NSObject {
     func download(ayah: Ayah, forMode mode: AudioMode) {
         self.currentMode = mode
         
-        if MZUtility.getFreeDiskspace().migaBytes < 3.0 {
-            displayAlert("عذرا لا توجد مساحة كافية متوفرة, يجب ان يتوفر \(3) ميجا على الاقل", forController: currentViewController)
+        if MZUtility.getFreeDiskspace().migaBytes < estimatedFileSize {
+            displayAlert("عذرا لا توجد مساحة كافية متوفرة, يجب ان يتوفر \(estimatedFileSize) ميجا على الاقل", forController: currentViewController)
         }else {
             downloadQueue.append(ayah)
             download(ayah: ayah)
@@ -100,8 +94,28 @@ class DownloadManager: NSObject {
     /// download whole ayah for the given surah
     ///
     /// - Parameter surah: teh surah that you want to download
-    func download(surah: Surah) {
+    func download(surah: Surah, forMode mode: AudioMode) {
+        self.currentMode = mode
         
+        let allAyah = DBHelper.shared.getAllAyah(forSurah: surah)
+        
+        for ayah in allAyah {
+            downloadQueue.append(ayah)
+        }
+        
+        startDownloadingIfNeeded()
+    }
+    
+    func downloadQuran(forMode mode: AudioMode) {
+        self.currentMode = mode
+        
+        let allAyah = DBHelper.shared.getAllAyah()
+        
+        for ayah in allAyah {
+            downloadQueue.append(ayah)
+        }
+        
+        startDownloadingIfNeeded()
     }
 }
 
@@ -139,6 +153,19 @@ extension DownloadManager: MZDownloadManagerDelegate {
         print("the download error is: \(error)")
         mainQueue {
             displayAlertWithTimer("حدث خطأ اثناء تنزيل الاية رقم \(downloadModel.ayah?.id ?? 0) من سورة \(downloadModel.ayah?.surah.name ?? "")", forController: self.currentViewController, timeInSeconds: 2.0)
+        }
+    }
+    
+    
+    /// start downloading the ayah in download queue
+    fileprivate func startDownloadingIfNeeded() {
+        if MZUtility.getFreeDiskspace().migaBytes < Double(downloadQueue.count) * estimatedFileSize {
+            displayAlert("عذرا لا توجد مساحة كافية متوفرة, يجب ان يتوفر \(Double(downloadQueue.count) * estimatedFileSize) ميجا على الاقل", forController: currentViewController)
+            cancellOldTasksIfNeeded()
+        }else {
+            if let ayah = downloadQueue.first {
+                download(ayah: ayah)
+            }
         }
     }
     
