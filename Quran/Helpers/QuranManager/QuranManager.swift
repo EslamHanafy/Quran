@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import AVFoundation
 
-class QuranManager {
+class QuranManager: NSObject {
     public static let manager: QuranManager = QuranManager()
     
     /// all quran pages
@@ -20,7 +21,15 @@ class QuranManager {
     
     var audioMode: AudioMode = .normal
     
-    init() {
+    var player: AVAudioPlayer? = nil
+    
+    var currentTextView: QuranTextView!
+    
+    var currentAyah: Ayah? = nil
+    
+    override init() {
+        super.init()
+        
         self.AllSurah = DBHelper.shared.getAllSurah()
         self.pages = DBHelper.shared.getAllPages()
         

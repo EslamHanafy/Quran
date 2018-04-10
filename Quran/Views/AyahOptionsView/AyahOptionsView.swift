@@ -44,7 +44,9 @@ class AyahOptionsView: UIView {
         if ayah.audioFiles.normal == nil {
             QuranManager.manager.showDownloadOptions(forAyah: ayah)
         }else {
-            //TODO: - play the ayah
+            QuranManager.manager.play(ayah: ayah)
+            self.onPlayAyah?(ayah)
+            self.hide()
         }
     }
     

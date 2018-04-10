@@ -186,11 +186,23 @@ extension QuranTextView {
         self.attributedText = attributedString
     }
     
+    func hamdePlayActionForAyah(_ ayah: Ayah) {
+        let range =  QuranManager.manager.getRangeForAyah(atIndex: getIndex(forAyah: ayah), fromTextView: self)
+        
+        if ayah.isPlaying {
+            self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.blue, range: range)
+        }else {
+            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
+        }
+        
+        self.attributedText = attributedString
+    }
+    
     /// handle the ayah options hide action
     ///
     /// - Parameter ayah: the selected ayah
     fileprivate func handleHideActionForAyah(_ ayah: Ayah) {
-        if ayah.isBookmarked {
+        if ayah.isBookmarked || ayah.isPlaying {
             return
         }
         

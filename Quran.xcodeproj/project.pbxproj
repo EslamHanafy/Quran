@@ -60,6 +60,7 @@
 		AA10E71A2079674000702EF1 /* AyahAudios.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA10E7192079674000702EF1 /* AyahAudios.swift */; };
 		AA21D4562064559B00507932 /* Backups.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA21D4552064559B00507932 /* Backups.swift */; };
 		AA3FE284206403C700D69740 /* QuranViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FE283206403C700D69740 /* QuranViewController.swift */; };
+		AAC2C59B207D539600D0121A /* QuranManager+AVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2C59A207D539600D0121A /* QuranManager+AVAudioPlayer.swift */; };
 		AACA765E2072731C003AE1B7 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACA765D2072731C003AE1B7 /* BookmarksViewController.swift */; };
 		AACA766220727997003AE1B7 /* BookMarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACA766020727997003AE1B7 /* BookMarkTableViewCell.swift */; };
 		AACA766320727997003AE1B7 /* BookMarkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AACA766120727997003AE1B7 /* BookMarkTableViewCell.xib */; };
@@ -124,6 +125,7 @@
 		AA10E7192079674000702EF1 /* AyahAudios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyahAudios.swift; sourceTree = "<group>"; };
 		AA21D4552064559B00507932 /* Backups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backups.swift; sourceTree = "<group>"; };
 		AA3FE283206403C700D69740 /* QuranViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranViewController.swift; sourceTree = "<group>"; };
+		AAC2C59A207D539600D0121A /* QuranManager+AVAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuranManager+AVAudioPlayer.swift"; sourceTree = "<group>"; };
 		AACA765D2072731C003AE1B7 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
 		AACA766020727997003AE1B7 /* BookMarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkTableViewCell.swift; sourceTree = "<group>"; };
 		AACA766120727997003AE1B7 /* BookMarkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookMarkTableViewCell.xib; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				0C81BB342073A1F5007C270D /* QuranTextType.swift */,
 				0C81BB362073B12B007C270D /* QuranManager+UITextView.swift */,
 				0CE657DB20751D780086B080 /* QuranManager+UIFonts.swift */,
+				AAC2C59A207D539600D0121A /* QuranManager+AVAudioPlayer.swift */,
 			);
 			path = QuranManager;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				AACA766220727997003AE1B7 /* BookMarkTableViewCell.swift in Sources */,
 				0C60613B2066926F00B49227 /* QuranPageCollectionViewCell.swift in Sources */,
 				0C8C1BE42062B95600C05337 /* Juz.swift in Sources */,
+				AAC2C59B207D539600D0121A /* QuranManager+AVAudioPlayer.swift in Sources */,
 				0CA42F912061680800DC1028 /* SurahTableViewCell.swift in Sources */,
 				0C113F74207A48D900ADD61D /* MZDownloadManager.swift in Sources */,
 				0C8C1BD72062884D00C05337 /* HomeContainerViewController.swift in Sources */,

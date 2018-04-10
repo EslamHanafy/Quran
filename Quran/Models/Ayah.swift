@@ -17,6 +17,7 @@ open class Ayah: NSObject, Codable {
     var isBookmarked: Bool
     var audioFiles: AyahAudios
     var surah: Surah
+    var isPlaying: Bool = false
     
     init(id: Int64, surah: Surah = Surah(id: 0), dbId: Int64 = 0, content: String = "", page: Int64 = 0, isBookmarked: Bool = false, audioFiles: AyahAudios = AyahAudios()) {
         self.id = id
