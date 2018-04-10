@@ -41,7 +41,7 @@ class AyahOptionsView: UIView {
     }
     
     @IBAction func playAction() {
-        if ayah.audioFiles?.normal == nil {
+        if ayah.audioFiles.normal == nil {
             QuranManager.manager.showDownloadOptions(forAyah: ayah)
         }else {
             //TODO: - play the ayah

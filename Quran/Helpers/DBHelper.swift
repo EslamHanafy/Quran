@@ -343,7 +343,11 @@ class DBHelper {
     ///   - path: the new path
     ///   - ayah: the updated ayah
     ///   - mode: the audio mode
-    func update(audioPath path: String, forAyah ayah: Ayah, andMode mode: AudioMode) {
+    func update(audioPath path: String, forAyah ayah: Ayah?, andMode mode: AudioMode) {
+        guard let ayah = ayah else {
+            return
+        }
+        
         let ayahTable = Table("ayah")
         let id = Expression<Int64>("id")
         let audio = Expression<String?>("audio_path_" + mode.rawValue)
@@ -402,5 +406,25 @@ class DBHelper {
         }
         
         return allAyah
+    }
+    
+    
+    func getPath(forAyah ayah: Ayah?, andMode mode: AudioMode) -> String? {
+        guard let ayah = ayah else {
+            return nil
+        }
+        
+        let ayahTable = Table("ayah")
+        let id = Expression<Int64>("id")
+        let path = Expression<String?>("audio_path_" + mode.rawValue)
+        do {
+            if let row = try db.pluck(ayahTable.select(path).filter(id == ayah.dbId)) {
+                return row[path]
+            }
+        } catch  {
+            print("the error in getting path for ayah \(ayah.dbId) is: \(error)")
+        }
+        
+        return nil
     }
 }

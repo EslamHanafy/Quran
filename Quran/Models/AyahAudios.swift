@@ -9,14 +9,43 @@
 import Foundation
 
 open class AyahAudios: NSObject, Codable {
-    var normal: String?
-    var memorize: String?
-    var learn: String?
+    var normal: String? {
+        get {
+            return DBHelper.shared.getPath(forAyah: ayah, andMode: .normal)
+        }
+        
+        set {
+            DBHelper.shared.update(audioPath: newValue ?? "", forAyah: ayah, andMode: .normal)
+        }
+    }
     
-    init(normal: String? = nil, memorize: String? = nil, learn: String? = nil) {
-        self.normal = normal
-        self.memorize = memorize
-        self.learn = learn
+    var memorize: String? {
+        get {
+            return DBHelper.shared.getPath(forAyah: ayah, andMode: .memorize)
+        }
+        
+        set {
+            DBHelper.shared.update(audioPath: newValue ?? "", forAyah: ayah, andMode: .memorize)
+        }
+    }
+    
+    var learn: String?{
+        get {
+            return DBHelper.shared.getPath(forAyah: ayah, andMode: .learn)
+        }
+        
+        set {
+            DBHelper.shared.update(audioPath: newValue ?? "", forAyah: ayah, andMode: .learn)
+        }
+    }
+    
+    var ayah: Ayah? = nil
+    
+    
+    
+    
+    init(ayah: Ayah? = nil) {
+        self.ayah = ayah
     }
     
     
@@ -32,23 +61,6 @@ open class AyahAudios: NSObject, Codable {
             return memorize
         default:
             return normal
-        }
-    }
-    
-    
-    /// update the audio path for the given mode
-    ///
-    /// - Parameters:
-    ///   - path: new audio path
-    ///   - mode: the path audio mode
-    func update(audioPath path: String, forMode mode: AudioMode)  {
-        switch mode {
-        case .learn:
-            self.learn = path
-        case .memorize:
-            self.memorize = path
-        default:
-            self.normal = path
         }
     }
 }

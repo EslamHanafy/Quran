@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toast_Swift
 
 class DownloadManager: NSObject {
     public static let shared: DownloadManager = DownloadManager()
@@ -63,7 +64,7 @@ class DownloadManager: NSObject {
         
         for surah in page.getAllSurah() {
             for ayah in surah.allAyah {
-                if ayah.audioFiles?.path(forMode: currentMode) == nil {
+                if ayah.audioFiles.path(forMode: currentMode) == nil {
                     downloadQueue.append(ayah)
                 }
             }
@@ -152,7 +153,7 @@ extension DownloadManager: MZDownloadManagerDelegate {
     func downloadRequestDidFailedWithError(_ error: NSError, downloadModel: MZDownloadModel, index: Int) {
         print("the download error is: \(error)")
         mainQueue {
-            displayAlertWithTimer("حدث خطأ اثناء تنزيل الاية رقم \(downloadModel.ayah?.id ?? 0) من سورة \(downloadModel.ayah?.surah.name ?? "")", forController: self.currentViewController, timeInSeconds: 2.0)
+            self.currentViewController.view.makeToast("حدث خطأ اثناء تنزيل الاية رقم \(downloadModel.ayah?.id ?? 0) من سورة \(downloadModel.ayah?.surah.name ?? "")")
         }
     }
     

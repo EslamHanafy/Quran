@@ -15,10 +15,10 @@ open class Ayah: NSObject, Codable {
     var page: Int64
     var dbId: Int64
     var isBookmarked: Bool
-    var audioFiles: AyahAudios?
+    var audioFiles: AyahAudios
     var surah: Surah
     
-    init(id: Int64, surah: Surah = Surah(id: 0), dbId: Int64 = 0, content: String = "", page: Int64 = 0, isBookmarked: Bool = false, audioFiles: AyahAudios? = nil) {
+    init(id: Int64, surah: Surah = Surah(id: 0), dbId: Int64 = 0, content: String = "", page: Int64 = 0, isBookmarked: Bool = false, audioFiles: AyahAudios = AyahAudios()) {
         self.id = id
         self.dbId = dbId
         self.surah = surah
@@ -26,6 +26,8 @@ open class Ayah: NSObject, Codable {
         self.page = page
         self.isBookmarked = isBookmarked
         self.audioFiles = audioFiles
+        
+        super.init()
     }
     
     init(fromRow row: Row) {
@@ -35,9 +37,6 @@ open class Ayah: NSObject, Codable {
         let pageNumber = Expression<Int64>("page")
         let id = Expression<Int64>("id")
         let isMarked = Expression<Int64?>("is_bookmarked")
-        let normalAudio = Expression<String?>("audio_path_normal")
-        let memorizeAudio = Expression<String?>("audio_path_memorize")
-        let learnAudio = Expression<String?>("audio_path_learn")
         
         self.id = row[ayahTable[number]]
         self.content = row[ayahTable[text]]
@@ -45,9 +44,13 @@ open class Ayah: NSObject, Codable {
         self.dbId = row[ayahTable[id]]
         self.surah = Surah(fromRow: row)
         self.isBookmarked = row[ayahTable[isMarked]] == 1
-        self.audioFiles = AyahAudios(normal: row[ayahTable[normalAudio]], memorize: row[ayahTable[memorizeAudio]], learn: row[ayahTable[learnAudio]])
+        
+        self.audioFiles = AyahAudios(ayah: Ayah(id: 0))
+        
+        super.init()
+        
+        self.audioFiles = AyahAudios(ayah: self)
     }
-    
     
     /// update the audio path for the given mode
     ///
@@ -55,10 +58,14 @@ open class Ayah: NSObject, Codable {
     ///   - path: new audio path
     ///   - mode: the path audio mode
     func update(audioPath path: String, forMode mode: AudioMode)  {
-        print()
-        print("the new audio path for ayah \(id) is: \(path)")
-        print()
-        audioFiles?.update(audioPath: path, forMode: mode)
-        DBHelper.shared.update(audioPath: path, forAyah: self, andMode: mode)
+        switch mode {
+        case .learn:
+            audioFiles.learn = path
+        case .memorize:
+            audioFiles.memorize = path
+        default:
+            audioFiles.normal = path
+        }
     }
+
 }
