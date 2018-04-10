@@ -290,11 +290,11 @@
 		0CA42F7C20611DDF00DC1028 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				0C113F66207A35D800ADD61D /* Config.swift */,
 				0CA42F9520616B5700DC1028 /* DBHelper.swift */,
 				0C8C1BDF2062999100C05337 /* CommonMethods.swift */,
 				0C81BB3120739B0F007C270D /* QuranManager */,
 				0C113F63207A328D00ADD61D /* DownloadManager */,
-				0C113F66207A35D800ADD61D /* Config.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

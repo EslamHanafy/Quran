@@ -104,7 +104,7 @@
                                 <constraint firstAttribute="height" constant="31" id="7Xf-mS-ecG">
                                     <variation key="heightClass=regular-widthClass=regular" constant="62"/>
                                 </constraint>
-                                <constraint firstAttribute="width" constant="50" id="pTN-in-uGt">
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="pTN-in-uGt">
                                     <variation key="heightClass=regular-widthClass=regular" constant="100"/>
                                 </constraint>
                             </constraints>

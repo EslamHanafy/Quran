@@ -55,6 +55,9 @@ open class Ayah: NSObject, Codable {
     ///   - path: new audio path
     ///   - mode: the path audio mode
     func update(audioPath path: String, forMode mode: AudioMode)  {
+        print()
+        print("the new audio path for ayah \(id) is: \(path)")
+        print()
         audioFiles?.update(audioPath: path, forMode: mode)
         DBHelper.shared.update(audioPath: path, forAyah: self, andMode: mode)
     }
