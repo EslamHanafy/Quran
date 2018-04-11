@@ -44,7 +44,7 @@ class QuranViewController: UIViewController {
     
     
     //MARK: - IBAction
-    @IBAction func backAction() {
+    @IBAction func showBarAction() {
         self.dismiss(animated: true, completion: nil)
     }
 }
@@ -109,7 +109,7 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: screenWidth, height: screenHeight * 0.8898)
+        return CGSize(width: screenWidth * 0.9, height: screenHeight * 0.8898)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

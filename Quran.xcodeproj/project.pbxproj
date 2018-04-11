@@ -14,6 +14,8 @@
 		0C113F73207A48D900ADD61D /* MZDownloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C113F70207A48D900ADD61D /* MZDownloadModel.swift */; };
 		0C113F74207A48D900ADD61D /* MZDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C113F71207A48D900ADD61D /* MZDownloadManager.swift */; };
 		0C113F75207A48D900ADD61D /* MZUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C113F72207A48D900ADD61D /* MZUtility.swift */; };
+		0C248F45207E5EF500A52C2E /* QuranHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C248F44207E5EF500A52C2E /* QuranHeaderView.xib */; };
+		0C248F47207E609100A52C2E /* QuranHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C248F46207E609100A52C2E /* QuranHeaderView.swift */; };
 		0C60613B2066926F00B49227 /* QuranPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6061392066926F00B49227 /* QuranPageCollectionViewCell.swift */; };
 		0C60613C2066926F00B49227 /* QuranPageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C60613A2066926F00B49227 /* QuranPageCollectionViewCell.xib */; };
 		0C60613F2066991100B49227 /* UthmanTN1B Ver10.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C60613D2066991100B49227 /* UthmanTN1B Ver10.otf */; };
@@ -75,6 +77,8 @@
 		0C113F70207A48D900ADD61D /* MZDownloadModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZDownloadModel.swift; sourceTree = "<group>"; };
 		0C113F71207A48D900ADD61D /* MZDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZDownloadManager.swift; sourceTree = "<group>"; };
 		0C113F72207A48D900ADD61D /* MZUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZUtility.swift; sourceTree = "<group>"; };
+		0C248F44207E5EF500A52C2E /* QuranHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuranHeaderView.xib; sourceTree = "<group>"; };
+		0C248F46207E609100A52C2E /* QuranHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranHeaderView.swift; sourceTree = "<group>"; };
 		0C6061392066926F00B49227 /* QuranPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		0C60613A2066926F00B49227 /* QuranPageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuranPageCollectionViewCell.xib; sourceTree = "<group>"; };
 		0C60613D2066991100B49227 /* UthmanTN1B Ver10.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanTN1B Ver10.otf"; sourceTree = "<group>"; };
@@ -172,6 +176,15 @@
 			path = MZDownloadManager;
 			sourceTree = "<group>";
 		};
+		0C248F43207E5ED600A52C2E /* QuranHeader */ = {
+			isa = PBXGroup;
+			children = (
+				0C248F44207E5EF500A52C2E /* QuranHeaderView.xib */,
+				0C248F46207E609100A52C2E /* QuranHeaderView.swift */,
+			);
+			path = QuranHeader;
+			sourceTree = "<group>";
+		};
 		0C6061382066924000B49227 /* QuranPageCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +277,7 @@
 		0CA42F7A20611DD100DC1028 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0C248F43207E5ED600A52C2E /* QuranHeader */,
 				0C113F5D207A2C1600ADD61D /* DownloadView */,
 				AACA765F207273DE003AE1B7 /* BookMarkCell */,
 				0CEFEDC1206FCC6400F106A0 /* AyahOptionsView */,
@@ -474,6 +488,7 @@
 				0CA42F8420612E8000DC1028 /* Diwani Letter.ttf in Resources */,
 				0CA42F892061615300DC1028 /* GE_SS_Text_Light.otf in Resources */,
 				0C113F61207A2C4F00ADD61D /* DownloadView.xib in Resources */,
+				0C248F45207E5EF500A52C2E /* QuranHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,6 +582,7 @@
 				0CEFEDC3206FCC8B00F106A0 /* AyahOptionsView.swift in Sources */,
 				0CA42F98206174FD00DC1028 /* AllSurahViewController.swift in Sources */,
 				0CA42F6820611DB300DC1028 /* AppDelegate.swift in Sources */,
+				0C248F47207E609100A52C2E /* QuranHeaderView.swift in Sources */,
 				0C8C1BD92062896400C05337 /* MenuItem.swift in Sources */,
 				0C8C1BEA2062CB1E00C05337 /* JuzTableViewCell.swift in Sources */,
 				0C8C1BDD206289E300C05337 /* SideMenuTableViewCell.swift in Sources */,

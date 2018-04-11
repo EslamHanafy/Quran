@@ -23,11 +23,11 @@ open class BookMark: NSObject, Codable {
     init(fromRow row: Row) {
         let marksTable = Table("bookmarks")
         let id = Expression<Int64>("id")
-        let ayahTable = Table("ayah")
-        let surahId = Expression<Int64>("surah_id")
+//        let ayahTable = Table("ayah")
+//        let surahId = Expression<Int64>("surah_id")
         
         self.id = row[marksTable[id]]
         self.ayah = Ayah(fromRow: row)
-        self.surah = DBHelper.shared.getSurah(withId: row[ayahTable[surahId]])
+        self.surah = Surah(fromRow: row) //DBHelper.shared.getSurah(withId: row[ayahTable[surahId]])
     }
 }

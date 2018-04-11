@@ -47,15 +47,11 @@ extension QuranTextView {
         self.isEditable = false
         self.isSelectable = false
         
-        
-        DispatchQueue.global(qos: .utility).async {
+        mainQueue {
             //get the attributed string from quran manager
             self.attributedString = QuranManager.manager.getAttributedText(forPage: self.page)
-            
-            mainQueue {
-                self.attributedText = self.attributedString
-                self.updateTitleImages()
-            }
+            self.attributedText = self.attributedString
+            self.updateTitleImages()
         }
         
         // add the UITapGestureRecognizer

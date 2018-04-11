@@ -10,13 +10,10 @@ import UIKit
 
 class QuranPageCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet var surahLabel: UILabel!
-    @IBOutlet var juzLabel: UILabel!
     @IBOutlet var quranTextView: QuranTextView!
-    @IBOutlet var pageLabel: UILabel!
-    
     
     var page: Page!
+    
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -31,9 +28,6 @@ class QuranPageCollectionViewCell: UICollectionViewCell {
     func initWith(page: Page) {
         self.page = page
         
-        surahLabel.text = page.allSurah.first?.name ?? ""
-        juzLabel.text = page.juz.name
-        pageLabel.text = String(page.id)
         quranTextView.initWith(page: page)
     }
     

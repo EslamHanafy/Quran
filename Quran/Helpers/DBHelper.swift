@@ -12,7 +12,44 @@ import SQLite
 class DBHelper {
     public static let shared: DBHelper = DBHelper()
     
-    fileprivate let db = try! Connection(Bundle.main.path(forResource: "Quran", ofType: "db")!)
+    fileprivate let db = try! Connection(DBHelper.databasePath()) //Connection(Bundle.main.path(forResource: "Quran", ofType: "db")!)
+    
+    
+    /// copy the database if needed from app bundle to documents folder and get the new database path
+    ///
+    /// - Returns: the new database path
+    class func databasePath() -> String {
+        // Move database file from bundle to documents folder
+        
+        let fileManager = FileManager.default
+        
+        let documentsUrl = fileManager.urls(for: .documentDirectory,
+                                            in: .userDomainMask)
+        
+        guard documentsUrl.count != 0 else {
+            return "" // Could not find documents URL
+        }
+        
+        let finalDatabaseURL = documentsUrl.first!.appendingPathComponent("Quran.sqlite")
+        
+        if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false) {
+            print("DB does not exist in documents folder")
+            
+            let documentsURL = Bundle.main.path(forResource: "Quran", ofType: "db")
+            
+            do {
+                try fileManager.copyItem(atPath: documentsURL!, toPath: finalDatabaseURL.path)
+            } catch let error as NSError {
+                print("Couldn't copy file to final location! Error:\(error.description)")
+            }
+            
+        } else {
+            print("Database file found at path: \(finalDatabaseURL.path)")
+        }
+        
+        return finalDatabaseURL.path
+    }
+    
     
     
     /// return all surah from database
@@ -228,9 +265,10 @@ class DBHelper {
         
         let bookTable = Table("bookmarks")
         let ayahId = Expression<Int64>("ayah_id")
+        let surahId = Expression<Int64>("surah_id")
         
         do {
-            try db.run(bookTable.insert(ayahId <- ayah.dbId))
+            try db.run(bookTable.insert(ayahId <- ayah.dbId, surahId <- ayah.surah.id))
             updateBookMarkForAyah(withId: ayah.dbId, isMarked: true)
         } catch {
             print("the error in inserting new bookmark is: \(error)")
@@ -246,12 +284,13 @@ class DBHelper {
         
         let marksTable = Table("bookmarks")
         let ayahTable = Table("ayah")
+        let surahTable = Table("surah")
         let id = Expression<Int64>("id")
         let ayahId = Expression<Int64>("ayah_id")
-        
+        let surahId = Expression<Int64>("surah_id")
         
         do {
-            let data = try db.prepare(marksTable.join(ayahTable, on: ayahId == ayahTable[id]))
+            let data = try db.prepare(marksTable.join(ayahTable, on: ayahId == ayahTable[id]).join(surahTable, on: marksTable[surahId] == surahTable[id]))
             for row in data {
                 bookMarks.append(BookMark(fromRow: row))
             }
