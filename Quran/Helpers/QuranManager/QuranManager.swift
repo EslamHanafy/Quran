@@ -25,7 +25,11 @@ class QuranManager: NSObject {
     
     var currentTextView: QuranTextView!
     
+    var currentQuranController: QuranViewController!
+    
     var currentAyah: Ayah? = nil
+    
+    var timeBetweenAyah: Double = 0.3
     
     override init() {
         super.init()

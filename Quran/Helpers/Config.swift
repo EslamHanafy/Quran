@@ -9,9 +9,9 @@
 import Foundation
 
 struct Config {
-    static let baseNormalURL: String = "http://quran.magdsoft.com/files/normal/"
-    static let baseMemorizelURL: String = "http://quran.magdsoft.com/files/memorizing/"
-    static let baseLearnlURL: String = "http://quran.magdsoft.com/files/learning/"
+    static let baseNormalURL: String = "https://quran.magdsoft.com/files/normal/"
+    static let baseMemorizelURL: String = "https://quran.magdsoft.com/files/memorizing/"
+    static let baseLearnlURL: String = "https://quran.magdsoft.com/files/learning/"
     
     
     /// get base url for the given AudioMode

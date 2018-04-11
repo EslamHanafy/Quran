@@ -12,13 +12,7 @@ class QuranViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var collectionLayout: UICollectionViewFlowLayout!
     
-    var currentPageNumber: Int = 0 {
-        didSet {
-            if shouldUpdateTextView {
-                updateTextView(atIndex: currentPageNumber)
-            }
-        }
-    }
+    var currentPageNumber: Int = 0
     
     var shouldUpdateTextView: Bool = false
     
@@ -38,6 +32,7 @@ class QuranViewController: UIViewController {
 
         initCollectionView()
         QuranViewController.ayahOptions = AyahOptionsView.getInstance(forController: self)
+        QuranManager.manager.currentQuranController = self
     }
     
     
@@ -47,11 +42,6 @@ class QuranViewController: UIViewController {
         scrollToCurrentPageIfNeeded()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        updateTextView(atIndex: currentPageNumber)
-    }
     
     //MARK: - IBAction
     @IBAction func backAction() {
@@ -61,14 +51,17 @@ class QuranViewController: UIViewController {
 
 //MARK: - Helpers
 extension QuranViewController {
+    
     func scrollToCurrentPageIfNeeded() {
         if currentPageNumber > 0 {
             collectionView.scrollToItem(at: IndexPath(item: currentPageNumber - 1, section: 0), at: UICollectionViewScrollPosition.left, animated: false)
         }
+        
+        updateTextView()
     }
     
-    func updateTextView(atIndex index: Int) {
-        let indexPath = IndexPath(item: index, section: 0)
+    func updateTextView() {
+        let indexPath = IndexPath(item: currentPageNumber - 1, section: 0)
         
         guard let textView = (collectionView.cellForItem(at: indexPath) as? QuranPageCollectionViewCell)?.quranTextView else {
             return print("could n't get the text view eslam")
@@ -76,6 +69,24 @@ extension QuranViewController {
         print("text view updated eslam")
         QuranManager.manager.currentTextView = textView
         shouldUpdateTextView = true
+    }
+    
+    func scrollToNextPage() {
+        if currentPageNumber < 604 {
+            currentPageNumber += 1
+            
+            let indexPath = IndexPath(item: currentPageNumber - 1, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        }
+    }
+    
+    func scrollToPreviousPage() {
+        if currentPageNumber > 0 {
+            currentPageNumber -= 1
+            
+            let indexPath = IndexPath(item: currentPageNumber - 1, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+        }
     }
 }
 
@@ -109,8 +120,13 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let pageWidth = scrollView.frame.size.width
         var page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
         page = Int(abs(Int32(page - 603)))
-        currentPageNumber = page
-        print("will display cell at index: \(page)")
+        currentPageNumber = page + 1
+        updateTextView()
+        print("will display cell at index: \(currentPageNumber)")
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        updateTextView()
     }
     
     func initCollectionView() {

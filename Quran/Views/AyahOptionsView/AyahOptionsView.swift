@@ -12,6 +12,8 @@ class AyahOptionsView: UIView {
 
     @IBOutlet var containerView: UIView!
     @IBOutlet var bookmarkLabel: UILabel!
+    @IBOutlet var playImageView: UIImageView!
+    @IBOutlet var playLabel: UILabel!
     
     fileprivate var parent: UIViewController!
     fileprivate var ayah: Ayah!
@@ -44,7 +46,11 @@ class AyahOptionsView: UIView {
         if ayah.audioFiles.normal == nil {
             QuranManager.manager.showDownloadOptions(forAyah: ayah)
         }else {
-            QuranManager.manager.play(ayah: ayah)
+            if ayah.isPlaying {
+                QuranManager.manager.pauseCurrentAyah()
+            }else {
+                QuranManager.manager.play(ayah: ayah)
+            }
             self.onPlayAyah?(ayah)
             self.hide()
         }
@@ -124,6 +130,8 @@ extension AyahOptionsView {
     /// change bookmarkLabel based on current ayah
     private func prepareActions() {
         bookmarkLabel.text = ayah.isBookmarked ? "حذف الفاصل" : "اضافة فاصل"
+        playLabel.text = ayah.isPlaying ? "إيقاف" : "تشغيل"
+        playImageView.image = UIImage(named: ayah.isPlaying ? "pause icon" : "play icon")
     }
     
     

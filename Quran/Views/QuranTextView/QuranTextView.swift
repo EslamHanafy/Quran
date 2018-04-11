@@ -186,7 +186,7 @@ extension QuranTextView {
         self.attributedText = attributedString
     }
     
-    func hamdePlayActionForAyah(_ ayah: Ayah) {
+    func handlePlayActionForAyah(_ ayah: Ayah) {
         let range =  QuranManager.manager.getRangeForAyah(atIndex: getIndex(forAyah: ayah), fromTextView: self)
         
         if ayah.isPlaying {
