@@ -11,14 +11,30 @@ import UIKit
 class QuranViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var collectionLayout: UICollectionViewFlowLayout!
+    @IBOutlet var menuView: UIView!
+    @IBOutlet var menuImageView: UIImageView!
     
+    
+    /// determine which page is currently displaying and what page should be displayed at the beginning
     var currentPageNumber: Int = 0
     
-    var shouldUpdateTextView: Bool = false
     
+    /// determine if should play the menu icon animation
+    var shouldAnimateMenuView: Bool = true
+    
+    /// The screen header view
+    var header: QuranHeaderView!
+    
+    /// AyahOptionsView for every ayah
     public static weak var ayahOptions: AyahOptionsView? = nil
     
     
+    
+    /// show the quran screen at the given page
+    ///
+    /// - Parameters:
+    ///   - page: the screen start page
+    ///   - controller: the view controller that will be responsable for displaying this controller
     public static func showQuran(startingFromPage page: Int64, fromController controller: UIViewController) {
         let quran = controller.storyboard!.instantiateViewController(withIdentifier: "QuranScreen") as! QuranViewController
         quran.currentPageNumber = Int(page)
@@ -32,6 +48,7 @@ class QuranViewController: UIViewController {
 
         initCollectionView()
         QuranViewController.ayahOptions = AyahOptionsView.getInstance(forController: self)
+        header = QuranHeaderView.getInstance(forController: self)
         QuranManager.manager.currentQuranController = self
     }
     
@@ -43,15 +60,23 @@ class QuranViewController: UIViewController {
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        animateMenuButtonIfNeeded()
+    }
+    
+    
     //MARK: - IBAction
     @IBAction func showBarAction() {
-        self.dismiss(animated: true, completion: nil)
+        header.show(forPage: QuranManager.manager.pages[currentPageNumber - 1])
     }
 }
 
 //MARK: - Helpers
 extension QuranViewController {
     
+    /// scroll to currentPageNumber
     func scrollToCurrentPageIfNeeded() {
         if currentPageNumber > 0 {
             collectionView.scrollToItem(at: IndexPath(item: currentPageNumber - 1, section: 0), at: UICollectionViewScrollPosition.left, animated: false)
@@ -60,6 +85,7 @@ extension QuranViewController {
         updateTextView()
     }
     
+    /// update current textview in QuranManager with the textview that is currently displaying in the screen
     func updateTextView() {
         let indexPath = IndexPath(item: currentPageNumber - 1, section: 0)
         
@@ -68,9 +94,10 @@ extension QuranViewController {
         }
         print("text view updated eslam")
         QuranManager.manager.currentTextView = textView
-        shouldUpdateTextView = true
     }
     
+    
+    /// scroll to next page in the quran
     func scrollToNextPage() {
         if currentPageNumber < 604 {
             currentPageNumber += 1
@@ -80,12 +107,39 @@ extension QuranViewController {
         }
     }
     
+    
+    /// scroll to previous page in the quran
     func scrollToPreviousPage() {
         if currentPageNumber > 0 {
             currentPageNumber -= 1
             
             let indexPath = IndexPath(item: currentPageNumber - 1, section: 0)
             collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+        }
+    }
+    
+    
+    /// animte the menu icon if the shouldAnimateMenuView is true
+    func animateMenuButtonIfNeeded() {
+        if shouldAnimateMenuView {
+            let animationDuration: Double = 0.6
+            UIView.transition(with: menuImageView, duration: animationDuration, options: [.transitionCrossDissolve], animations: {
+                self.menuImageView.image = UIImage(named: "drop down")
+            }, completion: { (_) in
+                UIView.transition(with: self.menuImageView, duration: animationDuration, options: [.transitionCrossDissolve], animations: {
+                    self.menuImageView.image = UIImage(named: "drop down2")
+                }, completion: nil)
+            })
+            
+            UIView.animate(withDuration: animationDuration, animations: {
+                self.menuView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            }, completion: { (_) in
+                UIView.animate(withDuration: animationDuration, animations: {
+                    self.menuView.transform = CGAffineTransform.identity
+                })
+            })
+            
+            shouldAnimateMenuView = false
         }
     }
 }
@@ -129,6 +183,8 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
         updateTextView()
     }
     
+    
+    /// init the collection view for the first time
     func initCollectionView() {
         collectionLayout.minimumInteritemSpacing = 0
         collectionLayout.minimumLineSpacing = 0

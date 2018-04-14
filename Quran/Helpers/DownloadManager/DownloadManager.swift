@@ -176,7 +176,7 @@ extension DownloadManager: MZDownloadManagerDelegate {
     /// - Parameter ayah: the ayah that you want to download it
     fileprivate func download(ayah: Ayah) {
         let ayahNumber: Int64 = ayah.surah.id == 1 ? ayah.id : ayah.id + 1
-        let downloadPath = URL.createFolder(folderName: "Quran/\(ayah.surah.id)")
+        let downloadPath = URL.createFolder(folderName: "Quran/\(currentMode.rawValue)/\(ayah.surah.id)")
         let fileName = "\(ayah.id).mp3"
         let url = Config.baseURL(forMode: currentMode) + "\(ayah.surah.id)/\(ayahNumber).mp3"
         manager.addDownloadTask(fileName, fileURL: url, destinationPath: downloadPath?.path ?? "", ayah: ayah)

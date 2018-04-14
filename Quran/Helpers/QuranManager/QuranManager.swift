@@ -19,23 +19,45 @@ class QuranManager: NSObject {
     /// all quran surah
     var AllSurah: [Surah] = []
     
-    var audioMode: AudioMode = .normal
     
+    /// current audio mode for the playing audio files
+    var audioMode: AudioMode = .normal {
+        didSet {
+            UserDefaults.standard.set(audioMode.rawValue, forKey: "audioMode")
+        }
+    }
+    
+    /// the audio player
     var player: AVAudioPlayer? = nil
     
+    /// current text view that is displaying in the quran screen
     var currentTextView: QuranTextView!
     
+    /// the current Quran screen class
     var currentQuranController: QuranViewController!
     
+    /// current ayah that the audio player is playing
     var currentAyah: Ayah? = nil
     
+    /// the delay time between each ayah
     var timeBetweenAyah: Double = 0.3
+    
+    var soundDegree: Float = 1.0 {
+        didSet {
+            UserDefaults.standard.set(soundDegree, forKey: "soundDegree")
+            player?.volume = soundDegree
+        }
+    }
+    
     
     override init() {
         super.init()
         
         self.AllSurah = DBHelper.shared.getAllSurah()
         self.pages = DBHelper.shared.getAllPages()
+        
+        self.audioMode = AudioMode(rawValue: UserDefaults.standard.value(forKey: "audioMode") as? String ?? "") ?? .normal
+        self.soundDegree = UserDefaults.standard.value(forKey: "soundDegree") as? Float ?? 1.0
         
         backgroundQueue {
             self.allJuz = DBHelper.shared.getAllJuz()

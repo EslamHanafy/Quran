@@ -427,7 +427,7 @@
                                                     <action selector="showBarAction" destination="sSv-VY-nFh" eventType="touchUpInside" id="JE9-We-fMk"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drop down" translatesAutoresizingMaskIntoConstraints="NO" id="P7F-IS-tgv">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drop down2" translatesAutoresizingMaskIntoConstraints="NO" id="P7F-IS-tgv">
                                                 <rect key="frame" x="3" y="3.5" width="22.5" height="22.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="P7F-IS-tgv" secondAttribute="height" multiplier="1:1" id="1gj-Bj-E7h"/>
@@ -490,6 +490,8 @@
                     <connections>
                         <outlet property="collectionLayout" destination="nVZ-Wc-Zxm" id="CXF-NL-gEb"/>
                         <outlet property="collectionView" destination="wAG-4t-YZm" id="t1u-4K-8sX"/>
+                        <outlet property="menuImageView" destination="P7F-IS-tgv" id="d25-My-JWF"/>
+                        <outlet property="menuView" destination="GLs-3y-W2d" id="PlE-lz-thi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y64-W4-Ap2" sceneMemberID="firstResponder"/>
@@ -600,7 +602,7 @@
     <resources>
         <image name="Back" width="128" height="128"/>
         <image name="Search" width="128" height="128"/>
-        <image name="drop down" width="81" height="81"/>
+        <image name="drop down2" width="81" height="81"/>
         <image name="frame" width="1080" height="1920"/>
         <image name="logo side menu" width="483" height="439"/>
         <image name="menu" width="128" height="128"/>

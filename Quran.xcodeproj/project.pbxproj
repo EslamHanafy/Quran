@@ -57,6 +57,8 @@
 		0CEFEDC0206FB66F00F106A0 /* UthmanicHafs1 Ver09 2.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0CEFEDBF206FB66F00F106A0 /* UthmanicHafs1 Ver09 2.otf */; };
 		0CEFEDC3206FCC8B00F106A0 /* AyahOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEFEDC2206FCC8B00F106A0 /* AyahOptionsView.swift */; };
 		0CEFEDC5206FCC9700F106A0 /* AyahOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CEFEDC4206FCC9700F106A0 /* AyahOptionsView.xib */; };
+		0CFC91BC20825DBB00B811FE /* PageOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFC91BB20825DBB00B811FE /* PageOptionsView.swift */; };
+		0CFC91BE20825DDA00B811FE /* PageOptionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CFC91BD20825DDA00B811FE /* PageOptionsView.xib */; };
 		88AAE72BD4D026ECEBBDC942 /* Pods_Quran.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F7C7016F5583E133AD5119F /* Pods_Quran.framework */; };
 		AA10E7182079665C00702EF1 /* AudioMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA10E7172079665C00702EF1 /* AudioMode.swift */; };
 		AA10E71A2079674000702EF1 /* AyahAudios.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA10E7192079674000702EF1 /* AyahAudios.swift */; };
@@ -122,6 +124,8 @@
 		0CEFEDBF206FB66F00F106A0 /* UthmanicHafs1 Ver09 2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanicHafs1 Ver09 2.otf"; sourceTree = "<group>"; };
 		0CEFEDC2206FCC8B00F106A0 /* AyahOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyahOptionsView.swift; sourceTree = "<group>"; };
 		0CEFEDC4206FCC9700F106A0 /* AyahOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AyahOptionsView.xib; sourceTree = "<group>"; };
+		0CFC91BB20825DBB00B811FE /* PageOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageOptionsView.swift; sourceTree = "<group>"; };
+		0CFC91BD20825DDA00B811FE /* PageOptionsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageOptionsView.xib; sourceTree = "<group>"; };
 		11FB00225C396FB7B2753D01 /* Pods-Quran.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quran.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Quran/Pods-Quran.debug.xcconfig"; sourceTree = "<group>"; };
 		22CFFA700893E26FC303D116 /* Pods-Quran.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quran.release.xcconfig"; path = "Pods/Target Support Files/Pods-Quran/Pods-Quran.release.xcconfig"; sourceTree = "<group>"; };
 		5F7C7016F5583E133AD5119F /* Pods_Quran.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quran.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -277,6 +281,7 @@
 		0CA42F7A20611DD100DC1028 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0CFC91BA20825D5000B811FE /* PageOptions */,
 				0C248F43207E5ED600A52C2E /* QuranHeader */,
 				0C113F5D207A2C1600ADD61D /* DownloadView */,
 				AACA765F207273DE003AE1B7 /* BookMarkCell */,
@@ -374,6 +379,15 @@
 				0CEFEDC4206FCC9700F106A0 /* AyahOptionsView.xib */,
 			);
 			path = AyahOptionsView;
+			sourceTree = "<group>";
+		};
+		0CFC91BA20825D5000B811FE /* PageOptions */ = {
+			isa = PBXGroup;
+			children = (
+				0CFC91BB20825DBB00B811FE /* PageOptionsView.swift */,
+				0CFC91BD20825DDA00B811FE /* PageOptionsView.xib */,
+			);
+			path = PageOptions;
 			sourceTree = "<group>";
 		};
 		AACA765F207273DE003AE1B7 /* BookMarkCell */ = {
@@ -475,6 +489,7 @@
 				0C8C1BEB2062CB1E00C05337 /* JuzTableViewCell.xib in Resources */,
 				0C8C1BDE206289E300C05337 /* SideMenuTableViewCell.xib in Resources */,
 				0C60613F2066991100B49227 /* UthmanTN1B Ver10.otf in Resources */,
+				0CFC91BE20825DDA00B811FE /* PageOptionsView.xib in Resources */,
 				0CEFEDC0206FB66F00F106A0 /* UthmanicHafs1 Ver09 2.otf in Resources */,
 				0C6061402066991100B49227 /* UthmanTN1 Ver10.otf in Resources */,
 				0CA42F7220611DB300DC1028 /* LaunchScreen.storyboard in Resources */,
@@ -583,6 +598,7 @@
 				0CA42F98206174FD00DC1028 /* AllSurahViewController.swift in Sources */,
 				0CA42F6820611DB300DC1028 /* AppDelegate.swift in Sources */,
 				0C248F47207E609100A52C2E /* QuranHeaderView.swift in Sources */,
+				0CFC91BC20825DBB00B811FE /* PageOptionsView.swift in Sources */,
 				0C8C1BD92062896400C05337 /* MenuItem.swift in Sources */,
 				0C8C1BEA2062CB1E00C05337 /* JuzTableViewCell.swift in Sources */,
 				0C8C1BDD206289E300C05337 /* SideMenuTableViewCell.swift in Sources */,

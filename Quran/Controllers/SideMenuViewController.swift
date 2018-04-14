@@ -14,6 +14,7 @@ class SideMenuViewController: UIViewController {
     
     var items: [MenuItem] = []
     
+    let SHARE_APP_ID: String = "shareApp"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +49,12 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.row == 0 {
             self.closeRight()
         }else{
-            mainQueue {
-                goToView(withId: self.items[indexPath.row].screenId, fromController: self)
+            if items[indexPath.row].screenId == SHARE_APP_ID {
+                //TODO: - Share the app
+            }else {
+                mainQueue {
+                    goToView(withId: self.items[indexPath.row].screenId, fromController: self)
+                }
             }
         }
     }
@@ -59,9 +64,8 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         
         items.append(MenuItem(title: "القرآن الكريم", icon: "book", screenId: "Home"))
         items.append(MenuItem(title: "الأجزاء", icon: "list", screenId: "JuzScreen"))
-        items.append(MenuItem(title: "التلاوة", icon: "more icon", screenId: ""))
         items.append(MenuItem(title: "عن التطبيق", icon: "info", screenId: ""))
-        items.append(MenuItem(title: "مشاركة التطبيق", icon: "Share 2", screenId: ""))
+        items.append(MenuItem(title: "مشاركة التطبيق", icon: "Share 2", screenId: "share"))
         items.append(MenuItem(title: "علامات الفواصل", icon: "Bookmark", screenId: "BookMarksScreem"))
         
         tableView.reloadData()

@@ -109,6 +109,8 @@ extension QuranManager {
     ///
     /// - Parameter ayah: Ayah object that contain the ayah data
     func play(ayah: Ayah) {
+        stopLastAyahIfNeeded()
+        
         //resume the current ayah if needed
         if ayah.dbId == (currentAyah?.dbId ?? 0) && player != nil && (player?.currentTime ?? 0) > 0 {
             return resumeCurrentAyah()
@@ -125,6 +127,7 @@ extension QuranManager {
             player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
             player?.delegate = self
             player?.prepareToPlay()
+            player?.volume = soundDegree
             player?.play()
             ayah.isPlaying = true
             currentTextView.handlePlayActionForAyah(ayah)
@@ -136,20 +139,17 @@ extension QuranManager {
     
     /// play next ayah in the quran if exist
     func playNextAyahIfNeeded() {
-        if let ayah = currentAyah {
-            ayah.isPlaying = false
-            self.currentTextView.handlePlayActionForAyah(ayah)
-            
-            if let next = nextAyah {
-                if let ayah = next.ayah {
-                    if next.pagePosition == .nextPage {
-                        currentQuranController.scrollToNextPage()
-                    }
-                    
-                    delay(timeBetweenAyah, closure: {
-                        self.play(ayah: ayah)
-                    })
+        stopLastAyahIfNeeded()
+        
+        if let next = nextAyah {
+            if let ayah = next.ayah {
+                if next.pagePosition == .nextPage {
+                    currentQuranController.scrollToNextPage()
                 }
+                
+                delay(timeBetweenAyah, closure: {
+                    self.play(ayah: ayah)
+                })
             }
         }
     }
@@ -168,28 +168,22 @@ extension QuranManager {
     func pauseCurrentAyah() {
         player?.pause()
         
-        if let ayah = currentAyah {
-            ayah.isPlaying = false
-            currentTextView.handlePlayActionForAyah(ayah)
-        }
+        stopLastAyahIfNeeded()
     }
     
     /// play the previous ayah if exist
     func playPreviousAyahIfNeeded() {
-        if let ayah = currentAyah {
-            ayah.isPlaying = false
-            self.currentTextView.handlePlayActionForAyah(ayah)
-            
-            if let prev = previousAyah {
-                if let ayah = prev.ayah {
-                    if prev.pagePosition == .nextPage {
-                        currentQuranController.scrollToPreviousPage()
-                    }
-                    
-                    delay(timeBetweenAyah, closure: {
-                        self.play(ayah: ayah)
-                    })
+        stopLastAyahIfNeeded()
+        
+        if let prev = previousAyah {
+            if let ayah = prev.ayah {
+                if prev.pagePosition == .nextPage {
+                    currentQuranController.scrollToPreviousPage()
                 }
+                    
+                delay(timeBetweenAyah, closure: {
+                    self.play(ayah: ayah)
+                })
             }
         }
     }
@@ -205,6 +199,15 @@ extension QuranManager {
             }
         }
         return nil
+    }
+    
+    
+    /// stop the last ayah if exist
+    fileprivate func stopLastAyahIfNeeded() {
+        if let ayah = currentAyah {
+            ayah.isPlaying = false
+            self.currentTextView.handlePlayActionForAyah(ayah)
+        }
     }
 }
 

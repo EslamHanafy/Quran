@@ -33,6 +33,13 @@ class DownloadView: UIView {
     
     var isPaused: Bool = false
     
+    
+    
+    
+    /// get new instance form DownloadView
+    ///
+    /// - Parameter controller: The view controller that will be responsable for displaying this instance
+    /// - Returns: new instance form DownloadView
     public static func getInstance(forController controller: UIViewController) -> DownloadView {
         let view = Bundle.main.loadNibNamed("DownloadView", owner: controller, options: nil)?.first as! DownloadView
         controller.view.addSubview(view)
@@ -43,6 +50,7 @@ class DownloadView: UIView {
     }
     
     
+    //MARK: - IBActions
     @IBAction func pauseAction() {
         if isPaused {
             onShouldResume?()
@@ -62,12 +70,11 @@ class DownloadView: UIView {
 
 //MARK: - Helpers
 extension DownloadView {
+    /// make necessary changes to the design
     fileprivate func initDesigns() {
         //add missing constraints
         addMissingConstrinats(withSuperView: parent.view)
-        containerView.addPikeOnView(side: .Bottom)
         self.isHidden = true
-        
     }
     
     /// add missing constraints between self and the given view
@@ -108,6 +115,10 @@ extension DownloadView {
         }
     }
     
+    
+    /// update current download model
+    ///
+    /// - Parameter download: MZDownloadModel object that contain the download data
     func update(DownloadModel download: MZDownloadModel) {
         self.download = download
         
@@ -116,6 +127,8 @@ extension DownloadView {
         }
     }
     
+    
+    /// update the displaying data based on current download model
     private func updateViews() {
         if let ayah = download.ayah {
             self.surahLabel.text = ayah.surah.name
@@ -135,6 +148,7 @@ extension DownloadView {
         }
     }
     
+    /// display the confirmation alert to confirm that the user is really want to cancel the download
     fileprivate func displayCancelConfirmation() {
         let alert = UIAlertController(title: "الغاء التنزيل", message: "هل انت متأكد انك تريد الغاء تنزيل الايات", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "نعم", style: .destructive, handler: { (_) in
@@ -154,7 +168,7 @@ extension DownloadView {
     fileprivate func showAnimation() {
         self.containerView.transform = CGAffineTransform(scaleX: 0.001, y: 0.001)
         
-        UIView.transition(with: self, duration: animationDuration * 0.8 , options: [.showHideTransitionViews], animations: {
+        UIView.transition(with: self, duration: animationDuration * 0.8 , options: [.transitionCrossDissolve], animations: {
             self.isHidden = false
         }, completion: nil)
         

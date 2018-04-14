@@ -16,7 +16,10 @@ class QuranTextView: UITextView {
     
     fileprivate var attributedString: NSMutableAttributedString = NSMutableAttributedString(string: "")
     fileprivate var gesture: UITapGestureRecognizer? = UITapGestureRecognizer()
+    
+    /// that last selected text range
     fileprivate var lastRange: NSRange? = nil
+    
     
     /// init the QuranTextView with the given page
     ///
@@ -182,6 +185,10 @@ extension QuranTextView {
         self.attributedText = attributedString
     }
     
+    
+    /// handle the play/stop actions for the given ayah
+    ///
+    /// - Parameter ayah: Ayah object that represent the changed ayah
     func handlePlayActionForAyah(_ ayah: Ayah) {
         let range =  QuranManager.manager.getRangeForAyah(atIndex: getIndex(forAyah: ayah), fromTextView: self)
         

@@ -22,9 +22,14 @@ class AyahOptionsView: UIView {
     fileprivate let animationDuration: TimeInterval = 0.8
     
     var onMarkAyah: ((_ ayah: Ayah)->())? = nil
-    var onPlayAyah: ((_ ayah: Ayah)->())? = nil
     var onHideOptionsView: ((_ ayah: Ayah)->())? = nil
     
+    
+    
+    /// get new instance from AyahOptionsView
+    ///
+    /// - Parameter controller: The view controller that will be responsable for displaying this instance
+    /// - Returns: new instance from AyahOptionsView
     public static func getInstance(forController controller: UIViewController) -> AyahOptionsView {
         let view = Bundle.main.loadNibNamed("AyahOptionsView", owner: controller, options: nil)?.first as! AyahOptionsView
         controller.view.addSubview(view)
@@ -34,6 +39,8 @@ class AyahOptionsView: UIView {
         return view
     }
     
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             if !containerView.frame.contains(touch.location(in: self)) {
@@ -42,8 +49,11 @@ class AyahOptionsView: UIView {
         }
     }
     
+    
+    
+    //MARK: - IBActions
     @IBAction func playAction() {
-        if ayah.audioFiles.normal == nil {
+        if ayah.audioFiles.path(forMode: QuranManager.manager.audioMode) == nil {
             QuranManager.manager.showDownloadOptions(forAyah: ayah)
         }else {
             if ayah.isPlaying {
@@ -51,7 +61,7 @@ class AyahOptionsView: UIView {
             }else {
                 QuranManager.manager.play(ayah: ayah)
             }
-            self.onPlayAyah?(ayah)
+            
             self.hide()
         }
     }
@@ -70,6 +80,8 @@ class AyahOptionsView: UIView {
 
 //MARK: - Helpers
 extension AyahOptionsView {
+    
+    /// make necessary changes to the design
     fileprivate func initDesigns() {
         //add missing constraints
         addMissingConstrinats(withSuperView: parent.view)
@@ -161,7 +173,7 @@ extension AyahOptionsView {
         containerView.center = point
         containerView.center.y -= screenHeight
         
-        UIView.transition(with: self, duration: animationDuration * 0.8 , options: [.showHideTransitionViews], animations: {
+        UIView.transition(with: self, duration: animationDuration * 0.8 , options: [.transitionCrossDissolve], animations: {
             self.isHidden = false
         }, completion: nil)
         
@@ -181,9 +193,4 @@ extension AyahOptionsView {
             self.onHideOptionsView?(self.ayah)
         }
     }
-}
-
-//MARK: - Play Options
-extension AyahOptionsView {
-    
 }

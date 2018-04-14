@@ -12,4 +12,15 @@ enum AudioMode: String {
     case normal = "normal"
     case memorize = "memorize"
     case learn = "learn"
+    
+    func selectedIndex() -> Int {
+        switch self {
+        case .normal:
+            return 0
+        case .memorize:
+            return 1
+        default:
+            return 2
+        }
+    }
 }
