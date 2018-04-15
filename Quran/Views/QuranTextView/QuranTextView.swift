@@ -161,7 +161,8 @@ extension QuranTextView {
     /// remove the last selection effect
     fileprivate func removeLastSelection() {
         if let range = lastRange {
-            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
+//            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
+            self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: QuranManager.manager.fontColor, range: range)
             self.attributedText = attributedString
         }
     }
@@ -179,7 +180,8 @@ extension QuranTextView {
         if ayah.isBookmarked {
             self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.red, range: range)
         }else {
-            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
+//            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
+            self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: QuranManager.manager.fontColor, range: range)
         }
         
         self.attributedText = attributedString
@@ -195,7 +197,8 @@ extension QuranTextView {
         if ayah.isPlaying {
             self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.blue, range: range)
         }else {
-            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
+//            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
+            self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: QuranManager.manager.fontColor, range: range)
         }
         
         self.attributedText = attributedString

@@ -494,6 +494,7 @@
                         <viewLayoutGuide key="safeArea" id="q7a-x2-tFR"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundImageView" destination="Hdg-NI-a1u" id="9Gv-Z2-gDS"/>
                         <outlet property="collectionLayout" destination="nVZ-Wc-Zxm" id="CXF-NL-gEb"/>
                         <outlet property="collectionView" destination="wAG-4t-YZm" id="t1u-4K-8sX"/>
                         <outlet property="menuImageView" destination="P7F-IS-tgv" id="d25-My-JWF"/>

@@ -13,7 +13,7 @@ class QuranViewController: UIViewController {
     @IBOutlet var collectionLayout: UICollectionViewFlowLayout!
     @IBOutlet var menuView: UIView!
     @IBOutlet var menuImageView: UIImageView!
-    
+    @IBOutlet var backgroundImageView: UIImageView!
     
     /// determine which page is currently displaying and what page should be displayed at the beginning
     var currentPageNumber: Int = 0
@@ -50,6 +50,7 @@ class QuranViewController: UIViewController {
         QuranViewController.ayahOptions = AyahOptionsView.getInstance(forController: self)
         QuranViewController.header = QuranHeaderView.getInstance(forController: self)
         QuranManager.manager.currentQuranController = self
+        reloadTheme()
     }
     
     
@@ -127,7 +128,7 @@ extension QuranViewController {
                 self.menuImageView.image = UIImage(named: "drop down")
             }, completion: { (_) in
                 UIView.transition(with: self.menuImageView, duration: animationDuration, options: [.transitionCrossDissolve], animations: {
-                    self.menuImageView.image = UIImage(named: "drop down2")
+                    self.menuImageView.image = UIImage(named: QuranManager.manager.isNightMode ? "downNight" : "drop down2")
                 }, completion: nil)
             })
             
@@ -141,6 +142,14 @@ extension QuranViewController {
             
             shouldAnimateMenuView = false
         }
+    }
+    
+    
+    /// reload the screen design based on current theme
+    func reloadTheme() {
+        backgroundImageView.image = UIImage(named: QuranManager.manager.isNightMode ? "nightFrame" : "frame")
+        self.menuImageView.image = UIImage(named: QuranManager.manager.isNightMode ? "downNight" : "drop down2")
+        collectionView.reloadData()
     }
 }
 

@@ -108,7 +108,7 @@ class PageOptionsView: UIView {
     }
     
     @IBAction func nightModeAction() {
-        //TODO: - change the app to night mode
+        QuranManager.manager.isNightMode = !QuranManager.manager.isNightMode
     }
     
     @IBAction func soundChangesAction() {

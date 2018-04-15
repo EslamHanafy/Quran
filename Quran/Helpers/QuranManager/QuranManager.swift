@@ -42,10 +42,31 @@ class QuranManager: NSObject {
     /// the delay time between each ayah
     var timeBetweenAyah: Double = 0.3
     
+    /// the audio player volume degree
     var soundDegree: Float = 1.0 {
         didSet {
             UserDefaults.standard.set(soundDegree, forKey: "soundDegree")
             player?.volume = soundDegree
+        }
+    }
+    
+    /// determine if the app should use the night mode or not
+    var isNightMode: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "isNightMode")
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: "isNightMode")
+            currentQuranController?.reloadTheme()
+        }
+    }
+    
+    
+    /// the main quran font color based on current theme
+    var fontColor: UIColor {
+        get {
+            return isNightMode ? .white : .black
         }
     }
     

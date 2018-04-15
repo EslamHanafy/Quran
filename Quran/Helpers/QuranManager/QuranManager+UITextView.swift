@@ -83,7 +83,7 @@ extension QuranManager {
         imageFrame.size.height += padding * 2
         
         let image = UIImageView(frame: imageFrame)
-        image.image = UIImage(named: "title")
+        image.image = UIImage(named: isNightMode ? "nightSurah" : "title")
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
         
