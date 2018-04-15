@@ -23,7 +23,7 @@ class QuranViewController: UIViewController {
     var shouldAnimateMenuView: Bool = true
     
     /// The screen header view
-    var header: QuranHeaderView!
+    public static var header: QuranHeaderView!
     
     /// AyahOptionsView for every ayah
     public static weak var ayahOptions: AyahOptionsView? = nil
@@ -48,7 +48,7 @@ class QuranViewController: UIViewController {
 
         initCollectionView()
         QuranViewController.ayahOptions = AyahOptionsView.getInstance(forController: self)
-        header = QuranHeaderView.getInstance(forController: self)
+        QuranViewController.header = QuranHeaderView.getInstance(forController: self)
         QuranManager.manager.currentQuranController = self
     }
     
@@ -69,7 +69,7 @@ class QuranViewController: UIViewController {
     
     //MARK: - IBAction
     @IBAction func showBarAction() {
-        header.show(forPage: QuranManager.manager.pages[currentPageNumber - 1])
+        QuranViewController.header.show(forPage: QuranManager.manager.pages[currentPageNumber - 1])
     }
 }
 
@@ -163,11 +163,19 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: screenWidth * 0.9, height: screenHeight * 0.8898)
+        return CGSize(width: screenWidth * 0.9, height: screenHeight * 0.9)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

@@ -22,6 +22,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Gp-dl-WmB" userLabel="optionsView">
                     <rect key="frame" x="0.0" y="20" width="59" height="59"/>
                     <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8C-P2-xEf">
+                            <rect key="frame" x="2" y="2" width="55" height="55"/>
+                            <connections>
+                                <action selector="hideAction" destination="iN0-l3-epB" eventType="touchUpInside" id="rqV-sS-fxF"/>
+                            </connections>
+                        </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="more" translatesAutoresizingMaskIntoConstraints="NO" id="J0H-Kx-yW7">
                             <rect key="frame" x="17" y="17" width="23.333333333333329" height="23.333333333333329"/>
                             <constraints>
@@ -31,14 +37,18 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="H8C-P2-xEf" secondAttribute="trailing" constant="2" id="15H-0t-TWG"/>
+                        <constraint firstItem="H8C-P2-xEf" firstAttribute="top" secondItem="5Gp-dl-WmB" secondAttribute="top" constant="2" id="HQd-EZ-HMW"/>
+                        <constraint firstItem="H8C-P2-xEf" firstAttribute="leading" secondItem="5Gp-dl-WmB" secondAttribute="leading" constant="2" id="HVI-cS-Q7O"/>
                         <constraint firstItem="J0H-Kx-yW7" firstAttribute="width" secondItem="5Gp-dl-WmB" secondAttribute="width" multiplier="0.4" id="IYq-2n-0kG"/>
                         <constraint firstItem="J0H-Kx-yW7" firstAttribute="centerX" secondItem="5Gp-dl-WmB" secondAttribute="centerX" id="M1n-VZ-pfP"/>
                         <constraint firstAttribute="width" secondItem="5Gp-dl-WmB" secondAttribute="height" multiplier="1:1" id="Oiq-8o-IDH"/>
                         <constraint firstItem="J0H-Kx-yW7" firstAttribute="centerY" secondItem="5Gp-dl-WmB" secondAttribute="centerY" id="azT-rg-jhX"/>
+                        <constraint firstAttribute="bottom" secondItem="H8C-P2-xEf" secondAttribute="bottom" constant="2" id="zFr-FK-f1d"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHC-iM-b5h" userLabel="containerView">
-                    <rect key="frame" x="7" y="79" width="45" height="367"/>
+                    <rect key="frame" x="7" y="89" width="45" height="367"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aqq-FG-vXV" userLabel="soundView">
                             <rect key="frame" x="0.0" y="20" width="45" height="45"/>
@@ -134,7 +144,7 @@
                                     </connections>
                                 </button>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pause icon" translatesAutoresizingMaskIntoConstraints="NO" id="JAV-U7-hTn">
-                                    <rect key="frame" x="12.33333333333333" y="12.333333333333341" width="20.666666666666671" height="20.333333333333329"/>
+                                    <rect key="frame" x="12.33333333333333" y="12.333333333333313" width="20.666666666666671" height="20.333333333333329"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="JAV-U7-hTn" secondAttribute="height" multiplier="1:1" id="dk2-Tl-Ccv"/>
                                     </constraints>
@@ -265,7 +275,7 @@
                     </constraints>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ay3-d1-AEi" userLabel="soundSliderView">
-                    <rect key="frame" x="60" y="98.333333333333329" width="240" height="44.999999999999986"/>
+                    <rect key="frame" x="60" y="108.33333333333331" width="240" height="45"/>
                     <subviews>
                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="QFb-Hd-CVj">
                             <rect key="frame" x="6" y="8" width="228" height="31"/>
@@ -287,7 +297,7 @@
                     </constraints>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FyM-BJ-6CD" userLabel="modesView">
-                    <rect key="frame" x="60" y="146" width="240" height="45"/>
+                    <rect key="frame" x="60" y="156" width="240" height="45"/>
                     <subviews>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fT0-Fp-4Mp">
                             <rect key="frame" x="8" y="8.3333333333333428" width="224" height="29"/>
@@ -314,7 +324,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="5Gp-dl-WmB" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="3hp-cr-Obb"/>
                 <constraint firstItem="FyM-BJ-6CD" firstAttribute="centerY" secondItem="fs7-cB-lfx" secondAttribute="centerY" id="6Ke-4T-vG4"/>
@@ -323,7 +333,7 @@
                 <constraint firstItem="tHC-iM-b5h" firstAttribute="centerX" secondItem="5Gp-dl-WmB" secondAttribute="centerX" id="FyY-7t-hSa"/>
                 <constraint firstItem="5Gp-dl-WmB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="LIS-gK-x12"/>
                 <constraint firstItem="ay3-d1-AEi" firstAttribute="centerY" secondItem="dl6-iS-y4t" secondAttribute="centerY" id="SNq-jh-ASW"/>
-                <constraint firstItem="tHC-iM-b5h" firstAttribute="top" secondItem="5Gp-dl-WmB" secondAttribute="bottom" id="bmh-po-07f"/>
+                <constraint firstItem="tHC-iM-b5h" firstAttribute="top" secondItem="5Gp-dl-WmB" secondAttribute="bottom" constant="10" id="bmh-po-07f"/>
                 <constraint firstItem="FyM-BJ-6CD" firstAttribute="leading" secondItem="tHC-iM-b5h" secondAttribute="trailing" constant="8" id="mhX-s3-6XJ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

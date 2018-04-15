@@ -113,7 +113,12 @@ extension AyahOptionsView {
     }
     
     
-    /// show the popup view with given CartItem
+    
+    /// show the popup view for the given ayah
+    ///
+    /// - Parameters:
+    ///   - ayah: Ayah object that contain the ayah data
+    ///   - point: ayah location in the screen
     func show(optionsForAyah ayah: Ayah, atLocation point: CGPoint) {
         self.ayah = ayah
         

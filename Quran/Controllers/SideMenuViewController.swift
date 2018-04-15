@@ -50,7 +50,7 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
             self.closeRight()
         }else{
             if items[indexPath.row].screenId == SHARE_APP_ID {
-                //TODO: - Share the app
+                share(items: [Config.APPSTORE_URL], forController: self, excludedActivityTypes: [.addToReadingList, .airDrop, .assignToContact, .saveToCameraRoll, .print])
             }else {
                 mainQueue {
                     goToView(withId: self.items[indexPath.row].screenId, fromController: self)
@@ -64,7 +64,7 @@ extension SideMenuViewController: UITableViewDataSource, UITableViewDelegate {
         
         items.append(MenuItem(title: "القرآن الكريم", icon: "book", screenId: "Home"))
         items.append(MenuItem(title: "الأجزاء", icon: "list", screenId: "JuzScreen"))
-        items.append(MenuItem(title: "عن التطبيق", icon: "info", screenId: ""))
+        items.append(MenuItem(title: "عن التطبيق", icon: "info", screenId: "AboutScreem"))
         items.append(MenuItem(title: "مشاركة التطبيق", icon: "Share 2", screenId: "share"))
         items.append(MenuItem(title: "علامات الفواصل", icon: "Bookmark", screenId: "BookMarksScreem"))
         

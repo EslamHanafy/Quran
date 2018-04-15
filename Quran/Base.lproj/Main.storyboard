@@ -45,7 +45,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="53.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="القرآن الكريم" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdG-m3-mFo">
-                                        <rect key="frame" x="141.5" y="16" width="92.5" height="20.5"/>
+                                        <rect key="frame" x="142" y="16.5" width="92.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -95,16 +95,16 @@
                                 <rect key="frame" x="0.0" y="73.5" width="375" height="33"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROR-ty-i7R">
-                                        <rect key="frame" x="333.5" y="0.0" width="33.5" height="33"/>
+                                        <rect key="frame" x="334" y="0.0" width="33" height="33"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRB-PN-n1w">
-                                                <rect key="frame" x="0.0" y="0.0" width="33.5" height="33"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
                                                 <connections>
                                                     <action selector="searchAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="rs0-PW-rlH"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Search" translatesAutoresizingMaskIntoConstraints="NO" id="aa3-3h-RNu">
-                                                <rect key="frame" x="8.5" y="8.5" width="17" height="16.5"/>
+                                                <rect key="frame" x="8.5" y="8.5" width="17" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="aa3-3h-RNu" secondAttribute="height" multiplier="1:1" id="vIA-b6-lti"/>
                                                 </constraints>
@@ -123,7 +123,7 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="البحث" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YeJ-VZ-YKD">
-                                        <rect key="frame" x="8" y="0.0" width="325.5" height="33"/>
+                                        <rect key="frame" x="8" y="0.0" width="326" height="33"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="search"/>
@@ -132,6 +132,9 @@
                                                 <color key="value" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="30"/>
+                                        </variation>
                                         <connections>
                                             <action selector="searchAction" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="8tK-uK-201"/>
                                             <action selector="searchTextChangeAction" destination="BYZ-38-t0r" eventType="editingChanged" id="n3A-Yo-58e"/>
@@ -206,13 +209,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo side menu" translatesAutoresizingMaskIntoConstraints="NO" id="RZW-zM-aGV">
-                                <rect key="frame" x="56.5" y="20" width="262.5" height="262"/>
+                                <rect key="frame" x="56.5" y="20" width="262.5" height="262.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RZW-zM-aGV" secondAttribute="height" multiplier="1:1" id="3gc-nn-teP"/>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="voH-sI-CXy">
-                                <rect key="frame" x="16" y="282" width="343" height="385"/>
+                                <rect key="frame" x="16" y="282.5" width="343" height="384.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="uOu-ae-P40" id="M2J-gg-5RC"/>
@@ -252,7 +255,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="53.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الأجزاء" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0G-GJ-3XU">
-                                        <rect key="frame" x="166" y="16" width="42.5" height="20.5"/>
+                                        <rect key="frame" x="166" y="16.5" width="42.5" height="20.5"/>
                                         <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -302,16 +305,16 @@
                                 <rect key="frame" x="0.0" y="73.5" width="375" height="33"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ebr-Fu-IOG">
-                                        <rect key="frame" x="333.5" y="0.0" width="33.5" height="33"/>
+                                        <rect key="frame" x="334" y="0.0" width="33" height="33"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGn-5m-lWK">
-                                                <rect key="frame" x="0.0" y="0.0" width="33.5" height="33"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
                                                 <connections>
                                                     <action selector="searchAction" destination="Bfb-EO-c4b" eventType="touchUpInside" id="3Pa-ec-KSR"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Search" translatesAutoresizingMaskIntoConstraints="NO" id="vmr-mG-Qt0">
-                                                <rect key="frame" x="8.5" y="8.5" width="17" height="16.5"/>
+                                                <rect key="frame" x="8.5" y="8.5" width="17" height="17"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="vmr-mG-Qt0" secondAttribute="height" multiplier="1:1" id="0VJ-yn-oZy"/>
                                                 </constraints>
@@ -330,7 +333,7 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="البحث" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dvf-0t-LZk">
-                                        <rect key="frame" x="8" y="0.0" width="325.5" height="33"/>
+                                        <rect key="frame" x="8" y="0.0" width="326" height="33"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="search"/>
@@ -339,6 +342,9 @@
                                                 <color key="value" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="30"/>
+                                        </variation>
                                         <connections>
                                             <action selector="searchAction" destination="Bfb-EO-c4b" eventType="editingDidEndOnExit" id="GWZ-yz-Igc"/>
                                             <action selector="searchTextChangeAction" destination="Bfb-EO-c4b" eventType="editingChanged" id="sBl-Cx-dAs"/>
@@ -510,7 +516,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="53.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="علامات الفواصل" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bik-em-hNO">
-                                        <rect key="frame" x="132" y="16" width="111" height="20.5"/>
+                                        <rect key="frame" x="132" y="16.5" width="111" height="20.5"/>
                                         <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -598,13 +604,159 @@
             </objects>
             <point key="canvasLocation" x="1706" y="815"/>
         </scene>
+        <!--About Us View Controller-->
+        <scene sceneID="vSi-mv-Y3i">
+            <objects>
+                <viewController storyboardIdentifier="AboutScreem" id="Lrk-df-CNT" customClass="AboutUsViewController" customModule="Quran" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5zr-AH-8lP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QCA-sR-cWo" userLabel="headerView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="53.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="عن القارئ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VU-3h-Iu4">
+                                        <rect key="frame" x="154" y="16.5" width="67" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="19"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="38"/>
+                                        </variation>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpM-d7-EkX" userLabel="backView">
+                                        <rect key="frame" x="321.5" y="0.0" width="53.5" height="53.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXy-V1-eBG">
+                                                <rect key="frame" x="0.0" y="0.0" width="53.5" height="53.5"/>
+                                                <connections>
+                                                    <action selector="backAction" destination="Lrk-df-CNT" eventType="touchUpInside" id="cDy-2m-FWK"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Back" translatesAutoresizingMaskIntoConstraints="NO" id="LbW-Zi-MMQ">
+                                                <rect key="frame" x="17" y="15.5" width="21" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="LbW-Zi-MMQ" secondAttribute="height" multiplier="1:1" id="PUq-oU-WRv"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="fXy-V1-eBG" secondAttribute="bottom" id="8UR-TA-P1n"/>
+                                            <constraint firstAttribute="trailing" secondItem="fXy-V1-eBG" secondAttribute="trailing" id="SfN-Qh-44C"/>
+                                            <constraint firstAttribute="width" secondItem="bpM-d7-EkX" secondAttribute="height" multiplier="1:1" id="Ufi-FA-HgE"/>
+                                            <constraint firstItem="LbW-Zi-MMQ" firstAttribute="width" secondItem="bpM-d7-EkX" secondAttribute="width" multiplier="0.4" id="WF0-aI-HxK"/>
+                                            <constraint firstItem="fXy-V1-eBG" firstAttribute="leading" secondItem="bpM-d7-EkX" secondAttribute="leading" id="c6d-eR-Mxv"/>
+                                            <constraint firstItem="fXy-V1-eBG" firstAttribute="top" secondItem="bpM-d7-EkX" secondAttribute="top" id="hIx-Hw-i61"/>
+                                            <constraint firstItem="LbW-Zi-MMQ" firstAttribute="centerX" secondItem="bpM-d7-EkX" secondAttribute="centerX" id="htI-Tt-lmc"/>
+                                            <constraint firstItem="LbW-Zi-MMQ" firstAttribute="centerY" secondItem="bpM-d7-EkX" secondAttribute="centerY" id="sod-qu-O9c"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.40947034960000001" green="0.64981418849999995" blue="0.34713888170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="bpM-d7-EkX" secondAttribute="trailing" id="3vb-mC-3qv"/>
+                                    <constraint firstAttribute="bottom" secondItem="bpM-d7-EkX" secondAttribute="bottom" id="Gah-Wh-kRQ"/>
+                                    <constraint firstItem="bpM-d7-EkX" firstAttribute="top" secondItem="QCA-sR-cWo" secondAttribute="top" id="LRE-xp-skb"/>
+                                    <constraint firstItem="0VU-3h-Iu4" firstAttribute="centerX" secondItem="QCA-sR-cWo" secondAttribute="centerX" id="f0Z-hn-kBm"/>
+                                    <constraint firstItem="0VU-3h-Iu4" firstAttribute="centerY" secondItem="QCA-sR-cWo" secondAttribute="centerY" id="h5K-8a-IVo"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zgX-um-GTz" userLabel="containerView">
+                                <rect key="frame" x="0.0" y="73.5" width="375" height="593.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="Woq-0D-YZr">
+                                        <rect key="frame" x="121.5" y="28" width="131.5" height="131.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Woq-0D-YZr" secondAttribute="height" multiplier="1:1" id="aCO-kc-iPx"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3bI-gg-ojP">
+                                        <rect key="frame" x="16" y="179.5" width="343" height="330.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <string key="text">يقدم هذا التطبيق خدمة استماع وقراءة القرآن الكريم
+بدون اتصال شبكي
+بصوت القارئ المعلم السيد حيدر الجوادى المرحوم بأذن
+الله
+نسأل الله الرحمة والمغفرة للمعلم الفاضل
+ونسألكم الفاتحة والدعاء له</string>
+                                        <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="GESSTextLight-Light" family="GE SS" pointSize="30"/>
+                                        </variation>
+                                    </textView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2vR-H0-D1i">
+                                        <rect key="frame" x="163" y="518" width="48" height="47.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haf-T1-tI8">
+                                                <rect key="frame" x="0.0" y="-0.5" width="48" height="48"/>
+                                                <connections>
+                                                    <action selector="shareAction" destination="Lrk-df-CNT" eventType="touchUpInside" id="RQP-uj-a9U"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Share" translatesAutoresizingMaskIntoConstraints="NO" id="kDY-iP-tlb">
+                                                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="kDY-iP-tlb" secondAttribute="height" multiplier="1:1" id="0fJ-Qa-a2J"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="kDY-iP-tlb" firstAttribute="centerY" secondItem="2vR-H0-D1i" secondAttribute="centerY" id="61N-rk-cYp"/>
+                                            <constraint firstItem="haf-T1-tI8" firstAttribute="top" secondItem="2vR-H0-D1i" secondAttribute="top" id="NT0-SI-OSU"/>
+                                            <constraint firstAttribute="trailing" secondItem="haf-T1-tI8" secondAttribute="trailing" id="PMi-ft-eMk"/>
+                                            <constraint firstAttribute="bottom" secondItem="haf-T1-tI8" secondAttribute="bottom" id="b5h-4x-xV4"/>
+                                            <constraint firstAttribute="width" secondItem="2vR-H0-D1i" secondAttribute="height" multiplier="1:1" id="ei3-nh-gY9"/>
+                                            <constraint firstItem="kDY-iP-tlb" firstAttribute="width" secondItem="2vR-H0-D1i" secondAttribute="width" id="hUs-iR-A0j"/>
+                                            <constraint firstItem="kDY-iP-tlb" firstAttribute="centerX" secondItem="2vR-H0-D1i" secondAttribute="centerX" id="nRJ-gv-g9a"/>
+                                            <constraint firstItem="haf-T1-tI8" firstAttribute="leading" secondItem="2vR-H0-D1i" secondAttribute="leading" id="q75-dc-DWV"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="2vR-H0-D1i" firstAttribute="height" secondItem="zgX-um-GTz" secondAttribute="height" multiplier="0.08" id="K9O-UU-9P5"/>
+                                    <constraint firstItem="Woq-0D-YZr" firstAttribute="width" secondItem="zgX-um-GTz" secondAttribute="width" multiplier="0.35" id="Nyv-lb-Dqg"/>
+                                    <constraint firstItem="3bI-gg-ojP" firstAttribute="leading" secondItem="zgX-um-GTz" secondAttribute="leadingMargin" constant="8" id="TIH-1Q-OL6"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="2vR-H0-D1i" secondAttribute="bottom" constant="20" id="VIL-7v-dM5"/>
+                                    <constraint firstItem="Woq-0D-YZr" firstAttribute="centerX" secondItem="zgX-um-GTz" secondAttribute="centerX" id="YSR-ZG-ilb"/>
+                                    <constraint firstItem="2vR-H0-D1i" firstAttribute="centerX" secondItem="zgX-um-GTz" secondAttribute="centerX" id="Ym1-LE-V77"/>
+                                    <constraint firstItem="Woq-0D-YZr" firstAttribute="top" secondItem="zgX-um-GTz" secondAttribute="topMargin" constant="20" id="eeQ-gs-lGd"/>
+                                    <constraint firstItem="2vR-H0-D1i" firstAttribute="top" secondItem="3bI-gg-ojP" secondAttribute="bottom" constant="8" id="j8Y-lT-hzJ"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="3bI-gg-ojP" secondAttribute="trailing" constant="8" id="pUA-WS-eNO"/>
+                                    <constraint firstItem="3bI-gg-ojP" firstAttribute="top" secondItem="Woq-0D-YZr" secondAttribute="bottom" constant="20" id="ptO-yy-2MM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.40947034960000001" green="0.64981418849999995" blue="0.34713888170000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zgX-um-GTz" firstAttribute="leading" secondItem="Dl3-eN-iQ1" secondAttribute="leading" id="2d4-2G-C7g"/>
+                            <constraint firstItem="QCA-sR-cWo" firstAttribute="top" secondItem="Dl3-eN-iQ1" secondAttribute="top" id="9Af-V8-6Oo"/>
+                            <constraint firstItem="Dl3-eN-iQ1" firstAttribute="bottom" secondItem="zgX-um-GTz" secondAttribute="bottom" id="Cvb-hR-8Zu"/>
+                            <constraint firstItem="QCA-sR-cWo" firstAttribute="height" secondItem="5zr-AH-8lP" secondAttribute="height" multiplier="0.08" id="GM8-QS-VIX"/>
+                            <constraint firstItem="QCA-sR-cWo" firstAttribute="leading" secondItem="Dl3-eN-iQ1" secondAttribute="leading" id="Go6-93-V0I"/>
+                            <constraint firstItem="QCA-sR-cWo" firstAttribute="trailing" secondItem="Dl3-eN-iQ1" secondAttribute="trailing" id="Iqc-Pv-MkR"/>
+                            <constraint firstItem="zgX-um-GTz" firstAttribute="top" secondItem="QCA-sR-cWo" secondAttribute="bottom" id="lM1-KD-9hz"/>
+                            <constraint firstItem="Dl3-eN-iQ1" firstAttribute="trailing" secondItem="zgX-um-GTz" secondAttribute="trailing" id="lf9-K8-s6G"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Dl3-eN-iQ1"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7NM-uF-N2l" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="118" y="1504"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Back" width="128" height="128"/>
         <image name="Search" width="128" height="128"/>
+        <image name="Share" width="128" height="128"/>
         <image name="drop down2" width="81" height="81"/>
         <image name="frame" width="1080" height="1920"/>
         <image name="logo side menu" width="483" height="439"/>
         <image name="menu" width="128" height="128"/>
+        <image name="user" width="256" height="256"/>
     </resources>
 </document>

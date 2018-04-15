@@ -101,7 +101,9 @@ extension DownloadView {
     }
     
     
-    /// show the popup view with given CartItem
+    ///  show the popup view with given DownloadModel
+    ///
+    /// - Parameter download: MZDownloadModel object that contain the download data
     func show(downloadModel download: MZDownloadModel) {
         self.download = download
         isPaused = false

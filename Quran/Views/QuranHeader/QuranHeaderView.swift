@@ -94,7 +94,9 @@ extension QuranHeaderView {
     }
     
     
-    /// show the popup view with given CartItem
+    ///  show the popup view with given page
+    ///
+    /// - Parameter page: Page object that contain the page data
     func show(forPage page: Page) {
         self.page = page
         

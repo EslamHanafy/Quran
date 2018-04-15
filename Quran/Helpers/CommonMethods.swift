@@ -24,6 +24,23 @@ func getValidatedNumber(fromInt number: Int) -> String {
     return faNumber!
 }
 
+/// share items like string or images to all available social media
+///
+/// - Parameters:
+///   - items: the items to share
+///   - controller: the controller that will be responsable for displaying the ActivityController
+///   - types: the excluded activity types, default value is nil
+func share(items:[Any], forController controller:UIViewController, excludedActivityTypes types:[UIActivityType]? = nil) {
+    let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+    activityViewController.popoverPresentationController?.sourceView = controller.view // so that iPads won't crash
+    
+    // exclude some activity types from the list (optional)
+    activityViewController.excludedActivityTypes = types
+    
+    // present the view controller
+    controller.present(activityViewController, animated: true, completion: nil)
+}
+
 
 //MARK: - active controller
 // Returns the most recently presented UIViewController (visible)

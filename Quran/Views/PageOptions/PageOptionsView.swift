@@ -25,20 +25,21 @@ class PageOptionsView: UIView {
     
     fileprivate var page: Page!
     
+    
+    /// determine if the soundSliderView is currently displaying
     fileprivate var isDisplayingSoundView: Bool {
         get {
             return !soundSliderView.isHidden
         }
     }
     
+    /// determine if the modesView is currently displaying
     fileprivate var isDisplayingModesView: Bool {
         get {
             return !modesView.isHidden
         }
     }
     
-    let containerHeight: CGFloat = 359
-    let subContainerWidth: CGFloat = 240
     
     /// the show/hide animation duration
     fileprivate let animationDuration: TimeInterval = 0.8
@@ -66,7 +67,7 @@ class PageOptionsView: UIView {
         if let touch = touches.first {
             if !containerView.frame.contains(touch.location(in: self)) && !soundSliderView.frame.contains(touch.location(in: self)) && !modesView.frame.contains(touch.location(in: self)) {
                 
-                self.hide()
+                self.hide(andHideHeaderView: true)
             }
         }
     }
@@ -124,6 +125,11 @@ class PageOptionsView: UIView {
             QuranManager.manager.audioMode = .learn
         }
     }
+    
+    @IBAction func hideAction() {
+        hide()
+    }
+    
 }
 
 //MARK: - Helpers
@@ -156,13 +162,37 @@ extension PageOptionsView {
         view.layoutIfNeeded()
     }
     
-    /// hide the popup view
-    func hide() {
-        hideContainerAnimation()
+    
+    /// hide page options view with the ability to hide QuranHeaderView also
+    ///
+    /// - Parameter hideHeader: determine if should hide QuranHeaderView also, true for hide it and false for keeping it, default value is false
+    func hide(andHideHeaderView hideHeader: Bool = false) {
+        var delayTime: Double = 0
+        
+        if isDisplayingModesView {
+            hideViewWithAnimation(modesView)
+            delayTime = animationDuration * 0.5
+        }
+        
+        if isDisplayingSoundView {
+            hideViewWithAnimation(soundSliderView)
+            delayTime = animationDuration * 0.5
+        }
+        
+        delay(delayTime, closure: {
+            self.hideContainerAnimation()
+            
+            if hideHeader {
+                QuranViewController.header.hide()
+            }
+        })
     }
     
     
-    /// show the popup view with given CartItem
+    
+    ///  show the popup view with given page
+    ///
+    /// - Parameter page: Page object that contain the page data
     func show(forPage page: Page) {
         self.page = page
         
@@ -170,7 +200,11 @@ extension PageOptionsView {
         showContainerAnimation()
     }
     
-    /// mark current ayah as bookmarked
+    
+    
+    /// bookmark the given ayah
+    ///
+    /// - Parameter ayah: Ayah object that contain the ayah data
     fileprivate func bookmark(ayah: Ayah) {
         DBHelper.shared.addBookMark(forAyah: ayah)
         ayah.isBookmarked = true
@@ -178,13 +212,18 @@ extension PageOptionsView {
     }
     
     
-    /// mark current ayah as not bookmarked
+    
+    /// unbookmark the given ayah
+    ///
+    /// - Parameter ayah: Ayah object that contain the ayah data
     fileprivate func unBookmark(ayah: Ayah) {
         DBHelper.shared.delete(bookmarkForAyah: ayah)
         ayah.isBookmarked = false
         displayAlertWithTimer("تم حذف الفاصل بنجاح", forController: self.parent, timeInSeconds: 3.0)
     }
     
+    
+    /// play or pause the QuranManager audio player
     fileprivate func playOrPauseCurrentAyahIfNeeded() {
         if QuranManager.manager.player == nil {
             playFirstAyah()
@@ -199,6 +238,8 @@ extension PageOptionsView {
         }
     }
     
+    
+    /// play the first ayah in this page
     fileprivate func playFirstAyah() {
         guard let ayah = page.getAllSurah().first?.allAyah.first else {
             return
@@ -242,6 +283,10 @@ extension PageOptionsView {
         }
     }
     
+    
+    /// show the given view with animation
+    ///
+    /// - Parameter view: the view that you want to display
     fileprivate func showViewWithAnimation(_ view: UIView) {
         view.transform = CGAffineTransform(scaleX: 0, y: 1)
         view.isHidden = false
@@ -251,6 +296,10 @@ extension PageOptionsView {
         }, completion: nil)
     }
     
+    
+    /// hide the given view with animation
+    ///
+    /// - Parameter view: the view that you want to hide
     fileprivate func hideViewWithAnimation(_ view: UIView) {
         
         UIView.animate(withDuration: animationDuration * 0.5, animations: {
