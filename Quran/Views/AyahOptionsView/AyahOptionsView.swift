@@ -122,10 +122,20 @@ extension AyahOptionsView {
     func show(optionsForAyah ayah: Ayah, atLocation point: CGPoint) {
         self.ayah = ayah
         
+        updateDesign()
         prepareActions()
         showAnimation(fromPoint: getValidPoint(fromPoint: point))
     }
     
+    /// update design colors based on current theme
+    func updateDesign() {
+        let color: UIColor = QuranManager.manager.isNightMode ? UIColor(red: 194/255.0, green: 194/255.0, blue: 194/255.0, alpha: 1.0) : UIColor(red: 104/255.0, green: 166/255.0, blue: 89/255.0, alpha: 1.0)
+        
+        containerView.backgroundColor = color
+        
+        containerView.layer.sublayers?.first?.removeFromSuperlayer()
+        containerView.addPikeOnView(side: .Bottom)
+    }
     
     /// get valid point from the given point and ensure it will be inside the screen
     ///

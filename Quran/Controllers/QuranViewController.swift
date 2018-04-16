@@ -147,9 +147,13 @@ extension QuranViewController {
     
     /// reload the screen design based on current theme
     func reloadTheme() {
-        backgroundImageView.image = UIImage(named: QuranManager.manager.isNightMode ? "nightFrame" : "frame")
-        self.menuImageView.image = UIImage(named: QuranManager.manager.isNightMode ? "downNight" : "drop down2")
-        collectionView.reloadData()
+        UIView.animate(withDuration: 0.3) {
+            self.backgroundImageView.image = UIImage(named: QuranManager.manager.isNightMode ? "nightFrame" : "frame")
+            self.menuImageView.image = UIImage(named: QuranManager.manager.isNightMode ? "downNight" : "drop down2")
+            self.collectionView.reloadData()
+            QuranViewController.header.updateDesign()
+            QuranViewController.ayahOptions?.updateDesign()
+        }
     }
 }
 

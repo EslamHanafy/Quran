@@ -100,6 +100,7 @@ extension QuranHeaderView {
     func show(forPage page: Page) {
         self.page = page
         
+        updateDesign()
         updatePageData()
         showAnimation()
     }
@@ -109,6 +110,15 @@ extension QuranHeaderView {
         self.pageLabel.text = String(page.id)
         self.surahLabel.text = page.getAllSurah().first?.name ?? ""
         self.juzLabel.text = page.juz.name
+    }
+    
+    
+    /// update design colors based on current theme
+    func updateDesign() {
+        let color: UIColor = QuranManager.manager.isNightMode ? UIColor(red: 194/255.0, green: 194/255.0, blue: 194/255.0, alpha: 0.6) : UIColor(red: 104/255.0, green: 166/255.0, blue: 89/255.0, alpha: 0.6)
+        
+        containerView.backgroundColor = color
+        pageOptions.updateDesign()
     }
 }
 

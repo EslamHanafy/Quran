@@ -196,10 +196,21 @@ extension PageOptionsView {
     func show(forPage page: Page) {
         self.page = page
         
-        pauseImageView.image = UIImage(named: QuranManager.manager.player?.isPlaying == true ? "pause icon" : "play icon")
+        updateDesign()
         showContainerAnimation()
     }
     
+    
+    /// update design based on current theme
+    func updateDesign() {
+        pauseImageView.image = UIImage(named: QuranManager.manager.player?.isPlaying == true ? "pause icon" : "play icon")
+        
+        let color: UIColor = QuranManager.manager.isNightMode ? UIColor(red: 194/255.0, green: 194/255.0, blue: 194/255.0, alpha: 0.6) : UIColor(red: 104/255.0, green: 166/255.0, blue: 89/255.0, alpha: 0.6)
+        
+        containerView.backgroundColor = color
+        soundSliderView.backgroundColor = color
+        modesView.backgroundColor = color
+    }
     
     
     /// bookmark the given ayah
