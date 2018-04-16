@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,7 +29,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="بسم الله الرحمن الرحيم" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSb-Id-69V" customClass="QuranTextView" customModule="Quran" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
+                                <rect key="frame" x="4" y="0.0" width="367.5" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="KFGQPCUthmanicScriptHAFS" family="KFGQPC Uthmanic Script HAFS" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -37,7 +38,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dSb-Id-69V" firstAttribute="centerY" secondItem="wXF-jS-vGg" secondAttribute="centerY" id="0i1-hs-YH4"/>
-                            <constraint firstItem="dSb-Id-69V" firstAttribute="width" secondItem="wXF-jS-vGg" secondAttribute="width" id="H5V-wO-qCh"/>
+                            <constraint firstItem="dSb-Id-69V" firstAttribute="width" secondItem="wXF-jS-vGg" secondAttribute="width" multiplier="0.98" id="H5V-wO-qCh"/>
                             <constraint firstItem="dSb-Id-69V" firstAttribute="height" secondItem="wXF-jS-vGg" secondAttribute="height" id="IJ6-YU-GlD"/>
                             <constraint firstItem="dSb-Id-69V" firstAttribute="centerX" secondItem="wXF-jS-vGg" secondAttribute="centerX" id="Nu8-9J-7TM"/>
                         </constraints>

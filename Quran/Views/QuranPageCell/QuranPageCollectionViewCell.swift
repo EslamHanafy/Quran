@@ -15,6 +15,14 @@ class QuranPageCollectionViewCell: UICollectionViewCell {
     var page: Page!
     
     
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.contentView.transform = CGAffineTransform(scaleX: -1, y: 1)
+    }
+    
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         

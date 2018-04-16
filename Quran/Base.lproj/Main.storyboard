@@ -452,8 +452,8 @@
                                             <constraint firstItem="P7F-IS-tgv" firstAttribute="centerY" secondItem="GLs-3y-W2d" secondAttribute="centerY" id="r6N-ag-Ghy"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAG-4t-YZm">
-                                        <rect key="frame" x="19.666666666666686" y="25.666666666666686" width="337.33333333333331" height="682.66666666666652"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAG-4t-YZm">
+                                        <rect key="frame" x="19.666666666666657" y="25.666666666666686" width="337.33333333333337" height="682.66666666666652"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nVZ-Wc-Zxm">
                                             <size key="itemSize" width="50" height="50"/>
@@ -486,8 +486,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="q7a-x2-tFR" firstAttribute="trailing" secondItem="Vqf-UJ-0VO" secondAttribute="trailing" id="DCo-yp-fDf"/>
-                            <constraint firstItem="Vqf-UJ-0VO" firstAttribute="leading" secondItem="q7a-x2-tFR" secondAttribute="leading" id="GDl-Mt-Trt"/>
+                            <constraint firstAttribute="trailing" secondItem="Vqf-UJ-0VO" secondAttribute="trailing" id="DCo-yp-fDf"/>
+                            <constraint firstItem="Vqf-UJ-0VO" firstAttribute="leading" secondItem="VN5-pf-lJ3" secondAttribute="leading" id="GDl-Mt-Trt"/>
                             <constraint firstItem="Vqf-UJ-0VO" firstAttribute="top" secondItem="q7a-x2-tFR" secondAttribute="top" id="H5G-eJ-aiN"/>
                             <constraint firstItem="q7a-x2-tFR" firstAttribute="bottom" secondItem="Vqf-UJ-0VO" secondAttribute="bottom" id="I0G-zp-egl"/>
                         </constraints>

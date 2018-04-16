@@ -75,7 +75,7 @@ extension QuranManager {
     func addTitleImage(forSurah surah: Surah, atTextView textView: UITextView) -> UIImageView {
         let range = (textView.attributedText.string as NSString).range(of: "سورة " + surah.name)
         let textFrame = self.frameOftext(inTextView: textView, atRange: range)
-        let padding: CGFloat = 55
+        let padding: CGFloat = isIpadScreen ? 110 : 55
         var imageFrame = textFrame
         imageFrame.origin.x -= padding
         imageFrame.origin.y -= padding + 2

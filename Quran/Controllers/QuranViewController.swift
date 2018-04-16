@@ -22,6 +22,8 @@ class QuranViewController: UIViewController {
     /// determine if should play the menu icon animation
     var shouldAnimateMenuView: Bool = true
     
+    var shouldScrollToCurrentPage: Bool = true
+    
     /// The screen header view
     public static var header: QuranHeaderView!
     
@@ -65,6 +67,7 @@ class QuranViewController: UIViewController {
         super.viewDidAppear(animated)
         
         animateMenuButtonIfNeeded()
+        shouldScrollToCurrentPage = false
     }
     
     
@@ -79,7 +82,7 @@ extension QuranViewController {
     
     /// scroll to currentPageNumber
     func scrollToCurrentPageIfNeeded() {
-        if currentPageNumber > 0 {
+        if currentPageNumber > 0 && shouldScrollToCurrentPage {
             collectionView.scrollToItem(at: IndexPath(item: currentPageNumber - 1, section: 0), at: UICollectionViewScrollPosition.left, animated: false)
         }
         
@@ -195,9 +198,9 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageWidth = scrollView.frame.size.width
-        var page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
-        page = Int(abs(Int32(page - 603)))
+        let page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
         currentPageNumber = page + 1
+//        collectionView.scrollToItem(at: IndexPath(item: currentPageNumber - 1, section: 0), at: UICollectionViewScrollPosition.left, animated: false)
         updateTextView()
         print("will display cell at index: \(currentPageNumber)")
     }
@@ -211,6 +214,7 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func initCollectionView() {
         collectionLayout.minimumInteritemSpacing = 0
         collectionLayout.minimumLineSpacing = 0
+        collectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
         collectionView.register(UINib(nibName: "QuranPageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
     }
 }
