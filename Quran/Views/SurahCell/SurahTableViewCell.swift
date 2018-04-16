@@ -18,7 +18,7 @@ class SurahTableViewCell: UITableViewCell {
     ///
     /// - Parameter sura: Sura object that contain the sura data
     func initWith(sura: Surah) {
-        titleLabel.text = sura.name
+        titleLabel.text = getValidatedNumber(fromInt: Int(sura.id)) + "- " + sura.name
         numberLabel.text = getValidatedNumber(fromInt: Int(sura.page))
     }
 }

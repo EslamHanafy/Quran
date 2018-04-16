@@ -116,6 +116,11 @@ extension QuranManager {
             return resumeCurrentAyah()
         }
         
+        // set ayah repeats for learning mode
+        if ayah != currentAyah && audioMode == .learn && remainingRepeats == 0 {
+            remainingRepeats = repeats - 1
+        }
+        
         self.currentAyah = ayah
         
         guard let path = ayah.audioFiles.path(forMode: audioMode) else {
@@ -167,7 +172,7 @@ extension QuranManager {
     /// pause current ayah
     func pauseCurrentAyah() {
         player?.pause()
-        
+        remainingRepeats = 0
         stopLastAyahIfNeeded()
     }
     
@@ -214,7 +219,12 @@ extension QuranManager {
 //MARK: - AudioPlayerDelegate
 extension QuranManager: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        playNextAyahIfNeeded()
+        if audioMode == .learn && remainingRepeats != 0 {
+            play(ayah: currentAyah!)
+            remainingRepeats -= 1
+        }else {
+            playNextAyahIfNeeded()
+        }
     }
 }
 

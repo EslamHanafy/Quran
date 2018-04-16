@@ -27,6 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //start the quran manager
         QuranManager.manager.begin()
         
+        //change tint color based on current theme
+        UIApplication.shared.keyWindow?.tintColor = QuranManager.manager.isNightMode ? .black : UIColor(red: 104/255.0, green: 166/255.0, blue: 89/255.0, alpha: 1.0)
+        
         return true
     }
 

@@ -50,6 +50,12 @@ class QuranManager: NSObject {
         }
     }
     
+    /// the number of repeats for each ayah at learning mode
+    var repeats: Int = 1
+    
+    /// the number of remaining repeats for current ayah at learning mode
+    var remainingRepeats: Int = 0
+    
     /// determine if the app should use the night mode or not
     var isNightMode: Bool {
         get {

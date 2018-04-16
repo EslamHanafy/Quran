@@ -123,6 +123,7 @@ class PageOptionsView: UIView {
             QuranManager.manager.audioMode = .memorize
         default:
             QuranManager.manager.audioMode = .learn
+            displayRepeatsAlert()
         }
     }
     
@@ -210,6 +211,9 @@ extension PageOptionsView {
         containerView.backgroundColor = color
         soundSliderView.backgroundColor = color
         modesView.backgroundColor = color
+        
+        let color2: UIColor = hexStringToUIColor(hex: QuranManager.manager.isNightMode ? "FF6138" : "FFFFFF")
+        soundSlider.minimumTrackTintColor = color2
     }
     
     
@@ -262,6 +266,36 @@ extension PageOptionsView {
             QuranManager.manager.play(ayah: ayah)
             pauseImageView.image = UIImage(named: "pause icon")
         }
+    }
+    
+    
+    /// display repeats options for each ayah at learning mode
+    fileprivate func displayRepeatsAlert() {
+        let alert = UIAlertController(title: "التكرار", message: "من فضلك اختر عدد مرات التكرار لكل آية", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "مرة واحدة", style: .default, handler: { (_) in
+            QuranManager.manager.repeats = 1
+        }))
+        
+        alert.addAction(UIAlertAction(title: "مرتين", style: .default, handler: { (_) in
+            QuranManager.manager.repeats = 2
+        }))
+        
+        alert.addAction(UIAlertAction(title: "ثلاث مرات", style: .default, handler: { (_) in
+            QuranManager.manager.repeats = 3
+        }))
+        
+        alert.addAction(UIAlertAction(title: "اربع مرات", style: .default, handler: { (_) in
+            QuranManager.manager.repeats = 4
+        }))
+        
+        alert.addAction(UIAlertAction(title: "خمس مرات", style: .default, handler: { (_) in
+            QuranManager.manager.repeats = 5
+        }))
+        
+        alert.popoverPresentationController?.sourceView = modesView
+        
+        getCurrentViewController()?.present(alert, animated: true, completion: nil)
     }
 }
 

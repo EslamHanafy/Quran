@@ -180,7 +180,6 @@ extension QuranTextView {
         if ayah.isBookmarked {
             self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.red, range: range)
         }else {
-//            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
             self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: QuranManager.manager.fontColor, range: range)
         }
         
@@ -195,9 +194,9 @@ extension QuranTextView {
         let range =  QuranManager.manager.getRangeForAyah(atIndex: getIndex(forAyah: ayah), fromTextView: self)
         
         if ayah.isPlaying {
-            self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.blue, range: range)
+            let color: UIColor = hexStringToUIColor(hex: QuranManager.manager.isNightMode ? "FF6138" : "0881A3")
+            self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
         }else {
-//            self.attributedString.removeAttribute(NSAttributedStringKey.foregroundColor, range: range)
             self.attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: QuranManager.manager.fontColor, range: range)
         }
         
