@@ -182,7 +182,7 @@ extension QuranManager {
         
         if let prev = previousAyah {
             if let ayah = prev.ayah {
-                if prev.pagePosition == .nextPage {
+                if prev.pagePosition == .previousPage {
                     currentQuranController.scrollToPreviousPage()
                 }
                     

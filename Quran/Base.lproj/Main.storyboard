@@ -424,8 +424,8 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="frame" translatesAutoresizingMaskIntoConstraints="NO" id="Hdg-NI-a1u">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                                     </imageView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAG-4t-YZm">
-                                        <rect key="frame" x="19.666666666666657" y="25.666666666666686" width="337.33333333333337" height="682.66666666666652"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAG-4t-YZm">
+                                        <rect key="frame" x="19.666666666666686" y="29.333333333333314" width="337.33333333333331" height="675.33333333333348"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nVZ-Wc-Zxm">
                                             <size key="itemSize" width="50" height="50"/>
@@ -473,7 +473,7 @@
                                     <constraint firstItem="Hdg-NI-a1u" firstAttribute="top" secondItem="Vqf-UJ-0VO" secondAttribute="top" id="Ebm-kj-ttU"/>
                                     <constraint firstItem="wAG-4t-YZm" firstAttribute="width" secondItem="Vqf-UJ-0VO" secondAttribute="width" multiplier="0.9" id="GfS-2C-qqe"/>
                                     <constraint firstAttribute="bottom" secondItem="Hdg-NI-a1u" secondAttribute="bottom" id="Nam-3L-24i"/>
-                                    <constraint firstItem="wAG-4t-YZm" firstAttribute="height" secondItem="Vqf-UJ-0VO" secondAttribute="height" multiplier="0.93" id="VRT-y8-ntx"/>
+                                    <constraint firstItem="wAG-4t-YZm" firstAttribute="height" secondItem="Vqf-UJ-0VO" secondAttribute="height" multiplier="0.92" id="VRT-y8-ntx"/>
                                     <constraint firstItem="GLs-3y-W2d" firstAttribute="width" secondItem="Vqf-UJ-0VO" secondAttribute="width" multiplier="0.075" id="Xah-qC-9IA"/>
                                     <constraint firstItem="GLs-3y-W2d" firstAttribute="centerX" secondItem="Hdg-NI-a1u" secondAttribute="centerX" id="cB8-4N-WIW"/>
                                     <constraint firstItem="GLs-3y-W2d" firstAttribute="top" secondItem="Hdg-NI-a1u" secondAttribute="top" constant="-2" id="eFc-qK-bAS"/>

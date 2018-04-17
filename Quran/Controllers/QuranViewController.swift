@@ -18,11 +18,11 @@ class QuranViewController: UIViewController {
     /// determine which page is currently displaying and what page should be displayed at the beginning
     var currentPageNumber: Int = 0
     
+    var shouldScrollToCurrentPage: Bool = true
     
     /// determine if should play the menu icon animation
     var shouldAnimateMenuView: Bool = true
     
-    var shouldScrollToCurrentPage: Bool = true
     
     /// The screen header view
     public static var header: QuranHeaderView!
@@ -67,7 +67,13 @@ class QuranViewController: UIViewController {
         super.viewDidAppear(animated)
         
         animateMenuButtonIfNeeded()
+        
+        if shouldScrollToCurrentPage {
+            collectionView.reloadData()
+        }
+        
         shouldScrollToCurrentPage = false
+        updateTextView()
     }
     
     
@@ -83,7 +89,8 @@ extension QuranViewController {
     /// scroll to currentPageNumber
     func scrollToCurrentPageIfNeeded() {
         if currentPageNumber > 0 && shouldScrollToCurrentPage {
-            collectionView.scrollToItem(at: IndexPath(item: currentPageNumber - 1, section: 0), at: UICollectionViewScrollPosition.left, animated: false)
+            collectionView.scrollToItem(at: IndexPath(item: currentPageNumber - 1, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
+            collectionView.reloadData()
         }
         
         updateTextView()
@@ -114,7 +121,7 @@ extension QuranViewController {
     
     /// scroll to previous page in the quran
     func scrollToPreviousPage() {
-        if currentPageNumber > 0 {
+        if currentPageNumber > 1 {
             currentPageNumber -= 1
             
             let indexPath = IndexPath(item: currentPageNumber - 1, section: 0)
@@ -181,7 +188,7 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: screenWidth * 0.9, height: screenHeight * 0.9)
+        return collectionView.frame.size
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -192,15 +199,11 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
         return 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let pageWidth = scrollView.frame.size.width
         let page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
-        currentPageNumber = page + 1
-//        collectionView.scrollToItem(at: IndexPath(item: currentPageNumber - 1, section: 0), at: UICollectionViewScrollPosition.left, animated: false)
+        currentPageNumber = 603 - page + 1
         updateTextView()
         print("will display cell at index: \(currentPageNumber)")
     }
@@ -212,9 +215,6 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     /// init the collection view for the first time
     func initCollectionView() {
-        collectionLayout.minimumInteritemSpacing = 0
-        collectionLayout.minimumLineSpacing = 0
-        collectionView.transform = CGAffineTransform(scaleX: -1, y: 1)
         collectionView.register(UINib(nibName: "QuranPageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
     }
 }
