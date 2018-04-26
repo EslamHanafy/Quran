@@ -64,13 +64,13 @@ extension QuranManager {
             if ayah.id == 1 {
                 //add new line after the last surah if needed
                 if surahIndex.surah != 0 {
-                    attributedString.append(NSAttributedString(string: "\n"))
+                    attributedString.append(NSAttributedString(string: "\n\n"))
                 }
                 
                 //add the surah name
                 attributedString.append(NSAttributedString(string: "سورة " + surah.name, attributes: getAttributes(forType: .header, atIndex: ayahIndex)))
                 
-                attributedString.append(NSAttributedString(string: "\n"))
+                attributedString.append(NSAttributedString(string: "\n\n"))
                 
                 //check if it's for first surah in quran
                 if surah.id == 1 {

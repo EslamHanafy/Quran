@@ -13,7 +13,7 @@ class QuranViewController: UIViewController {
     @IBOutlet var collectionLayout: UICollectionViewFlowLayout!
     @IBOutlet var menuView: UIView!
     @IBOutlet var menuImageView: UIImageView!
-    @IBOutlet var backgroundImageView: UIImageView!
+    @IBOutlet var containerView: UIView!
     
     /// determine which page is currently displaying and what page should be displayed at the beginning
     var currentPageNumber: Int = 0
@@ -94,6 +94,9 @@ extension QuranViewController {
         }
         
         updateTextView()
+        delay(0.3) {
+            self.updateTextView()
+        }
     }
     
     /// update current textview in QuranManager with the textview that is currently displaying in the screen
@@ -158,7 +161,7 @@ extension QuranViewController {
     /// reload the screen design based on current theme
     func reloadTheme() {
         UIView.animate(withDuration: 0.3) {
-            self.backgroundImageView.image = UIImage(named: QuranManager.manager.isNightMode ? "nightFrame" : "frame")
+            self.containerView.backgroundColor = QuranManager.manager.isNightMode ? .black : .white
             self.menuImageView.image = UIImage(named: QuranManager.manager.isNightMode ? "downNight" : "drop down2")
             self.collectionView.reloadData()
             QuranViewController.header.updateDesign()

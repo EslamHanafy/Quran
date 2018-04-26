@@ -40,7 +40,7 @@ class QuranManager: NSObject {
     var currentAyah: Ayah? = nil
     
     /// the delay time between each ayah
-    var timeBetweenAyah: Double = 0.3
+    var timeBetweenAyah: Double = 0.1
     
     /// the audio player volume degree
     var soundDegree: Float = 1.0 {
