@@ -1,4 +1,5 @@
 PODS:
+  - AEXML (4.3.0)
   - FontBlaster (4.0.3)
   - IQKeyboardManagerSwift (5.0.8)
   - NVActivityIndicatorView (4.1.1):
@@ -11,6 +12,7 @@ PODS:
   - Toast-Swift (3.0.1)
 
 DEPENDENCIES:
+  - AEXML
   - FontBlaster
   - IQKeyboardManagerSwift
   - NVActivityIndicatorView
@@ -19,6 +21,7 @@ DEPENDENCIES:
   - Toast-Swift (~> 3.0.1)
 
 SPEC CHECKSUMS:
+  AEXML: bae92c01e0da64132fd72f748721cda07466032b
   FontBlaster: f18031f5dde2ce689f5330e7005edfe3c0815957
   IQKeyboardManagerSwift: 2e7dc7f98c111458c1ea2b373f893e8cf95e2b97
   NVActivityIndicatorView: 60109b9bf46efc2e71ab81453196ccdfdfeea870
@@ -26,6 +29,6 @@ SPEC CHECKSUMS:
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: 6bb595b66999cfe553e0392c16e537022454f0fc
+PODFILE CHECKSUM: 30bcbcc3226f21e04e756b0e2396e48524e8cd05
 
 COCOAPODS: 1.4.0

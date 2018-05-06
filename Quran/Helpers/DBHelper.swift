@@ -8,6 +8,7 @@
 
 import Foundation
 import SQLite
+import AEXML
 
 class DBHelper {
     public static let shared: DBHelper = DBHelper()
@@ -448,6 +449,12 @@ class DBHelper {
     }
     
     
+    /// get audio file path for the given mode and ayah
+    ///
+    /// - Parameters:
+    ///   - ayah: Ayah object that contin the ayah data
+    ///   - mode: the wanted audio mode
+    /// - Returns: the audio path if exist
     func getPath(forAyah ayah: Ayah?, andMode mode: AudioMode) -> String? {
         guard let ayah = ayah else {
             return nil
@@ -466,4 +473,54 @@ class DBHelper {
         
         return nil
     }
+    
+    
+    /// search for ayah that contain the given text
+    ///
+    /// - Parameter text: the search keyword
+    /// - Returns: array of SearchResult
+    func searchForAyah(withText text: String) -> [SearchResult] {
+        var results: [SearchResult] = []
+        
+        let ayahTable = Table("ayah")
+        let surahTable = Table("surah")
+        let pageTable = Table("pages")
+        let surahId = Expression<Int64>("surah_id")
+        let page = Expression<Int64>("page")
+        let ayahText = Expression<String>("text")
+        let id = Expression<Int64>("id")
+        
+        do {
+            let data = try db.prepare(ayahTable.filter(ayahText.like("%\(text)%")).join(pageTable, on: ayahTable[page] == pageTable[id]).join(surahTable, on: ayahTable[surahId] == surahTable[id]))
+            for row in data {
+                results.append(SearchResult(fromRow: row))
+            }
+        } catch {
+            print("the error in searching for ayah with text: \(text), is: \(error)")
+        }
+        
+        return results
+    }
+    
+    func updateQuranFromXML() {
+        guard let path = Bundle.main.path(forResource: "quran-simple-clean", ofType: "xml"),
+        let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
+        let xml = try? AEXMLDocument(xml: data)
+        else {
+            return print("there is no xml file found")
+        }
+        
+        for surahXML in xml.root.children {
+            for ayahXML in surahXML.children {
+                print("surah name is: \(surahXML.attributes["index"]), ayah is: \(ayahXML.attributes["text"])")
+                
+            }
+        }
+        
+    }
+    
+    /*
+    func updateAyah(withNumber number: Int64) -> <#return type#> {
+        <#function body#>
+    }*/
 }

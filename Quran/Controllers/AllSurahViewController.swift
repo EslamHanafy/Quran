@@ -26,10 +26,13 @@ class AllSurahViewController: UIViewController {
     }
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad() { 
         super.viewDidLoad()
 
         tableView.register(UINib(nibName: "SurahTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
+        
+//        let results = DBHelper.shared.searchForAyah(withText: "سَيَقُولُ الَّذِينَ أَشْرَكُوا")
+//        print(results)
     }
 
     

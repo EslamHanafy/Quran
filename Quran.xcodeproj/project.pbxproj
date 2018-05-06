@@ -23,6 +23,8 @@
 		0C6061402066991100B49227 /* UthmanTN1 Ver10.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C60613E2066991100B49227 /* UthmanTN1 Ver10.otf */; };
 		0C60614220669B2C00B49227 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C60614120669B2C00B49227 /* Page.swift */; };
 		0C6FC9AE209F23DF00115916 /* me_quran.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6FC9AD209F23DF00115916 /* me_quran.ttf */; };
+		0C6FC9B0209F47D000115916 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6FC9AF209F47D000115916 /* SearchResult.swift */; };
+		0C6FC9B2209F5A2500115916 /* quran-simple-clean.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0C6FC9B1209F5A2500115916 /* quran-simple-clean.xml */; };
 		0C81BB2E20738C96007C270D /* QuranManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81BB2D20738C96007C270D /* QuranManager.swift */; };
 		0C81BB3020739A99007C270D /* QuranManager+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81BB2F20739A99007C270D /* QuranManager+AttributedString.swift */; };
 		0C81BB332073A171007C270D /* AyahIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81BB322073A171007C270D /* AyahIndex.swift */; };
@@ -90,6 +92,8 @@
 		0C60613E2066991100B49227 /* UthmanTN1 Ver10.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanTN1 Ver10.otf"; sourceTree = "<group>"; };
 		0C60614120669B2C00B49227 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		0C6FC9AD209F23DF00115916 /* me_quran.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = me_quran.ttf; sourceTree = "<group>"; };
+		0C6FC9AF209F47D000115916 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		0C6FC9B1209F5A2500115916 /* quran-simple-clean.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "quran-simple-clean.xml"; sourceTree = "<group>"; };
 		0C81BB2D20738C96007C270D /* QuranManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranManager.swift; sourceTree = "<group>"; };
 		0C81BB2F20739A99007C270D /* QuranManager+AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuranManager+AttributedString.swift"; sourceTree = "<group>"; };
 		0C81BB322073A171007C270D /* AyahIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyahIndex.swift; sourceTree = "<group>"; };
@@ -278,6 +282,7 @@
 				0C60614120669B2C00B49227 /* Page.swift */,
 				AACA766420728065003AE1B7 /* BookMark.swift */,
 				AA10E7172079665C00702EF1 /* AudioMode.swift */,
+				0C6FC9AF209F47D000115916 /* SearchResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -356,6 +361,7 @@
 		0CA42F8520612E9700DC1028 /* Databases */ = {
 			isa = PBXGroup;
 			children = (
+				0C6FC9B1209F5A2500115916 /* quran-simple-clean.xml */,
 				0CA42F8C206164F000DC1028 /* Quran.db */,
 			);
 			path = Databases;
@@ -501,6 +507,7 @@
 				0CA42F7220611DB300DC1028 /* LaunchScreen.storyboard in Resources */,
 				0CA42F922061680800DC1028 /* SurahTableViewCell.xib in Resources */,
 				0CA42F8D206164F000DC1028 /* Quran.db in Resources */,
+				0C6FC9B2209F5A2500115916 /* quran-simple-clean.xml in Resources */,
 				0C6FC9AE209F23DF00115916 /* me_quran.ttf in Resources */,
 				0CA42F6F20611DB300DC1028 /* Assets.xcassets in Resources */,
 				0C60613C2066926F00B49227 /* QuranPageCollectionViewCell.xib in Resources */,
@@ -539,6 +546,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Quran/Pods-Quran-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AEXML/AEXML.framework",
 				"${BUILT_PRODUCTS_DIR}/FontBlaster/FontBlaster.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -548,6 +556,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AEXML.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontBlaster.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
@@ -607,6 +616,7 @@
 				0CA42F6820611DB300DC1028 /* AppDelegate.swift in Sources */,
 				0C248F47207E609100A52C2E /* QuranHeaderView.swift in Sources */,
 				0CFC91BC20825DBB00B811FE /* PageOptionsView.swift in Sources */,
+				0C6FC9B0209F47D000115916 /* SearchResult.swift in Sources */,
 				0C8C1BD92062896400C05337 /* MenuItem.swift in Sources */,
 				0C8C1BEA2062CB1E00C05337 /* JuzTableViewCell.swift in Sources */,
 				0C8C1BDD206289E300C05337 /* SideMenuTableViewCell.swift in Sources */,
