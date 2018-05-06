@@ -11,21 +11,22 @@ import UIKit
 class QuranViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var collectionLayout: UICollectionViewFlowLayout!
-    @IBOutlet var menuView: UIView!
-    @IBOutlet var menuImageView: UIImageView!
+    @IBOutlet var headerView: UIView!
     @IBOutlet var containerView: UIView!
+    @IBOutlet var menuView: UIView!
+    @IBOutlet var titleLabel: UILabel!
     
     /// determine which page is currently displaying and what page should be displayed at the beginning
-    var currentPageNumber: Int = 0
+    var currentPageNumber: Int = 0 {
+        didSet { self.titleLabel?.text = QuranManager.manager.pages[currentPageNumber - 1].allSurah.first?.name }
+    }
     
     var shouldScrollToCurrentPage: Bool = true
     
     /// determine if should play the menu icon animation
     var shouldAnimateMenuView: Bool = true
     
-    
-    /// The screen header view
-    public static var header: QuranHeaderView!
+    fileprivate var pageOptions: PageOptionsView!
     
     /// AyahOptionsView for every ayah
     public static weak var ayahOptions: AyahOptionsView? = nil
@@ -50,9 +51,10 @@ class QuranViewController: UIViewController {
 
         initCollectionView()
         QuranViewController.ayahOptions = AyahOptionsView.getInstance(forController: self)
-        QuranViewController.header = QuranHeaderView.getInstance(forController: self)
         QuranManager.manager.currentQuranController = self
+        pageOptions = PageOptionsView.getInstance(forController: self)
         reloadTheme()
+        self.titleLabel.text = QuranManager.manager.pages[currentPageNumber - 1].allSurah.first?.name
     }
     
     
@@ -65,9 +67,7 @@ class QuranViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        animateMenuButtonIfNeeded()
-        
+       
         if shouldScrollToCurrentPage {
             collectionView.reloadData()
         }
@@ -77,9 +77,13 @@ class QuranViewController: UIViewController {
     }
     
     
-    //MARK: - IBAction
-    @IBAction func showBarAction() {
-        QuranViewController.header.show(forPage: QuranManager.manager.pages[currentPageNumber - 1])
+    //MARK: - IBActions
+    @IBAction func optionsAction() {
+        pageOptions.show(forPage: QuranManager.manager.pages[currentPageNumber - 1])
+    }
+    
+    @IBAction func backAction() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -133,42 +137,24 @@ extension QuranViewController {
     }
     
     
-    /// animte the menu icon if the shouldAnimateMenuView is true
-    func animateMenuButtonIfNeeded() {
-        if shouldAnimateMenuView {
-            let animationDuration: Double = 0.6
-            UIView.transition(with: menuImageView, duration: animationDuration, options: [.transitionCrossDissolve], animations: {
-                self.menuImageView.image = UIImage(named: "drop down")
-            }, completion: { (_) in
-                UIView.transition(with: self.menuImageView, duration: animationDuration, options: [.transitionCrossDissolve], animations: {
-                    self.menuImageView.image = UIImage(named: QuranManager.manager.isNightMode ? "downNight" : "drop down2")
-                }, completion: nil)
-            })
-            
-            UIView.animate(withDuration: animationDuration, animations: {
-                self.menuView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-            }, completion: { (_) in
-                UIView.animate(withDuration: animationDuration, animations: {
-                    self.menuView.transform = CGAffineTransform.identity
-                })
-            })
-            
-            shouldAnimateMenuView = false
-        }
-    }
-    
-    
     /// reload the screen design based on current theme
     func reloadTheme() {
         UIView.animate(withDuration: 0.3) {
             self.containerView.backgroundColor = QuranManager.manager.isNightMode ? .black : .white
-            self.menuImageView.image = UIImage(named: QuranManager.manager.isNightMode ? "downNight" : "drop down2")
             self.collectionView.reloadData()
-            QuranViewController.header.updateDesign()
+            self.updateHeaderDesign()
             QuranViewController.ayahOptions?.updateDesign()
         }
         
         UIApplication.shared.keyWindow?.tintColor = QuranManager.manager.isNightMode ? .black : UIColor(red: 104/255.0, green: 166/255.0, blue: 89/255.0, alpha: 1.0)
+    }
+    
+    /// update header design colors based on current theme
+    func updateHeaderDesign() {
+        let color: UIColor = QuranManager.manager.isNightMode ? UIColor(red: 194/255.0, green: 194/255.0, blue: 194/255.0, alpha: 1.0) : UIColor(red: 104/255.0, green: 166/255.0, blue: 89/255.0, alpha: 1.0)
+        
+        headerView.backgroundColor = color
+        pageOptions.updateDesign()
     }
 }
 

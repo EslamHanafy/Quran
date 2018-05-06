@@ -129,7 +129,7 @@ class QuranManager: NSObject {
         
         alert.addAction(UIAlertAction(title: "الغاء", style: .cancel, handler: nil))
         
-        alert.popoverPresentationController?.sourceView = QuranViewController.ayahOptions ?? QuranViewController.header
+        alert.popoverPresentationController?.sourceView = QuranViewController.ayahOptions ?? self.currentQuranController.headerView
         
         getCurrentViewController()?.present(alert, animated: true, completion: nil)
     }

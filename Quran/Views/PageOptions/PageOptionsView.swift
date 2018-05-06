@@ -182,10 +182,10 @@ extension PageOptionsView {
         
         delay(delayTime, closure: {
             self.hideContainerAnimation()
-            
-            if hideHeader {
-                QuranViewController.header.hide()
-            }
+            /* uncomment this if you split the header view from quran header screen */
+//            if hideHeader {
+//                QuranViewController.header.hide()
+//            }
         })
     }
     
@@ -206,7 +206,7 @@ extension PageOptionsView {
     func updateDesign() {
         pauseImageView.image = UIImage(named: QuranManager.manager.player?.isPlaying == true ? "pause icon" : "play icon")
         
-        let color: UIColor = QuranManager.manager.isNightMode ? UIColor(red: 194/255.0, green: 194/255.0, blue: 194/255.0, alpha: 0.6) : UIColor(red: 104/255.0, green: 166/255.0, blue: 89/255.0, alpha: 0.6)
+        let color: UIColor = QuranManager.manager.isNightMode ? UIColor(red: 194/255.0, green: 194/255.0, blue: 194/255.0, alpha: 0.75) : UIColor(red: 104/255.0, green: 166/255.0, blue: 89/255.0, alpha: 0.75)
         
         containerView.backgroundColor = color
         soundSliderView.backgroundColor = color

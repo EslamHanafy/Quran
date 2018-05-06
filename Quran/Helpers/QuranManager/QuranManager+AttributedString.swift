@@ -24,10 +24,10 @@ extension QuranManager {
     var INDEX_ATTRIBUTE: NSAttributedStringKey { get { return NSAttributedStringKey.init("AyahIndex") } }
     
     /// the surah name font
-    fileprivate var titleFont: UIFont { get { return UIFont(name: "KFGQPCUthmanTahaNaskh-Bold", size: isIpadScreen ? 42 : 21)! } }
+    fileprivate var titleFont: UIFont { get { return UIFont(name: "me_quran" /*"KFGQPCUthmanTahaNaskh-Bold"*/, size: isIpadScreen ? 42 : 21)! } }
     
     /// the default ayah font
-    fileprivate var ayahFont: UIFont { get { return UIFont(name: "KFGQPCUthmanicScriptHAFS", size: isIpadScreen ? 36 : 18)! } }
+    fileprivate var ayahFont: UIFont { get { return UIFont(name: "me_quran" /*"KFGQPCUthmanicScriptHAFS"*/, size: isIpadScreen ? 36 : 18)! } }
     
     /// the default number font
     fileprivate var numberFont: UIFont { get { return UIFont(name: "KFGQPCUthmanicScriptHAFS", size: isIpadScreen ? 44 : 22)! } }

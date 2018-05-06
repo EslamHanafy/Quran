@@ -22,6 +22,7 @@
 		0C60613F2066991100B49227 /* UthmanTN1B Ver10.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C60613D2066991100B49227 /* UthmanTN1B Ver10.otf */; };
 		0C6061402066991100B49227 /* UthmanTN1 Ver10.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C60613E2066991100B49227 /* UthmanTN1 Ver10.otf */; };
 		0C60614220669B2C00B49227 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C60614120669B2C00B49227 /* Page.swift */; };
+		0C6FC9AE209F23DF00115916 /* me_quran.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C6FC9AD209F23DF00115916 /* me_quran.ttf */; };
 		0C81BB2E20738C96007C270D /* QuranManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81BB2D20738C96007C270D /* QuranManager.swift */; };
 		0C81BB3020739A99007C270D /* QuranManager+AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81BB2F20739A99007C270D /* QuranManager+AttributedString.swift */; };
 		0C81BB332073A171007C270D /* AyahIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C81BB322073A171007C270D /* AyahIndex.swift */; };
@@ -88,6 +89,7 @@
 		0C60613D2066991100B49227 /* UthmanTN1B Ver10.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanTN1B Ver10.otf"; sourceTree = "<group>"; };
 		0C60613E2066991100B49227 /* UthmanTN1 Ver10.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanTN1 Ver10.otf"; sourceTree = "<group>"; };
 		0C60614120669B2C00B49227 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		0C6FC9AD209F23DF00115916 /* me_quran.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = me_quran.ttf; sourceTree = "<group>"; };
 		0C81BB2D20738C96007C270D /* QuranManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranManager.swift; sourceTree = "<group>"; };
 		0C81BB2F20739A99007C270D /* QuranManager+AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuranManager+AttributedString.swift"; sourceTree = "<group>"; };
 		0C81BB322073A171007C270D /* AyahIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyahIndex.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 				0CA42F8A2061616100DC1028 /* GE_SS_Two_Bold.otf */,
 				0CA42F882061615300DC1028 /* GE_SS_Text_Light.otf */,
 				0CEFEDBF206FB66F00F106A0 /* UthmanicHafs1 Ver09 2.otf */,
+				0C6FC9AD209F23DF00115916 /* me_quran.ttf */,
 				0C60613E2066991100B49227 /* UthmanTN1 Ver10.otf */,
 				0C60613D2066991100B49227 /* UthmanTN1B Ver10.otf */,
 				0CA42F8120612E8000DC1028 /* Diwani Letter.ttf */,
@@ -498,6 +501,7 @@
 				0CA42F7220611DB300DC1028 /* LaunchScreen.storyboard in Resources */,
 				0CA42F922061680800DC1028 /* SurahTableViewCell.xib in Resources */,
 				0CA42F8D206164F000DC1028 /* Quran.db in Resources */,
+				0C6FC9AE209F23DF00115916 /* me_quran.ttf in Resources */,
 				0CA42F6F20611DB300DC1028 /* Assets.xcassets in Resources */,
 				0C60613C2066926F00B49227 /* QuranPageCollectionViewCell.xib in Resources */,
 				0CA42F8320612E8000DC1028 /* thuluth-decorated.ttf in Resources */,

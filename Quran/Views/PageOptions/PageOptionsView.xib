@@ -243,7 +243,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.40784313725490196" green="0.65098039215686276" blue="0.34901960784313724" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.40784313725490196" green="0.65098039215686276" blue="0.34901960784313724" alpha="0.74920224471830987" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Aqq-FG-vXV" secondAttribute="trailing" id="0JP-7m-xRi"/>
                         <constraint firstItem="FL8-6Z-eU7" firstAttribute="width" secondItem="FL8-6Z-eU7" secondAttribute="height" multiplier="1:1" id="3tT-zj-TyM"/>
@@ -288,7 +288,7 @@
                             </connections>
                         </slider>
                     </subviews>
-                    <color key="backgroundColor" red="0.40784313725490196" green="0.65098039215686276" blue="0.34901960784313724" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.40784313725490196" green="0.65098039215686276" blue="0.34901960784313724" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="QFb-Hd-CVj" firstAttribute="centerY" secondItem="ay3-d1-AEi" secondAttribute="centerY" id="5Yv-M9-ZbZ"/>
                         <constraint firstItem="QFb-Hd-CVj" firstAttribute="leading" secondItem="ay3-d1-AEi" secondAttribute="leadingMargin" id="FZQ-WE-ZWX"/>
@@ -315,7 +315,7 @@
                             </connections>
                         </segmentedControl>
                     </subviews>
-                    <color key="backgroundColor" red="0.40784313729999999" green="0.65098039220000004" blue="0.34901960780000002" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.40784313729999999" green="0.65098039220000004" blue="0.34901960780000002" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="fT0-Fp-4Mp" firstAttribute="leading" secondItem="FyM-BJ-6CD" secondAttribute="leadingMargin" id="15J-b2-dx8"/>
                         <constraint firstItem="fT0-Fp-4Mp" firstAttribute="centerY" secondItem="FyM-BJ-6CD" secondAttribute="centerY" id="oRT-Y6-q83"/>
@@ -324,7 +324,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.75228323063380287" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="5Gp-dl-WmB" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="3hp-cr-Obb"/>
                 <constraint firstItem="FyM-BJ-6CD" firstAttribute="centerY" secondItem="fs7-cB-lfx" secondAttribute="centerY" id="6Ke-4T-vG4"/>

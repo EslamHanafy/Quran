@@ -11,8 +11,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="UthmanicHafs1 Ver09 2.otf">
-            <string>KFGQPCUthmanicScriptHAFS</string>
+        <array key="me_quran.ttf">
+            <string>me_quran</string>
         </array>
     </customFonts>
     <objects>
@@ -31,7 +31,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="بسم الله الرحمن الرحيم" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSb-Id-69V" customClass="QuranTextView" customModule="Quran" customModuleProvider="target">
                                 <rect key="frame" x="4" y="0.0" width="367.5" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="KFGQPCUthmanicScriptHAFS" family="KFGQPC Uthmanic Script HAFS" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="me_quran" family="me_quran" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
