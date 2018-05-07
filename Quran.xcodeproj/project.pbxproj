@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C021B2B20A07389007726D3 /* Quran.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 0C021B2A20A07388007726D3 /* Quran.sqlite */; };
+		0C021B2D20A07CBC007726D3 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C021B2C20A07CBC007726D3 /* SearchViewController.swift */; };
+		0C021B3120A08471007726D3 /* AyahTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C021B2F20A08471007726D3 /* AyahTableViewCell.swift */; };
+		0C021B3220A08471007726D3 /* AyahTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C021B3020A08471007726D3 /* AyahTableViewCell.xib */; };
 		0C113F5F207A2C4600ADD61D /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C113F5E207A2C4600ADD61D /* DownloadView.swift */; };
 		0C113F61207A2C4F00ADD61D /* DownloadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C113F60207A2C4F00ADD61D /* DownloadView.xib */; };
 		0C113F65207A32B600ADD61D /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C113F64207A32B600ADD61D /* DownloadManager.swift */; };
@@ -76,6 +80,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C021B2A20A07388007726D3 /* Quran.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quran.sqlite; sourceTree = "<group>"; };
+		0C021B2C20A07CBC007726D3 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0C021B2F20A08471007726D3 /* AyahTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyahTableViewCell.swift; sourceTree = "<group>"; };
+		0C021B3020A08471007726D3 /* AyahTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AyahTableViewCell.xib; sourceTree = "<group>"; };
 		0C113F5E207A2C4600ADD61D /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
 		0C113F60207A2C4F00ADD61D /* DownloadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadView.xib; sourceTree = "<group>"; };
 		0C113F64207A32B600ADD61D /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
@@ -160,6 +168,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C021B2E20A0844A007726D3 /* AyahCell */ = {
+			isa = PBXGroup;
+			children = (
+				0C021B2F20A08471007726D3 /* AyahTableViewCell.swift */,
+				0C021B3020A08471007726D3 /* AyahTableViewCell.xib */,
+			);
+			path = AyahCell;
+			sourceTree = "<group>";
+		};
 		0C113F5D207A2C1600ADD61D /* DownloadView */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +307,7 @@
 		0CA42F7A20611DD100DC1028 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0C021B2E20A0844A007726D3 /* AyahCell */,
 				0CFC91BA20825D5000B811FE /* PageOptions */,
 				0C248F43207E5ED600A52C2E /* QuranHeader */,
 				0C113F5D207A2C1600ADD61D /* DownloadView */,
@@ -315,6 +333,7 @@
 				AA21D4552064559B00507932 /* Backups.swift */,
 				AACA765D2072731C003AE1B7 /* BookmarksViewController.swift */,
 				0C240086208383A500B4D891 /* AboutUsViewController.swift */,
+				0C021B2C20A07CBC007726D3 /* SearchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -363,6 +382,7 @@
 			children = (
 				0C6FC9B1209F5A2500115916 /* quran-simple-clean.xml */,
 				0CA42F8C206164F000DC1028 /* Quran.db */,
+				0C021B2A20A07388007726D3 /* Quran.sqlite */,
 			);
 			path = Databases;
 			sourceTree = "<group>";
@@ -514,10 +534,12 @@
 				0CA42F8320612E8000DC1028 /* thuluth-decorated.ttf in Resources */,
 				0CA42F6D20611DB300DC1028 /* Main.storyboard in Resources */,
 				0CA42F8B2061616100DC1028 /* GE_SS_Two_Bold.otf in Resources */,
+				0C021B2B20A07389007726D3 /* Quran.sqlite in Resources */,
 				0CA42F8420612E8000DC1028 /* Diwani Letter.ttf in Resources */,
 				0CA42F892061615300DC1028 /* GE_SS_Text_Light.otf in Resources */,
 				0C113F61207A2C4F00ADD61D /* DownloadView.xib in Resources */,
 				0C248F45207E5EF500A52C2E /* QuranHeaderView.xib in Resources */,
+				0C021B3220A08471007726D3 /* AyahTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +624,7 @@
 				AACA765E2072731C003AE1B7 /* BookmarksViewController.swift in Sources */,
 				0C113F73207A48D900ADD61D /* MZDownloadModel.swift in Sources */,
 				0CA42F9420616AC000DC1028 /* Sura.swift in Sources */,
+				0C021B3120A08471007726D3 /* AyahTableViewCell.swift in Sources */,
 				AA21D4562064559B00507932 /* Backups.swift in Sources */,
 				AACA766220727997003AE1B7 /* BookMarkTableViewCell.swift in Sources */,
 				0C60613B2066926F00B49227 /* QuranPageCollectionViewCell.swift in Sources */,
@@ -609,6 +632,7 @@
 				AAC2C59B207D539600D0121A /* QuranManager+AVAudioPlayer.swift in Sources */,
 				0CA42F912061680800DC1028 /* SurahTableViewCell.swift in Sources */,
 				0C113F74207A48D900ADD61D /* MZDownloadManager.swift in Sources */,
+				0C021B2D20A07CBC007726D3 /* SearchViewController.swift in Sources */,
 				0C8C1BD72062884D00C05337 /* HomeContainerViewController.swift in Sources */,
 				0C240087208383A500B4D891 /* AboutUsViewController.swift in Sources */,
 				0CEFEDC3206FCC8B00F106A0 /* AyahOptionsView.swift in Sources */,

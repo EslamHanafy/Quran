@@ -8,12 +8,11 @@
 
 import Foundation
 import SQLite
-import AEXML
 
 class DBHelper {
     public static let shared: DBHelper = DBHelper()
     
-    fileprivate let db = try! Connection(DBHelper.databasePath()) //Connection(Bundle.main.path(forResource: "Quran", ofType: "db")!)
+    fileprivate let db = try! Connection(DBHelper.databasePath())
     
     
     /// copy the database if needed from app bundle to documents folder and get the new database path
@@ -36,7 +35,7 @@ class DBHelper {
         if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false) {
             print("DB does not exist in documents folder")
             
-            let documentsURL = Bundle.main.path(forResource: "Quran", ofType: "db")
+            let documentsURL = Bundle.main.path(forResource: "Quran", ofType: "sqlite")
             
             do {
                 try fileManager.copyItem(atPath: documentsURL!, toPath: finalDatabaseURL.path)
@@ -50,33 +49,53 @@ class DBHelper {
         
         return finalDatabaseURL.path
     }
-    
-    
-    
-    /// return all surah from database
+}
+
+//MARK: - Pages
+extension DBHelper {
+    /// get all quran pages without their ayah
     ///
-    /// - Returns: array of Surah
-    func getAllSurah()-> [Surah] {
-        var allSurah: [Surah] = []
-        
+    /// - Returns: all quran pages
+    func getAllPages() -> [Page] {
+        var pages: [Page] = []
+        print("start gitting all pages")
+        //tables
         let surahTable = Table("surah")
+        let pagesTable = Table("pages")
+        let juzTable = Table("juz")
+        // columns
+        let surahId = Expression<Int64>("surah_id")
         let id = Expression<Int64>("id")
-        let name = Expression<String>("name")
-        let page = Expression<Int64>("page")
+        let juzId = Expression<Int64>("juz_id")
         
         do {
-            let data = try db.prepare(surahTable)
+            let data = try db.prepare(pagesTable.join(surahTable, on: pagesTable[surahId] == surahTable[id]).join(juzTable, on: pagesTable[juzId] == juzTable[id]))
+            
             for row in data {
-                allSurah.append(Surah(id: row[id], name: row[name], page: row[page]))
+                pages.append(Page(fromRow: row))
             }
-        }catch {
-            print("the error in getting surah is: \(error)")
+            
+        } catch {
+            print("the error in gitting pages is: \(error.localizedDescription)")
         }
         
-        return allSurah
+        
+        return prepare(pages: &pages)
     }
     
-    
+    private func prepare(pages: inout [Page]) -> [Page] {
+        for (index, page) in pages.enumerated() {
+            if index < (pages.count - 1) {
+                page.nextPage = pages[index + 1]
+            }
+        }
+        print("finish gitting all pages")
+        return pages
+    }
+}
+
+//MARK: - Juz
+extension DBHelper {
     /// get all juz from database
     ///
     /// - Returns: array of Juz
@@ -103,50 +122,155 @@ class DBHelper {
         
         return allJuz
     }
-    
-    
-    /// get all quran pages without their ayah
+}
+
+//MARK: - Surah
+extension DBHelper {
+    /// return all surah from database
     ///
-    /// - Returns: all quran pages
-    func getAllPages() -> [Page] {
-        var pages: [Page] = []
-        print("start gitting all pages")
-        //tables
+    /// - Returns: array of Surah
+    func getAllSurah()-> [Surah] {
+        var allSurah: [Surah] = []
+        
         let surahTable = Table("surah")
-        let pagesTable = Table("pages")
-        let juzTable = Table("juz")
-        // columns
-        let surahId = Expression<Int64>("surah_id")
         let id = Expression<Int64>("id")
-        let juzId = Expression<Int64>("juz_id")
-      
+        let name = Expression<String>("name")
+        let page = Expression<Int64>("page")
+        
         do {
-            let data = try db.prepare(pagesTable.join(surahTable, on: pagesTable[surahId] == surahTable[id]).join(juzTable, on: pagesTable[juzId] == juzTable[id]))
-            
+            let data = try db.prepare(surahTable)
             for row in data {
-                pages.append(Page(fromRow: row))
+                allSurah.append(Surah(id: row[id], name: row[name], page: row[page]))
             }
-            
+        }catch {
+            print("the error in getting surah is: \(error)")
+        }
+        
+        return allSurah
+    }
+    
+    /// get details for the surah with the same id
+    ///
+    /// - Parameter surahId: the surah id
+    /// - Returns: Surah object that contain the surah data
+    func getSurah(withId surahId: Int64) -> Surah {
+        var surah: Surah = Surah(id: 0, name: "", page: 0)
+        
+        let surahTable = Table("surah")
+        let name = Expression<String>("name")
+        let id = Expression<Int64>("id")
+        let page = Expression<Int64>("page")
+        
+        do {
+            if let row = try db.pluck(surahTable.filter(id == surahId)) {
+                surah = Surah(id: surahId, name: row[name], page: row[page])
+            }
         } catch {
-            print("the error in gitting pages is: \(error.localizedDescription)")
+            print("error in get surah with id: \(surahId) is: \(error)")
         }
         
+        return surah
+    }
+}
+
+//MARK: - bookmarks
+extension DBHelper {
+    /// insert new bookmark in database using the ayah dbId
+    ///
+    /// - Parameter ayah: Ayah object that contain the ayah details
+    func addBookMark(forAyah ayah: Ayah) {
+        guard ayah.dbId != 0 else {
+            return print("theer is no dbId found for this ayah")
+        }
         
-        return prepare(pages: &pages)
+        let bookTable = Table("bookmarks")
+        let ayahId = Expression<Int64>("ayah_id")
+        let surahId = Expression<Int64>("surah_id")
+        
+        do {
+            try db.run(bookTable.insert(ayahId <- ayah.dbId, surahId <- ayah.surah.id))
+            updateBookMarkForAyah(withId: ayah.dbId, isMarked: true)
+        } catch {
+            print("the error in inserting new bookmark is: \(error)")
+        }
     }
     
-    private func prepare(pages: inout [Page]) -> [Page] {
-        for (index, page) in pages.enumerated() {
-            if index < (pages.count - 1) {
-                page.nextPage = pages[index + 1]
+    
+    /// get all stored bookmarks
+    ///
+    /// - Returns: array of BookMarks
+    func getBookMarks() -> [BookMark] {
+        var bookMarks: [BookMark] = []
+        
+        let marksTable = Table("bookmarks")
+        let ayahTable = Table("ayah")
+        let surahTable = Table("surah")
+        let id = Expression<Int64>("id")
+        let ayahId = Expression<Int64>("ayah_id")
+        let surahId = Expression<Int64>("surah_id")
+        
+        do {
+            let data = try db.prepare(marksTable.join(ayahTable, on: ayahId == ayahTable[id]).join(surahTable, on: marksTable[surahId] == surahTable[id]))
+            for row in data {
+                bookMarks.append(BookMark(fromRow: row))
             }
+        } catch {
+            print("error in get all bookmarks is: \(error)")
         }
-        print("finish gitting all pages")
-        return pages
+        
+        return bookMarks
     }
     
+    /// delete the bookmark for the given ayah
+    ///
+    /// - Parameter ayah: Ayah object that contain the ayah data
+    func delete(bookmarkForAyah ayah: Ayah) {
+        let marksTable = Table("bookmarks")
+        let ayahId = Expression<Int64>("ayah_id")
+        
+        do {
+            try db.run(marksTable.filter(ayahId == ayah.dbId).delete())
+            updateBookMarkForAyah(withId: ayah.dbId, isMarked: false)
+        } catch {
+            print("error in delete bookmark for ayah with id: \(ayah.id) is: \(error)")
+        }
+    }
     
+    /// update isBookMarked value for the given ayah
+    ///
+    /// - Parameters:
+    ///   - ayahId: the ayah database id
+    ///   - marked: true for is marked and false for not
+    func updateBookMarkForAyah(withId ayahId: Int64, isMarked marked: Bool) {
+        let ayahTable = Table("ayah")
+        let id = Expression<Int64>("id")
+        let isMarked = Expression<Int64?>("is_bookmarked")
+        
+        do {
+            try db.run(ayahTable.filter(id == ayahId).update(isMarked <- Int64(marked.hashValue)))
+        } catch {
+            print("error in updateing isBookMarked for ayah with id: \(ayahId) is: \(error)")
+        }
+    }
     
+    /// delete the bookmark with the given id
+    ///
+    /// - Parameter markId: bookmark id
+    func delete(bookMark mark: BookMark) {
+        let marksTable = Table("bookmarks")
+        let id = Expression<Int64>("id")
+        
+        do {
+            try db.run(marksTable.filter(id == mark.id).delete())
+            updateBookMarkForAyah(withId: mark.ayah.dbId, isMarked: false)
+        } catch {
+            print("error in delete bookmark with id: \(mark.id) is: \(error)")
+        }
+    }
+}
+
+//MARK: - Ayah
+extension DBHelper {
     /// get all ayah insed their surah for the given page boundary
     ///
     /// - Parameters:
@@ -228,7 +352,7 @@ class DBHelper {
         
         return allSurah
     }
-
+    
     
     /// get ayah data for juz
     ///
@@ -254,128 +378,6 @@ class DBHelper {
         
         return ayah
     }
-    
-    
-    /// insert new bookmark in database using the ayah dbId
-    ///
-    /// - Parameter ayah: Ayah object that contain the ayah details
-    func addBookMark(forAyah ayah: Ayah) {
-        guard ayah.dbId != 0 else {
-            return print("theer is no dbId found for this ayah")
-        }
-        
-        let bookTable = Table("bookmarks")
-        let ayahId = Expression<Int64>("ayah_id")
-        let surahId = Expression<Int64>("surah_id")
-        
-        do {
-            try db.run(bookTable.insert(ayahId <- ayah.dbId, surahId <- ayah.surah.id))
-            updateBookMarkForAyah(withId: ayah.dbId, isMarked: true)
-        } catch {
-            print("the error in inserting new bookmark is: \(error)")
-        }
-    }
- 
-    
-    /// get all stored bookmarks
-    ///
-    /// - Returns: array of BookMarks
-    func getBookMarks() -> [BookMark] {
-        var bookMarks: [BookMark] = []
-        
-        let marksTable = Table("bookmarks")
-        let ayahTable = Table("ayah")
-        let surahTable = Table("surah")
-        let id = Expression<Int64>("id")
-        let ayahId = Expression<Int64>("ayah_id")
-        let surahId = Expression<Int64>("surah_id")
-        
-        do {
-            let data = try db.prepare(marksTable.join(ayahTable, on: ayahId == ayahTable[id]).join(surahTable, on: marksTable[surahId] == surahTable[id]))
-            for row in data {
-                bookMarks.append(BookMark(fromRow: row))
-            }
-        } catch {
-            print("error in get all bookmarks is: \(error)")
-        }
-        
-        return bookMarks
-    }
-    
-    
-    /// get details for the surah with the same id
-    ///
-    /// - Parameter surahId: the surah id
-    /// - Returns: Surah object that contain the surah data
-    func getSurah(withId surahId: Int64) -> Surah {
-        var surah: Surah = Surah(id: 0, name: "", page: 0)
-        
-        let surahTable = Table("surah")
-        let name = Expression<String>("name")
-        let id = Expression<Int64>("id")
-        let page = Expression<Int64>("page")
-        
-        do {
-            if let row = try db.pluck(surahTable.filter(id == surahId)) {
-                surah = Surah(id: surahId, name: row[name], page: row[page])
-            }
-        } catch {
-            print("error in get surah with id: \(surahId) is: \(error)")
-        }
-        
-        return surah
-    }
-    
-    
-    /// delete the bookmark with the given id
-    ///
-    /// - Parameter markId: bookmark id
-    func delete(bookMark mark: BookMark) {
-        let marksTable = Table("bookmarks")
-        let id = Expression<Int64>("id")
-        
-        do {
-            try db.run(marksTable.filter(id == mark.id).delete())
-            updateBookMarkForAyah(withId: mark.ayah.dbId, isMarked: false)
-        } catch {
-            print("error in delete bookmark with id: \(mark.id) is: \(error)")
-        }
-    }
-    
-    
-    /// delete the bookmark for the given ayah
-    ///
-    /// - Parameter ayah: Ayah object that contain the ayah data
-    func delete(bookmarkForAyah ayah: Ayah) {
-        let marksTable = Table("bookmarks")
-        let ayahId = Expression<Int64>("ayah_id")
-        
-        do {
-            try db.run(marksTable.filter(ayahId == ayah.dbId).delete())
-            updateBookMarkForAyah(withId: ayah.dbId, isMarked: false)
-        } catch {
-            print("error in delete bookmark for ayah with id: \(ayah.id) is: \(error)")
-        }
-    }
-    
-    /// update isBookMarked value for the given ayah
-    ///
-    /// - Parameters:
-    ///   - ayahId: the ayah database id
-    ///   - marked: true for is marked and false for not
-    func updateBookMarkForAyah(withId ayahId: Int64, isMarked marked: Bool) {
-        let ayahTable = Table("ayah")
-        let id = Expression<Int64>("id")
-        let isMarked = Expression<Int64?>("is_bookmarked")
-        
-        do {
-            try db.run(ayahTable.filter(id == ayahId).update(isMarked <- Int64(marked.hashValue)))
-        } catch {
-            print("error in updateing isBookMarked for ayah with id: \(ayahId) is: \(error)")
-        }
-    }
-    
-    
     
     /// update the stored audio path for the given ayah and audio mode
     ///
@@ -487,7 +489,7 @@ class DBHelper {
         let pageTable = Table("pages")
         let surahId = Expression<Int64>("surah_id")
         let page = Expression<Int64>("page")
-        let ayahText = Expression<String>("text")
+        let ayahText = Expression<String>("search_text")
         let id = Expression<Int64>("id")
         
         do {
@@ -501,26 +503,4 @@ class DBHelper {
         
         return results
     }
-    
-    func updateQuranFromXML() {
-        guard let path = Bundle.main.path(forResource: "quran-simple-clean", ofType: "xml"),
-        let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
-        let xml = try? AEXMLDocument(xml: data)
-        else {
-            return print("there is no xml file found")
-        }
-        
-        for surahXML in xml.root.children {
-            for ayahXML in surahXML.children {
-                print("surah name is: \(surahXML.attributes["index"]), ayah is: \(ayahXML.attributes["text"])")
-                
-            }
-        }
-        
-    }
-    
-    /*
-    func updateAyah(withNumber number: Int64) -> <#return type#> {
-        <#function body#>
-    }*/
 }

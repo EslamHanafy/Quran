@@ -30,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //change tint color based on current theme
         UIApplication.shared.keyWindow?.tintColor = QuranManager.manager.isNightMode ? .black : UIColor(red: 104/255.0, green: 166/255.0, blue: 89/255.0, alpha: 1.0)
         
-        DBHelper.shared.updateQuranFromXML()
         return true
     }
 

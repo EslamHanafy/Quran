@@ -10,6 +10,40 @@ import Foundation
 
 
 /*
+ 
+ func updateQuranFromXML() {
+ guard let path = Bundle.main.path(forResource: "quran-simple-clean", ofType: "xml"),
+ let data = try? Data(contentsOf: URL(fileURLWithPath: path)),
+ let xml = try? AEXMLDocument(xml: data)
+ else {
+ return print("there is no xml file found")
+ }
+ 
+ for surahXML in xml.root.children {
+ for ayahXML in surahXML.children {
+ //                print("surah name is: \(surahXML.attributes["index"]), ayah is: \(ayahXML.attributes["text"])")
+ updateAyah(text: ayahXML.attributes["text"]!, withNumber: Int64(ayahXML.attributes["index"]!)!, forSurahWithNumber: Int64(surahXML.attributes["index"]!)!)
+ }
+ }
+ 
+ }
+ 
+ 
+ func updateAyah(text: String, withNumber ayah: Int64, forSurahWithNumber surah: Int64) {
+ let ayahTable = Table("ayah")
+ let number = Expression<Int64>("number")
+ let ayahText = Expression<String>("search_text")
+ let surahId = Expression<Int64>("surah_id")
+ 
+ do {
+ try db.run(ayahTable.filter(surah == surahId && number == ayah).update(ayahText <- text))
+ } catch {
+ print("the error in updating ayah text is: \(error)")
+ }
+ }
+ 
+ 
+ 
  func frameOftext(inRange range: NSRange) -> CGRect {
  let beginning = textView.beginningOfDocument
  let start = textView.position(from: beginning, offset: range.location)

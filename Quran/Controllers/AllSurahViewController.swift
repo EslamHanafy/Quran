@@ -15,28 +15,12 @@ class AllSurahViewController: UIViewController {
     @IBOutlet var searchTextField: UITextField!
     
     
-    var filtered: [Surah] = []
-    
-    
-    var searchKeyword: String = "" {
-        didSet {
-            filtered = QuranManager.manager.AllSurah.filter({ return $0.name.contains(searchKeyword) })
-            tableView.reloadData()
-        }
-    }
-    
-    
     override func viewDidLoad() { 
         super.viewDidLoad()
 
         tableView.register(UINib(nibName: "SurahTableViewCell", bundle: nil), forCellReuseIdentifier: "Cell")
-        
-//        let results = DBHelper.shared.searchForAyah(withText: "سَيَقُولُ الَّذِينَ أَشْرَكُوا")
-//        print(results)
     }
 
-    
-    
     
     //MARK: - IBActions
     @IBAction func menuAction() {
@@ -45,10 +29,10 @@ class AllSurahViewController: UIViewController {
     
     @IBAction func searchAction() {
         searchTextField.resignFirstResponder()
-    }
-    
-    @IBAction func searchTextChangeAction() {
-        searchKeyword = searchTextField.text ?? ""
+        
+        if searchTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false {
+            SearchViewController.search(forKeyword: searchTextField.text!, inSurah: true, fromController: self)
+        }
     }
 }
 
@@ -59,17 +43,17 @@ extension AllSurahViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchKeyword.isEmpty ? QuranManager.manager.AllSurah.count : filtered.count
+        return QuranManager.manager.AllSurah.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SurahTableViewCell
-        cell.initWith(sura: searchKeyword.isEmpty ? QuranManager.manager.AllSurah[indexPath.row] : filtered[indexPath.row])
+        cell.initWith(sura: QuranManager.manager.AllSurah[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedSurah = searchKeyword.isEmpty ? QuranManager.manager.AllSurah[indexPath.row] : filtered[indexPath.row]
+        let selectedSurah = QuranManager.manager.AllSurah[indexPath.row]
         
         mainQueue {
             QuranViewController.showQuran(startingFromPage: selectedSurah.page, fromController: self)
