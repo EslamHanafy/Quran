@@ -40,6 +40,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         
         initTableView()
+        typeSegmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "GESSTextLight-Light", size: isIpadScreen ? 34 : 17)!], for: .normal)
     }
 
     //MARK: - IBActions

@@ -77,14 +77,14 @@ extension QuranManager {
         let textFrame = self.frameOftext(inTextView: textView, atRange: range)
         let padding: CGFloat = isIpadScreen ? 110 : 55
         var imageFrame = textFrame
-        imageFrame.origin.x -= padding
-        imageFrame.origin.y -= 0.55 * padding
-        imageFrame.size.width += padding * 2
+        imageFrame.origin.x = 0
+        imageFrame.origin.y -= 0.5 * padding
+        imageFrame.size.width = screenWidth
         imageFrame.size.height += padding //* 2
         
         let image = UIImageView(frame: imageFrame)
-        image.image = UIImage(named: "Frame quran")?.withRenderingMode(.alwaysTemplate)
-        image.tintColor = isNightMode ? .white : .black
+        image.image = UIImage(named: "new_surah_title")
+//        image.tintColor = isNightMode ? .white : .black
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
         

@@ -117,7 +117,7 @@ extension QuranManager {
     /// - Returns: [NSAttributedStringKey: Any]
     fileprivate func getAttributes(forType type: QuranTextType, atIndex index: AyahIndex) -> [NSAttributedStringKey: Any] {
         if type == .header {
-            return [NSAttributedStringKey.font: titleFont, NSAttributedStringKey.paragraphStyle: getStyle(forType: type), NSAttributedStringKey.foregroundColor: fontColor]
+            return [NSAttributedStringKey.font: titleFont, NSAttributedStringKey.paragraphStyle: getStyle(forType: type), NSAttributedStringKey.foregroundColor: UIColor.black]
         }
         
         var attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.font: type == .number ? numberFont : ayahFont, NSAttributedStringKey.paragraphStyle: getStyle(forType: type), INDEX_ATTRIBUTE: "\(index.surah),\(index.ayah),\(index.page)", NSAttributedStringKey.foregroundColor: fontColor]

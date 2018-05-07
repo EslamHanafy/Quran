@@ -920,7 +920,7 @@
                                 <rect key="frame" x="0.0" y="106.5" width="375" height="560.5"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dEt-zr-oaq">
-                                        <rect key="frame" x="0.0" y="36" width="375" height="524"/>
+                                        <rect key="frame" x="0.0" y="38" width="375" height="522"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="dataSource" destination="lJc-Ez-sTh" id="MOQ-OZ-wgQ"/>
@@ -928,7 +928,15 @@
                                         </connections>
                                     </tableView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ow9-SQ-7XE">
-                                        <rect key="frame" x="112.5" y="4" width="150" height="29"/>
+                                        <rect key="frame" x="112.5" y="4" width="150" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="Z9q-oO-KVI">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="300"/>
+                                            </constraint>
+                                            <constraint firstAttribute="height" constant="30" id="tGH-G3-BFs">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="60"/>
+                                            </constraint>
+                                        </constraints>
                                         <segments>
                                             <segment title="سور"/>
                                             <segment title="آيات"/>
@@ -944,7 +952,6 @@
                                     <constraint firstAttribute="trailing" secondItem="dEt-zr-oaq" secondAttribute="trailing" id="041-9k-Nre"/>
                                     <constraint firstItem="dEt-zr-oaq" firstAttribute="top" secondItem="Ow9-SQ-7XE" secondAttribute="bottom" constant="4" id="42O-pE-7Gb"/>
                                     <constraint firstItem="Ow9-SQ-7XE" firstAttribute="top" secondItem="f4V-LA-RyI" secondAttribute="top" constant="4" id="Vhr-yb-dFe"/>
-                                    <constraint firstItem="Ow9-SQ-7XE" firstAttribute="width" secondItem="f4V-LA-RyI" secondAttribute="width" multiplier="0.4" id="cNb-AE-olv"/>
                                     <constraint firstAttribute="bottom" secondItem="dEt-zr-oaq" secondAttribute="bottom" id="fQJ-9k-9ns"/>
                                     <constraint firstItem="dEt-zr-oaq" firstAttribute="leading" secondItem="f4V-LA-RyI" secondAttribute="leading" id="jKz-t5-Dx0"/>
                                     <constraint firstItem="Ow9-SQ-7XE" firstAttribute="centerX" secondItem="f4V-LA-RyI" secondAttribute="centerX" id="udm-Ed-Svl"/>
