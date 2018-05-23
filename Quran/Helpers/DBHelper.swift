@@ -13,7 +13,7 @@ class DBHelper {
     public static let shared: DBHelper = DBHelper()
     
     fileprivate let db = try! Connection(DBHelper.databasePath())
-    
+    fileprivate let infoDB = try! Connection(Bundle.main.path(forResource: "ayahinfo_1280", ofType: "db")!)
     
     /// copy the database if needed from app bundle to documents folder and get the new database path
     ///
@@ -199,8 +199,8 @@ extension DBHelper {
     /// get all stored bookmarks
     ///
     /// - Returns: array of BookMarks
-    func getBookMarks() -> [BookMark] {
-        var bookMarks: [BookMark] = []
+    func getBookMarks() -> [Bookmark] {
+        var bookMarks: [Bookmark] = []
         
         let marksTable = Table("bookmarks")
         let ayahTable = Table("ayah")
@@ -212,7 +212,7 @@ extension DBHelper {
         do {
             let data = try db.prepare(marksTable.join(ayahTable, on: ayahId == ayahTable[id]).join(surahTable, on: marksTable[surahId] == surahTable[id]))
             for row in data {
-                bookMarks.append(BookMark(fromRow: row))
+                bookMarks.append(Bookmark(fromRow: row))
             }
         } catch {
             print("error in get all bookmarks is: \(error)")
@@ -256,7 +256,7 @@ extension DBHelper {
     /// delete the bookmark with the given id
     ///
     /// - Parameter markId: bookmark id
-    func delete(bookMark mark: BookMark) {
+    func delete(bookMark mark: Bookmark) {
         let marksTable = Table("bookmarks")
         let id = Expression<Int64>("id")
         
@@ -502,5 +502,24 @@ extension DBHelper {
         }
         
         return results
+    }
+    
+    func getGlyphs(forAyah ayah: Ayah) -> [Glyph] {
+        var glyphs: [Glyph] = []
+        
+        let glyphsTable = Table("glyphs")
+        let ayahNumber = Expression<Int64>("ayah_number")
+        let surahNumber = Expression<Int64>("sura_number")
+        
+        do {
+            let data = try infoDB.prepare(glyphsTable.filter(ayahNumber == ayah.id && surahNumber == ayah.surah.id))
+            for row in data {
+                glyphs.append(Glyph(fromRow: row))
+            }
+        } catch {
+            print("the error in getting glypths for ayah: \(ayah.id), is: \(error)")
+        }
+        
+        return glyphs
     }
 }

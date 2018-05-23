@@ -30,9 +30,6 @@ class QuranManager: NSObject {
     /// the audio player
     var player: AVAudioPlayer? = nil
     
-    /// current text view that is displaying in the quran screen
-    var currentTextView: QuranTextView!
-    
     /// the current Quran screen class
     var currentQuranController: QuranViewController!
     
@@ -88,17 +85,6 @@ class QuranManager: NSObject {
         
         backgroundQueue {
             self.allJuz = DBHelper.shared.getAllJuz()
-        }
-    }
-    
-    
-    
-    /// begin the manager background tasks
-    func begin() {
-        backgroundQueue {
-            print("start updating all pages")
-            self.pages.forEach({ $0.updateData() })
-            print("end updating all pages")
         }
     }
     

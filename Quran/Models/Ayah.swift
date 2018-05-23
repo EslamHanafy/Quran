@@ -9,7 +9,7 @@
 import Foundation
 import SQLite
 
-open class Ayah: NSObject, Codable {
+class Ayah: NSObject, Codable {
     var id: Int64
     var content: String
     var page: Int64
@@ -18,6 +18,7 @@ open class Ayah: NSObject, Codable {
     var audioFiles: AyahAudios
     var surah: Surah
     var isPlaying: Bool = false
+//    var info: AyahInfo = AyahInfo()
     
     init(id: Int64, surah: Surah = Surah(id: 0), dbId: Int64 = 0, content: String = "", page: Int64 = 0, isBookmarked: Bool = false, audioFiles: AyahAudios = AyahAudios()) {
         self.id = id
@@ -27,8 +28,6 @@ open class Ayah: NSObject, Codable {
         self.page = page
         self.isBookmarked = isBookmarked
         self.audioFiles = audioFiles
-        
-        super.init()
     }
     
     init(fromRow row: Row) {
@@ -50,6 +49,7 @@ open class Ayah: NSObject, Codable {
         
         super.init()
         
+//        self.info = AyahInfo(forAyah: self)
         self.audioFiles = AyahAudios(ayah: self)
     }
     
@@ -68,5 +68,4 @@ open class Ayah: NSObject, Codable {
             audioFiles.normal = path
         }
     }
-
 }

@@ -10,8 +10,8 @@ import UIKit
 
 class QuranViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var collectionLayout: UICollectionViewFlowLayout!
     @IBOutlet var headerView: UIView!
+    @IBOutlet var collectionLayout: UICollectionViewFlowLayout!
     @IBOutlet var containerView: UIView!
     @IBOutlet var menuView: UIView!
     @IBOutlet var titleLabel: UILabel!
@@ -54,7 +54,7 @@ class QuranViewController: UIViewController {
         QuranManager.manager.currentQuranController = self
         pageOptions = PageOptionsView.getInstance(forController: self)
         reloadTheme()
-        self.titleLabel.text = QuranManager.manager.pages[currentPageNumber - 1].allSurah.first?.name
+        self.titleLabel.text = QuranManager.manager.pages[currentPageNumber - 1].getAllSurah().first?.name
     }
     
     
@@ -73,9 +73,14 @@ class QuranViewController: UIViewController {
         }
         
         shouldScrollToCurrentPage = false
-        updateTextView()
+        
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        collectionLayout.invalidateLayout()
+    }
     
     //MARK: - IBActions
     @IBAction func optionsAction() {
@@ -96,22 +101,6 @@ extension QuranViewController {
             collectionView.scrollToItem(at: IndexPath(item: currentPageNumber - 1, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
             collectionView.reloadData()
         }
-        
-        updateTextView()
-        delay(0.3) {
-            self.updateTextView()
-        }
-    }
-    
-    /// update current textview in QuranManager with the textview that is currently displaying in the screen
-    func updateTextView() {
-        let indexPath = IndexPath(item: currentPageNumber - 1, section: 0)
-        
-        guard let textView = (collectionView.cellForItem(at: indexPath) as? QuranPageCollectionViewCell)?.quranTextView else {
-            return print("could n't get the text view eslam")
-        }
-        print("text view updated eslam")
-        QuranManager.manager.currentTextView = textView
     }
     
     
@@ -193,15 +182,9 @@ extension QuranViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let pageWidth = scrollView.frame.size.width
         let page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
         currentPageNumber = 603 - page + 1
-        updateTextView()
         print("will display cell at index: \(currentPageNumber)")
     }
-    
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        updateTextView()
-    }
-    
-    
+
     /// init the collection view for the first time
     func initCollectionView() {
         collectionView.register(UINib(nibName: "QuranPageCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")

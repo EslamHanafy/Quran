@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class AyahAudios: NSObject, Codable {
+class AyahAudios: Codable {
     var normal: String? {
         get {
             return DBHelper.shared.getPath(forAyah: ayah, andMode: .normal)
@@ -39,10 +39,9 @@ open class AyahAudios: NSObject, Codable {
         }
     }
     
+    
     var ayah: Ayah? = nil
-    
-    
-    
+
     
     init(ayah: Ayah? = nil) {
         self.ayah = ayah

@@ -9,7 +9,7 @@
 import Foundation
 import SQLite
 
-open class Surah: NSObject, Codable {
+class Surah: Codable {
     var id: Int64
     var name: String
     var page: Int64

@@ -9,7 +9,7 @@
 import Foundation
 import SQLite
 
-open class Page: NSObject, Codable {
+class Page {
     var id: Int64
     var startingAyah: Int64
     var juz: Juz
@@ -40,8 +40,10 @@ open class Page: NSObject, Codable {
     }
     
     func updateData()  {
-        allSurah = DBHelper.shared.getAllAyahInRange(startingFromSurah: allSurah[0].id, toSurah: (nextPage?.allSurah[0].id ?? 0), andStartingFromAyah: startingAyah, toAyah: (nextPage?.startingAyah ?? 0), forPage: id)
-        shouldUpdateAllSurah = false
+        if shouldUpdateAllSurah {
+            allSurah = DBHelper.shared.getAllAyahInRange(startingFromSurah: allSurah[0].id, toSurah: (nextPage?.allSurah[0].id ?? 0), andStartingFromAyah: startingAyah, toAyah: (nextPage?.startingAyah ?? 0), forPage: id)
+            shouldUpdateAllSurah = false
+        }
     }
     
     func getAllSurah() -> [Surah] {

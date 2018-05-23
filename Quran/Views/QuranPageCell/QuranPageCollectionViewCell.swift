@@ -10,16 +10,10 @@ import UIKit
 
 class QuranPageCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet var quranTextView: QuranTextView!
+    @IBOutlet var mainImageView: UIImageView!
+    @IBOutlet var highlightView: HighlightView!
     
     var page: Page!
-    
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        quranTextView.preapareForReuse()
-    }
     
  
     /// init cell for the first time
@@ -27,8 +21,15 @@ class QuranPageCollectionViewCell: UICollectionViewCell {
     /// - Parameter page: Page object that contain the page data
     func initWith(page: Page) {
         self.page = page
-        
-        quranTextView.initWith(page: page)
+        page.updateData()
+        mainImageView.image = UIImage(named: "page" + String(format: "%03d", page.id))
+        highlightView.initWith(imageView: mainImageView)
     }
     
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        highlightView.reset()
+    }
 }

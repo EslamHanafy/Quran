@@ -348,7 +348,7 @@ extension MZDownloadManager: URLSessionDownloadDelegate {
 
 extension MZDownloadManager {
     
-    @objc public func addDownloadTask(_ fileName: String, fileURL: String, destinationPath: String, ayah: Ayah? = nil) {
+    @objc func addDownloadTask(_ fileName: String, fileURL: String, destinationPath: String, ayah: Ayah? = nil) {
         
         let url = URL(string: fileURL as String)!
         let request = URLRequest(url: url)

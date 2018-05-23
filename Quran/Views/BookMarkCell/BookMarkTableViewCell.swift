@@ -17,7 +17,7 @@ class BookMarkTableViewCell: UITableViewCell {
     /// init cell for the first time
     ///
     /// - Parameter bookMark: BookMark object that contain the bookmark data
-    func initWith(bookMark: BookMark) {
+    func initWith(bookMark: Bookmark) {
         nameLabel.text = bookMark.surah.name
         pageLabel.text = "صفحة رقم " + getValidatedNumber(fromInt: Int(bookMark.ayah.page))
     }

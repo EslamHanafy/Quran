@@ -12,7 +12,7 @@ class BookmarksViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
-    var bookMarks: [BookMark] = []
+    var bookMarks: [Bookmark] = []
     
     
     override func viewDidLoad() {

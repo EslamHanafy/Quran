@@ -46,7 +46,7 @@ open class MZDownloadModel: NSObject {
     
     open var startTime: Date?
     
-    open var ayah: Ayah? = nil
+    var ayah: Ayah? = nil
     
     fileprivate(set) open var destinationPath: String = ""
     
