@@ -21,6 +21,9 @@
 		0C240087208383A500B4D891 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C240086208383A500B4D891 /* AboutUsViewController.swift */; };
 		0C248F45207E5EF500A52C2E /* QuranHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C248F44207E5EF500A52C2E /* QuranHeaderView.xib */; };
 		0C248F47207E609100A52C2E /* QuranHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C248F46207E609100A52C2E /* QuranHeaderView.swift */; };
+		0C51AFAB20B98B4F00D4678D /* ImageScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C51AFAA20B98B4F00D4678D /* ImageScale.swift */; };
+		0C51AFAD20B994A900D4678D /* HighlightedRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C51AFAC20B994A900D4678D /* HighlightedRect.swift */; };
+		0C51AFAF20B994F200D4678D /* HighlightType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C51AFAE20B994F200D4678D /* HighlightType.swift */; };
 		0C60613B2066926F00B49227 /* QuranPageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6061392066926F00B49227 /* QuranPageCollectionViewCell.swift */; };
 		0C60613C2066926F00B49227 /* QuranPageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C60613A2066926F00B49227 /* QuranPageCollectionViewCell.xib */; };
 		0C60613F2066991100B49227 /* UthmanTN1B Ver10.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C60613D2066991100B49227 /* UthmanTN1B Ver10.otf */; };
@@ -96,6 +99,9 @@
 		0C240086208383A500B4D891 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		0C248F44207E5EF500A52C2E /* QuranHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuranHeaderView.xib; sourceTree = "<group>"; };
 		0C248F46207E609100A52C2E /* QuranHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranHeaderView.swift; sourceTree = "<group>"; };
+		0C51AFAA20B98B4F00D4678D /* ImageScale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScale.swift; sourceTree = "<group>"; };
+		0C51AFAC20B994A900D4678D /* HighlightedRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedRect.swift; sourceTree = "<group>"; };
+		0C51AFAE20B994F200D4678D /* HighlightType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightType.swift; sourceTree = "<group>"; };
 		0C6061392066926F00B49227 /* QuranPageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranPageCollectionViewCell.swift; sourceTree = "<group>"; };
 		0C60613A2066926F00B49227 /* QuranPageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuranPageCollectionViewCell.xib; sourceTree = "<group>"; };
 		0C60613D2066991100B49227 /* UthmanTN1B Ver10.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UthmanTN1B Ver10.otf"; sourceTree = "<group>"; };
@@ -302,6 +308,9 @@
 				0C6FC9AF209F47D000115916 /* SearchResult.swift */,
 				AAB86FAF20B35FB800F4F080 /* Glyph.swift */,
 				AA0B8CCB20B5FA8C0035DB9F /* AyahInfo.swift */,
+				0C51AFAA20B98B4F00D4678D /* ImageScale.swift */,
+				0C51AFAC20B994A900D4678D /* HighlightedRect.swift */,
+				0C51AFAE20B994F200D4678D /* HighlightType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -625,6 +634,7 @@
 			files = (
 				0C113F5F207A2C4600ADD61D /* DownloadView.swift in Sources */,
 				AA0B8CCC20B5FA8C0035DB9F /* AyahInfo.swift in Sources */,
+				0C51AFAB20B98B4F00D4678D /* ImageScale.swift in Sources */,
 				0C113F65207A32B600ADD61D /* DownloadManager.swift in Sources */,
 				AACA766520728065003AE1B7 /* Bookmark.swift in Sources */,
 				0C113F75207A48D900ADD61D /* MZUtility.swift in Sources */,
@@ -632,6 +642,7 @@
 				0C113F73207A48D900ADD61D /* MZDownloadModel.swift in Sources */,
 				AA0B8CD120B6032B0035DB9F /* HighlightView.swift in Sources */,
 				0CA42F9420616AC000DC1028 /* Sura.swift in Sources */,
+				0C51AFAD20B994A900D4678D /* HighlightedRect.swift in Sources */,
 				0C021B3120A08471007726D3 /* AyahTableViewCell.swift in Sources */,
 				AA21D4562064559B00507932 /* Backups.swift in Sources */,
 				AACA766220727997003AE1B7 /* BookMarkTableViewCell.swift in Sources */,
@@ -647,6 +658,7 @@
 				0C240087208383A500B4D891 /* AboutUsViewController.swift in Sources */,
 				0CEFEDC3206FCC8B00F106A0 /* AyahOptionsView.swift in Sources */,
 				0CA42F98206174FD00DC1028 /* AllSurahViewController.swift in Sources */,
+				0C51AFAF20B994F200D4678D /* HighlightType.swift in Sources */,
 				0CA42F6820611DB300DC1028 /* AppDelegate.swift in Sources */,
 				0C248F47207E609100A52C2E /* QuranHeaderView.swift in Sources */,
 				0CFC91BC20825DBB00B811FE /* PageOptionsView.swift in Sources */,

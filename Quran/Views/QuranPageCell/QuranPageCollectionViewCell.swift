@@ -22,8 +22,9 @@ class QuranPageCollectionViewCell: UICollectionViewCell {
     func initWith(page: Page) {
         self.page = page
         page.updateData()
-        mainImageView.image = UIImage(named: "page" + String(format: "%03d", page.id))
-        highlightView.initWith(imageView: mainImageView)
+        mainImageView.image = UIImage(named: "page" + String(format: "%03d", page.id))?.withRenderingMode(.alwaysTemplate)
+        mainImageView.tintColor = QuranManager.manager.fontColor
+        highlightView.initWith(imageView: mainImageView, forPage: page)
     }
     
     

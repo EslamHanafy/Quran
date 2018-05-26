@@ -18,7 +18,7 @@ class Ayah: NSObject, Codable {
     var audioFiles: AyahAudios
     var surah: Surah
     var isPlaying: Bool = false
-//    var info: AyahInfo = AyahInfo()
+    var info: AyahInfo? = nil
     
     init(id: Int64, surah: Surah = Surah(id: 0), dbId: Int64 = 0, content: String = "", page: Int64 = 0, isBookmarked: Bool = false, audioFiles: AyahAudios = AyahAudios()) {
         self.id = id
@@ -49,7 +49,7 @@ class Ayah: NSObject, Codable {
         
         super.init()
         
-//        self.info = AyahInfo(forAyah: self)
+        self.info = AyahInfo(forAyah: self)
         self.audioFiles = AyahAudios(ayah: self)
     }
     

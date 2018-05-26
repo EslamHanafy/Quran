@@ -10,10 +10,12 @@ import UIKit
 import SQLite
 
 struct Glyph: Equatable, Codable {
+    
     var minX: CGFloat
     var minY: CGFloat
     var maxX: CGFloat
     var maxY: CGFloat
+    var line: Int
     
     var rect: CGRect {
         get {
@@ -26,10 +28,17 @@ struct Glyph: Equatable, Codable {
         let minY = Expression<Int64>("min_y")
         let maxX = Expression<Int64>("max_x")
         let maxY = Expression<Int64>("max_y")
+        let line = Expression<Int64>("line_number")
         
         self.minX = CGFloat(row[minX])
         self.minY = CGFloat(row[minY])
         self.maxX = CGFloat(row[maxX])
         self.maxY = CGFloat(row[maxY])
+        self.line = Int(row[line])
+    }
+    
+    
+    static func ==(lhs: Glyph, rhs: Glyph) -> Bool {
+        return lhs.minY == rhs.minY && lhs.minX == rhs.minX && lhs.maxX == rhs.maxX && lhs.maxY == rhs.maxY
     }
 }
