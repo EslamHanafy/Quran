@@ -135,7 +135,8 @@ extension QuranManager {
             player?.volume = soundDegree
             player?.play()
             ayah.isPlaying = true
-//            currentTextView.handlePlayActionForAyah(ayah)
+            currentQuranController.scroll(toPage: Int(ayah.page))
+            currentHighlightsView?.onPlayAyah(ayah)
         } catch {
             print("the error in playing ayah: \(ayah.id) is: \(error)")
         }
@@ -165,7 +166,7 @@ extension QuranManager {
         player?.play()
         if let ayah = currentAyah {
             ayah.isPlaying = true
-//            currentTextView.handlePlayActionForAyah(ayah)
+            currentHighlightsView?.onPlayAyah(ayah)
         }
     }
     
@@ -211,7 +212,7 @@ extension QuranManager {
     fileprivate func stopLastAyahIfNeeded() {
         if let ayah = currentAyah {
             ayah.isPlaying = false
-//            self.currentTextView.handlePlayActionForAyah(ayah)
+            currentHighlightsView?.onPlayAyah(ayah)
         }
     }
 }

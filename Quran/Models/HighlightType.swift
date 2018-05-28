@@ -18,11 +18,11 @@ enum HighlightType {
         get {
             switch self {
             case .select:
-                return hexStringToUIColor(hex: "AA7942", withAlpha: 0.5)
+                return hexStringToUIColor(hex: "AA7942", withAlpha: 0.35)
             case .bookmark:
-                return hexStringToUIColor(hex: "FF2600", withAlpha: 0.5)
+                return hexStringToUIColor(hex: "FF2600", withAlpha: 0.35)
             default:
-                return hexStringToUIColor(hex: QuranManager.manager.isNightMode ? "FF6138" : "0881A3", withAlpha: 0.5)
+                return hexStringToUIColor(hex: QuranManager.manager.isNightMode ? "FF6138" : "0881A3", withAlpha: 0.35)
             }
         }
     }

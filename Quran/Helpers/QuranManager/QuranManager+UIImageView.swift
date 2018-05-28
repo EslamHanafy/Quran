@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 extension UIImageView {
     
@@ -18,14 +19,15 @@ extension UIImageView {
         var aspectFitSize = CGSize(width: frame.size.width, height: frame.size.height)
         let newWidth: CGFloat = frame.size.width / image.size.width
         let newHeight: CGFloat = frame.size.height / image.size.height
-        
+
         if newHeight < newWidth {
             aspectFitSize.width = newHeight * image.size.width
         } else if newWidth < newHeight {
             aspectFitSize.height = newWidth * image.size.height
         }
-        
-        return aspectFitSize
+
+//        return aspectFitSize
+        return AVMakeRect(aspectRatio: image.size, insideRect: bounds).size
     }
     
     /// Find the size of the image, once the parent imageView has been given a contentMode of .scaleAspectFill

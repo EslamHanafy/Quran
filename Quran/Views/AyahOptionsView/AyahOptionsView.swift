@@ -119,7 +119,11 @@ extension AyahOptionsView {
     /// - Parameters:
     ///   - ayah: Ayah object that contain the ayah data
     ///   - point: ayah location in the screen
-    func show(optionsForAyah ayah: Ayah, atLocation point: CGPoint) {
+    func show(optionsForAyah ayah: Ayah?, atLocation point: CGPoint) {
+        guard let ayah = ayah else {
+            return
+        }
+        
         self.ayah = ayah
         
         updateDesign()
@@ -186,6 +190,7 @@ extension AyahOptionsView {
     /// display the popup view with animation
     fileprivate func showAnimation(fromPoint point: CGPoint) {
         containerView.center = point
+        containerView.center.y -= containerView.frame.height
         containerView.center.y -= screenHeight
         
         UIView.transition(with: self, duration: animationDuration * 0.8 , options: [.transitionCrossDissolve], animations: {

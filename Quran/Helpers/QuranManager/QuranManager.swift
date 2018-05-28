@@ -33,6 +33,19 @@ class QuranManager: NSObject {
     /// the current Quran screen class
     var currentQuranController: QuranViewController!
     
+    
+    /// the highlights view that is currently displaying at the screen
+    var currentHighlightsView: HighlightView? {
+        get {
+            guard let index = currentQuranController?.collectionView.indexPathsForVisibleItems.first,
+            let cell = currentQuranController?.collectionView.cellForItem(at: index) as? QuranPageCollectionViewCell else {
+                return nil
+            }
+            
+            return cell.highlightView
+        }
+    }
+    
     /// current ayah that the audio player is playing
     var currentAyah: Ayah? = nil
     

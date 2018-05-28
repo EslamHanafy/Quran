@@ -109,8 +109,7 @@ extension QuranViewController {
         if currentPageNumber < 604 {
             currentPageNumber += 1
             
-            let indexPath = IndexPath(item: currentPageNumber - 1, section: 0)
-            collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+            scroll(toPage: currentPageNumber)
         }
     }
     
@@ -120,11 +119,23 @@ extension QuranViewController {
         if currentPageNumber > 1 {
             currentPageNumber -= 1
             
-            let indexPath = IndexPath(item: currentPageNumber - 1, section: 0)
-            collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+            scroll(toPage: currentPageNumber)
         }
     }
     
+    
+    /// scroll to the given page
+    ///
+    /// - Parameter page: the page number starting from 1
+    func scroll(toPage page: Int) {
+        guard page <= 604 && page > 0 else {
+            return
+        }
+        
+        currentPageNumber = page
+        let indexPath = IndexPath(item: currentPageNumber - 1, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
     
     /// reload the screen design based on current theme
     func reloadTheme() {
