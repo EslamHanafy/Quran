@@ -105,7 +105,9 @@ class QuranManager: NSObject {
     /// display the download options for the given Ayah
     ///
     /// - Parameter ayah: Ayah object that contain the ayah data
-    func showDownloadOptions(forAyah ayah: Ayah) {
+    func showDownloadOptions(forAyah ayah: Ayah, onFinishDownloading: (()->())? = nil) {
+        DownloadManager.shared.onFinishDownloading = onFinishDownloading
+        
         let alert = UIAlertController(title: "تحميل ملفات الصوت", message: "اختر الملفات الصوتية التى تريد تنزيلها", preferredStyle: .actionSheet)
         // download the whole quran
         alert.addAction(UIAlertAction(title: "كل السور", style: .destructive, handler: { (_) in

@@ -45,6 +45,10 @@ class DownloadManager: NSObject {
     /// the estimated file size for each ayah in MB
     fileprivate let estimatedFileSize: Double = 350.0 / 1024.0
     
+    
+    var onFinishDownloading: (()->())? = nil
+    
+    
     override init() {
         super.init()
         
@@ -143,6 +147,7 @@ extension DownloadManager: MZDownloadManagerDelegate {
         if downloadQueue.isEmpty {
             mainQueue {
                 self.downloadView.hide()
+                self.onFinishDownloading?()
             }
         }else {
             download(ayah: downloadQueue[0])

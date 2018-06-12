@@ -54,7 +54,7 @@ class AyahOptionsView: UIView {
     //MARK: - IBActions
     @IBAction func playAction() {
         if ayah.audioFiles.path(forMode: QuranManager.manager.audioMode) == nil {
-            QuranManager.manager.showDownloadOptions(forAyah: ayah)
+            QuranManager.manager.showDownloadOptions(forAyah: ayah, onFinishDownloading: onFinishDownloading)
         }else {
             if ayah.isPlaying {
                 QuranManager.manager.pauseCurrentAyah()
@@ -181,6 +181,10 @@ extension AyahOptionsView {
         ayah.isBookmarked = false
         onMarkAyah?(ayah)
         displayAlertWithTimer("تم حذف الفاصل بنجاح", forController: self.parent, timeInSeconds: 3.0)
+    }
+    
+    func onFinishDownloading() {
+        self.playAction()
     }
 }
 
