@@ -4,28 +4,49 @@ PODS:
   - NVActivityIndicatorView (4.2.1):
     - NVActivityIndicatorView/Presenter (= 4.2.1)
   - NVActivityIndicatorView/Presenter (4.2.1)
+  - PromiseKit (6.2.8):
+    - PromiseKit/CorePromise (= 6.2.8)
+    - PromiseKit/Foundation (= 6.2.8)
+    - PromiseKit/UIKit (= 6.2.8)
+  - PromiseKit/CorePromise (6.2.8)
+  - PromiseKit/Foundation (6.2.8):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.2.8):
+    - PromiseKit/CorePromise
   - SlideMenuControllerSwift (4.0.0)
-  - SQLite.swift (0.11.4):
-    - SQLite.swift/standard (= 0.11.4)
-  - SQLite.swift/standard (0.11.4)
+  - SQLite.swift (0.11.5):
+    - SQLite.swift/standard (= 0.11.5)
+  - SQLite.swift/standard (0.11.5)
   - Toast-Swift (3.0.1)
 
 DEPENDENCIES:
   - FontBlaster
   - IQKeyboardManagerSwift
   - NVActivityIndicatorView
+  - PromiseKit (~> 6.0)
   - SlideMenuControllerSwift
-  - SQLite.swift (= 0.11.4)
+  - SQLite.swift (~> 0.11.4)
   - Toast-Swift (~> 3.0.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FontBlaster
+    - IQKeyboardManagerSwift
+    - NVActivityIndicatorView
+    - PromiseKit
+    - SlideMenuControllerSwift
+    - SQLite.swift
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   FontBlaster: f18031f5dde2ce689f5330e7005edfe3c0815957
   IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
   NVActivityIndicatorView: 8068ba3ad39cb44cbaab25d89ff2546b3f092681
+  PromiseKit: 6788ce1a0ed5448b83d4aaf56b9fc49fb7647d32
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
-  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
+  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: e006f1d87a1ef6f83785e7f990976d08a747cfa3
+PODFILE CHECKSUM: 42dcc3b093ac1379e129265c5166dd255ed0ce2d
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

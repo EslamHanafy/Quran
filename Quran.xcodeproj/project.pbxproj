@@ -74,7 +74,6 @@
 		AA3FE284206403C700D69740 /* QuranViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FE283206403C700D69740 /* QuranViewController.swift */; };
 		AAB86FAE20B2EAC700F4F080 /* ayahinfo_1280.db in Resources */ = {isa = PBXBuildFile; fileRef = AAB86FAD20B2EAC700F4F080 /* ayahinfo_1280.db */; };
 		AAB86FB020B35FB800F4F080 /* Glyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB86FAF20B35FB800F4F080 /* Glyph.swift */; };
-		AAB86FB220B3703900F4F080 /* NewQuranViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB86FB120B3703900F4F080 /* NewQuranViewController.swift */; };
 		AAC2C59B207D539600D0121A /* QuranManager+AVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC2C59A207D539600D0121A /* QuranManager+AVAudioPlayer.swift */; };
 		AACA765E2072731C003AE1B7 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACA765D2072731C003AE1B7 /* BookmarksViewController.swift */; };
 		AACA766220727997003AE1B7 /* BookMarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACA766020727997003AE1B7 /* BookMarkTableViewCell.swift */; };
@@ -157,7 +156,6 @@
 		AA3FE283206403C700D69740 /* QuranViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuranViewController.swift; sourceTree = "<group>"; };
 		AAB86FAD20B2EAC700F4F080 /* ayahinfo_1280.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = ayahinfo_1280.db; sourceTree = "<group>"; };
 		AAB86FAF20B35FB800F4F080 /* Glyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glyph.swift; sourceTree = "<group>"; };
-		AAB86FB120B3703900F4F080 /* NewQuranViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuranViewController.swift; sourceTree = "<group>"; };
 		AAC2C59A207D539600D0121A /* QuranManager+AVAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuranManager+AVAudioPlayer.swift"; sourceTree = "<group>"; };
 		AACA765D2072731C003AE1B7 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
 		AACA766020727997003AE1B7 /* BookMarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkTableViewCell.swift; sourceTree = "<group>"; };
@@ -346,7 +344,6 @@
 				AACA765D2072731C003AE1B7 /* BookmarksViewController.swift */,
 				0C240086208383A500B4D891 /* AboutUsViewController.swift */,
 				0C021B2C20A07CBC007726D3 /* SearchViewController.swift */,
-				AAB86FB120B3703900F4F080 /* NewQuranViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -477,7 +474,6 @@
 				0CA42F6120611DB300DC1028 /* Frameworks */,
 				0CA42F6220611DB300DC1028 /* Resources */,
 				917A3D6FC1BA80C6BDE31A1C /* [CP] Embed Pods Frameworks */,
-				17CAA72D53AC6C8DD458E388 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -567,21 +563,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		17CAA72D53AC6C8DD458E388 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Quran/Pods-Quran-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		917A3D6FC1BA80C6BDE31A1C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -592,6 +573,7 @@
 				"${BUILT_PRODUCTS_DIR}/FontBlaster/FontBlaster.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
@@ -601,6 +583,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontBlaster.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
@@ -651,7 +634,6 @@
 				AACA766220727997003AE1B7 /* BookMarkTableViewCell.swift in Sources */,
 				0C60613B2066926F00B49227 /* QuranPageCollectionViewCell.swift in Sources */,
 				0C8C1BE42062B95600C05337 /* Juz.swift in Sources */,
-				AAB86FB220B3703900F4F080 /* NewQuranViewController.swift in Sources */,
 				AAB86FB020B35FB800F4F080 /* Glyph.swift in Sources */,
 				AAC2C59B207D539600D0121A /* QuranManager+AVAudioPlayer.swift in Sources */,
 				0CA42F912061680800DC1028 /* SurahTableViewCell.swift in Sources */,

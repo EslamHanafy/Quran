@@ -11,9 +11,9 @@ target 'Quran' do
 pod 'IQKeyboardManagerSwift'
 pod 'NVActivityIndicatorView'
 pod 'SlideMenuControllerSwift'
-pod 'SQLite.swift', '0.11.4'
+pod 'SQLite.swift', '~> 0.11.4'
 pod 'FontBlaster'
 pod 'Toast-Swift', '~> 3.0.1'
-
+pod "PromiseKit", "~> 6.0"
 end
 

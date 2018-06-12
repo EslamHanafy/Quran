@@ -8,6 +8,7 @@
 
 import Foundation
 import SQLite
+import PromiseKit
 
 class DBHelper {
     public static let shared: DBHelper = DBHelper()
@@ -481,27 +482,29 @@ extension DBHelper {
     ///
     /// - Parameter text: the search keyword
     /// - Returns: array of SearchResult
-    func searchForAyah(withText text: String) -> [SearchResult] {
-        var results: [SearchResult] = []
-        
-        let ayahTable = Table("ayah")
-        let surahTable = Table("surah")
-        let pageTable = Table("pages")
-        let surahId = Expression<Int64>("surah_id")
-        let page = Expression<Int64>("page")
-        let ayahText = Expression<String>("search_text")
-        let id = Expression<Int64>("id")
-        
-        do {
-            let data = try db.prepare(ayahTable.filter(ayahText.like("%\(text)%")).join(pageTable, on: ayahTable[page] == pageTable[id]).join(surahTable, on: ayahTable[surahId] == surahTable[id]))
-            for row in data {
-                results.append(SearchResult(fromRow: row))
+    func searchForAyah(withText text: String, atPage aPage: Int = 1, withItemsPerPage pItems: Int = 10) -> Promise<[SearchResult]> {
+        return Promise<[SearchResult]>() { resolver in
+            var results: [SearchResult] = []
+            
+            let ayahTable = Table("ayah")
+            let surahTable = Table("surah")
+            let pageTable = Table("pages")
+            let surahId = Expression<Int64>("surah_id")
+            let page = Expression<Int64>("page")
+            let ayahText = Expression<String>("search_text")
+            let id = Expression<Int64>("id")
+            
+            do {
+                let data = try db.prepare(ayahTable.filter(ayahText.like("%\(text)%")).join(pageTable, on: ayahTable[page] == pageTable[id]).join(surahTable, on: ayahTable[surahId] == surahTable[id]).order(ayahTable[surahId].asc).limit(pItems, offset: aPage * pItems))
+                
+                results = data.compactMap({ return SearchResult(fromRow: $0) })
+                
+                resolver.fulfill(results)
+            } catch {
+                print("the error in searching for ayah with text: \(text), is: \(error)")
+                resolver.reject(error)
             }
-        } catch {
-            print("the error in searching for ayah with text: \(text), is: \(error)")
         }
-        
-        return results
     }
     
     func getGlyphs(forAyah ayah: Ayah) -> [Glyph] {

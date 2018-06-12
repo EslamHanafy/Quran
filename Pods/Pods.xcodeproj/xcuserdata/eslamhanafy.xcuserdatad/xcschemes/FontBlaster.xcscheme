@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '2225F6DB233C94157C36C28163CDF5EF'
-               BlueprintName = 'FontBlaster'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'FontBlaster.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2225F6DB233C94157C36C28163CDF5EF"
+               BlueprintName = "FontBlaster"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "FontBlaster.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

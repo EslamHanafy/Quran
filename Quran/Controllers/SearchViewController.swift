@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class SearchViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
@@ -16,6 +17,8 @@ class SearchViewController: UIViewController {
     
     var searchKeyword: String = "" {
         didSet {
+            ayahPage = 1
+            shouldLoadMoreAyah = true
             isSearchingForSurah ? searchForSurah() : searchForAyah()
         }
     }
@@ -25,6 +28,9 @@ class SearchViewController: UIViewController {
     var surahResults: [Surah] = []
     var ayahResults: [SearchResult] = []
     
+    
+    var ayahPage: Int = 1
+    var shouldLoadMoreAyah: Bool = true
     
     
     public static func search(forKeyword keyword: String, inSurah isSurah: Bool, fromController controller: UIViewController) {
@@ -54,7 +60,9 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func searchTextChangeAction() {
-//        searchKeyword = searchTextField.text ?? ""
+        if searchTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false {
+            searchKeyword = searchTextField.text!
+        }
     }
     
     @IBAction func typeChangeAction() {
@@ -77,10 +85,23 @@ extension SearchViewController {
     fileprivate func searchForAyah() {
         print("searching for: \(searchKeyword)")
         DispatchQueue.global(qos: .utility).async {
-            self.ayahResults = DBHelper.shared.searchForAyah(withText: self.searchKeyword)
-            
-            mainQueue {
-                self.tableView.reloadData()
+            DBHelper.shared.searchForAyah(withText: self.searchKeyword, atPage: self.ayahPage).done { results -> Void in
+                if self.ayahPage > 1 {
+                    self.ayahResults += results
+                }else {
+                    self.ayahResults = results
+                }
+                
+                if results.count == 0 {
+                    self.shouldLoadMoreAyah = false
+                }
+                
+                mainQueue {
+                    self.tableView.reloadData()
+                }
+                
+                }.catch { error in
+                    displayAlert("عذرا حدث خطأ, برجاء المحاولة مرة اخرى لاحقا", forController: self)
             }
         }
     }
@@ -98,6 +119,15 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return isSearchingForSurah ? getSurahCell(atIndexPath: indexPath) : getAyahCell(atIndexPath: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if !isSearchingForSurah {
+            if indexPath.row == ayahResults.count - 1 && shouldLoadMoreAyah {
+                ayahPage += 1
+                searchForAyah()
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
