@@ -140,7 +140,7 @@ extension QuranViewController {
     /// reload the screen design based on current theme
     func reloadTheme() {
         UIView.animate(withDuration: 0.3) {
-            self.containerView.backgroundColor = QuranManager.manager.isNightMode ? .black : .white
+            self.containerView.backgroundColor = QuranManager.manager.isNightMode ? .black : hexStringToUIColor(hex: "F6EEDF")
             self.collectionView.reloadData()
             self.updateHeaderDesign()
             QuranViewController.ayahOptions?.updateDesign()
